@@ -14,19 +14,33 @@ import ClearPattern from './ClearPattern.js'
 class App extends Component {
 
   state = {
-    // buttonToggle: false,
      steps:
      [
        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-     ]
+     ],
+     bpm: 120
   }
 
   stepToggle = (x, y) => {
-     console.log(`You Clicked ${x} and ${y}`)
 
+    if (this.state.steps[x][y] === 0) {
+      const newSteps = this.state.steps
+      newSteps[x][y] = 1
+      this.setState({steps: newSteps})
+    } else {
+      const newSteps = this.state.steps
+      newSteps[x][y] = 0
+      this.setState({steps: newSteps})
+    }
+
+    debugger
+
+    console.log(`You Clicked ${x} and ${y}`)
   }
 
   clearPattern = () => {
@@ -43,8 +57,9 @@ class App extends Component {
   }
 
   render() {
-    let cells = this.state.steps.map((row, yCoord) => {
-      return <div className="row">{row.map((cell, xCoord) => <Cell stepToggle={this.stepToggle} x={xCoord} y={yCoord}/>)}</div>
+    debugger
+    let cells = this.state.steps.map((row, xCoord) => {
+      return <div className="row">{row.map((cell, yCoord) => <Cell stepToggle={this.stepToggle} x={xCoord} y={yCoord} />) }</div>
     })
 
     // let cells = [];

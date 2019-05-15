@@ -14,14 +14,9 @@ class Cell extends Component {
   }
 
   clickHandler = (event) => {
-
     this.toggleActive()
     this.props.stepToggle(this.props.x, this.props.y)
-
-
-
     this.state.active ? event.target.style.background = 'white' : event.target.style.background = '#6FE596' 
-
   }
 
 
