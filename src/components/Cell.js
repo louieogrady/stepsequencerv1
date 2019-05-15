@@ -5,10 +5,11 @@ class Cell extends Component {
 
   clickHandler = (event) => {
 
-    this.props.stepToggle ? event.target.style.background = 'navy' : event.target.style.background = 'white'
+    this.props.buttonToggle ? event.target.style.background = 'white' : event.target.style.background = '#6FE596'
 
     this.props.stepToggle(event.target.id)
   }
+
 
   render() {
     return (
