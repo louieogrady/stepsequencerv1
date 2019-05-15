@@ -7,10 +7,20 @@ class Cell extends Component {
     active: false
   }
 
+  toggleActive = () => {
+    this.setState({
+      active: !this.state.active
+    })
+  }
+
   clickHandler = (event) => {
+
+    this.toggleActive()
     this.props.stepToggle(this.props.x, this.props.y)
 
-    this.props.active ? event.target.style.background = 'white' : event.target.style.background = '#6FE596'
+
+
+    this.state.active ? event.target.style.background = 'white' : event.target.style.background = '#6FE596' 
 
   }
 

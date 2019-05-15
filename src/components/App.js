@@ -14,7 +14,7 @@ import ClearPattern from './ClearPattern.js'
 class App extends Component {
 
   state = {
-    buttonToggle: false,
+    // buttonToggle: false,
      steps:
      [
        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -26,9 +26,7 @@ class App extends Component {
 
   stepToggle = (x, y) => {
      console.log(`You Clicked ${x} and ${y}`)
-    this.setState({
-      buttonToggle: !this.state.buttonToggle
-    })
+
   }
 
   clearPattern = () => {
@@ -43,14 +41,6 @@ class App extends Component {
       ]
     })
   }
-  //
-  // genRow = (row) => {
-  //   return row.map(cell => <Cell )
-  // }
-  //
-  // genMatrix = () => {
-  //   return this.state.steps.map(this.genRow)
-  // }
 
   render() {
     let cells = this.state.steps.map((row, yCoord) => {
@@ -70,7 +60,6 @@ class App extends Component {
 
         <div className="grid">
           {cells}
-
         </div>
 
         <PlayPause />
