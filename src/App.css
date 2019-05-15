@@ -19,7 +19,7 @@
 .box {
   background: white;
   border: 2px solid black;
-  margin: 0.5px;
+  margin: 2px;
   color: black;
   flex: 1 0 auto;
   position: relative;
@@ -31,6 +31,7 @@
   padding-top: 100%;
 }
 .box .inner {
+  background: white;
   position: absolute;
   left: 0;
   right: 0;

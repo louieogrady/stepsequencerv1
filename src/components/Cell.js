@@ -1,19 +1,21 @@
 import React, { Component } from "react";
-import Tone from "tone";
+
 
 class Cell extends Component {
 
-  state = {
-    buttonToggle: false
+  clickHandler = (event) => {
+
+    this.props.stepToggle ? event.target.style.background = 'navy' : event.target.style.background = 'white'
+
+    this.props.stepToggle(event.target.id)
   }
 
   render() {
     return (
-              <div class="box"><div class="inner"> </div></div>
+            <div className="box" > <div className="inner" id={this.props.id} onClick={this.clickHandler}  > </div></div>
     );
   }
 
 }
-
 
 export default Cell
