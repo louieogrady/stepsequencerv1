@@ -24,8 +24,8 @@ class App extends Component {
      ]
   }
 
-  stepToggle = (id) => {
-    console.log(`You Clicked ${id}`)
+  stepToggle = (x, y) => {
+     console.log(`You Clicked ${x} and ${y}`)
     this.setState({
       buttonToggle: !this.state.buttonToggle
     })
@@ -43,12 +43,24 @@ class App extends Component {
       ]
     })
   }
+  //
+  // genRow = (row) => {
+  //   return row.map(cell => <Cell )
+  // }
+  //
+  // genMatrix = () => {
+  //   return this.state.steps.map(this.genRow)
+  // }
 
   render() {
-    let cells = [];
-    for (let i = 0; i < 16; i++) {
-      cells.push(<Cell stepToggle={this.stepToggle} buttonToggle={this.state.buttonToggle} key={i} id={i}/>)
-    }
+    let cells = this.state.steps.map((row, yCoord) => {
+      return <div className="row">{row.map((cell, xCoord) => <Cell stepToggle={this.stepToggle} x={xCoord} y={yCoord}/>)}</div>
+    })
+
+    // let cells = [];
+    // for (let i = 0; i < 16; i++) {
+    //   cells.push(<Cell stepToggle={this.stepToggle} buttonToggle={this.state.buttonToggle} key={i} id={i} steps={this.state.steps}/>)
+    // }
 
     return (
       <div className="App">
@@ -57,12 +69,8 @@ class App extends Component {
         <Snare />
 
         <div className="grid">
-        <div className="row">{cells}</div>
-        <div className="row">{cells}</div>
-        <div className="row">{cells}</div>
-        <div className="row">{cells}</div>
-        <div className="row">{cells}</div>
-        <div className="row">{cells}</div>
+          {cells}
+
         </div>
 
         <PlayPause />

@@ -3,11 +3,15 @@ import React, { Component } from "react";
 
 class Cell extends Component {
 
+  state = {
+    active: false
+  }
+
   clickHandler = (event) => {
+    this.props.stepToggle(this.props.x, this.props.y)
 
-    this.props.buttonToggle ? event.target.style.background = 'white' : event.target.style.background = '#6FE596'
+    this.props.active ? event.target.style.background = 'white' : event.target.style.background = '#6FE596'
 
-    this.props.stepToggle(event.target.id)
   }
 
 
