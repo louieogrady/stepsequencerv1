@@ -15,6 +15,8 @@ class PlayPause extends Component {
     this.setState({
       playing: !this.state.playing
     });
+
+    // this.props.drummer()
   }
 
   render() {
