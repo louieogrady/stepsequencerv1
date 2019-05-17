@@ -24,7 +24,8 @@ class App extends Component {
     bpm: 120,
     playing: Tone.Transport.state, // returns the playback state of Transport, either “started”, “stopped”, or “paused”
     notes: ["C#2", "D#3", "F#2", "G#1", "A#2", "C#1", "D#3", "F#2"].reverse(),
-    playState: Tone.Transport.state
+    playState: Tone.Transport.state,
+    column: 0
   };
 
   triggerDrumSynth = () => {
@@ -35,25 +36,37 @@ class App extends Component {
   componentDidMount() {
     this.loop = new Tone.Sequence(
       (time, col) => {
+
+        this.setState({
+          column: col
+        })
+
         this.state.steps.map((row, noteIndex) => {
           if (row[col]) {
+            // debugger
             // Trigger the sound to be played here
-            return this.synth.triggerAttackRelease(
+             this.synth.triggerAttackRelease(
               this.state.notes[noteIndex],
-              "8n",
+              "16n",
               time
             );
           }
         });
+
+        //this.state.steps.map((row) => { return row.map((x, ycoord) => { return ycoord})})
+
       console.log(time)},
-      this.state.steps[0], // defines the parts of the sequence, lets use first row of the steps
-      "16n"
+      [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ],
+"16n"
+      // this.state.steps[0], // defines the parts of the sequence, lets use first row of the steps - doesn't matter what number this is as long as its 0-5 (pertaining to rows)
+      // "16n"
     ).start(0)
-    return () => this.loop.dispose()
+    // debugger
+    // return () => this.loop.dispose()
     //
     // Tone.Transport.loop = true
     // Tone.Transport.start()
-    this.loop.start(0)
+    // this.loop.start(0)
 
   }
 
@@ -74,8 +87,9 @@ class App extends Component {
 
     play = () => {
       // this.loop.start(0)
-      // Tone.Transport.bpm.value = this.state.bpm;
       Tone.Transport.toggle();
+      // Tone.Transport.bpm.value = this.state.bpm;
+      // Tone.Transport.toggle();
 
 
       this.setState({
