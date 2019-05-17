@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import * as Tone from "tone";
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Slider from '@material-ui/lab/Slider';
 
 import "../App.css";
 
@@ -8,6 +12,7 @@ import Snare from "./Snare.js";
 import Cell from "./Cell.js";
 import PlayPause from "./PlayPause.js";
 import ClearPattern from "./ClearPattern.js";
+import StepSlider from './BpmSlider.js'
 
 class App extends Component {
   synth = new Tone.MembraneSynth().toMaster();
@@ -25,7 +30,8 @@ class App extends Component {
     playing: Tone.Transport.state, // returns the playback state of Transport, either “started”, “stopped”, or “paused”
     notes: ["C#2", "D#3", "F#2", "G#1", "A#2", "C#1", "D#3", "F#2"].reverse(),
     playState: Tone.Transport.state,
-    column: 0
+    column: 0,
+    activeColumn: 0
   };
 
   triggerDrumSynth = () => {
@@ -57,7 +63,7 @@ class App extends Component {
 
       console.log(time)},
       [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ],
-"16n"
+      "16n"
       // this.state.steps[0], // defines the parts of the sequence, lets use first row of the steps - doesn't matter what number this is as long as its 0-5 (pertaining to rows)
       // "16n"
     ).start(0)
@@ -86,6 +92,7 @@ class App extends Component {
     };
 
     play = () => {
+      Tone.Transport.bpm.value = this.state.bpm
       // this.loop.start(0)
       Tone.Transport.toggle();
       // Tone.Transport.bpm.value = this.state.bpm;
@@ -210,7 +217,7 @@ class App extends Component {
   render() {
     let cells = this.state.steps.map((row, xCoord) => {
       return (
-        <div className="row">
+        <div className="row" >
           {row.map((cell, yCoord) => (
             <Cell stepToggle={this.stepToggle} x={xCoord} y={yCoord} />
           ))}
@@ -227,8 +234,6 @@ class App extends Component {
       <div className="App">
         <div className="grid">{cells}</div>
 
-        <Snare />
-
         <PlayPause
           play={this.play}
           pause={this.pause}
@@ -238,6 +243,8 @@ class App extends Component {
         <ClearPattern clearPattern={this.clearPattern} />
 
         <button onClick={this.toggle}> test click </button>
+
+        <StepSlider>Tempo</StepSlider>
       </div>
     );
 
