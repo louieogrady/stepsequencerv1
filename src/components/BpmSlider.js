@@ -5,9 +5,9 @@ import Slider, { defaultValueReducer } from '@material-ui/lab/Slider';
 
 const styles = {
   root: {
-    width: 150,
-    top: "40rem",
-    left: "506rem"
+    width: 160,
+    top: 200,
+    right: 200
   },
 };
 
