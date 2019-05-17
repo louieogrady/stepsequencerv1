@@ -214,6 +214,14 @@ class App extends Component {
     });
   };
 
+  changeBpm = (event) => {
+    Tone.Transport.bpm.value = event.target.value
+
+    this.setState({
+      bpm: event.target.value
+    })
+  }
+
   render() {
     let cells = this.state.steps.map((row, xCoord) => {
       return (
@@ -242,7 +250,7 @@ class App extends Component {
 
         <ClearPattern clearPattern={this.clearPattern} />
 
-        <StepSlider>Tempo</StepSlider>
+        <StepSlider changeBpm={this.changeBpm} >Tempo</StepSlider>
       </div>
     );
 

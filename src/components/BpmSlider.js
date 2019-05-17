@@ -48,9 +48,16 @@ class StepSlider extends React.Component {
     value: 120,
   };
 
-  handleChange = (event, value) => {
-    this.setState({ value });
+  handleChange = (event) => {
+    event.persist()
+    this.setState({
+      value: event.target.value
+    })
+
+    // this.props.changeBpm(event)
   };
+
+
 
   render() {
     const { classes } = this.props;
@@ -64,7 +71,7 @@ class StepSlider extends React.Component {
           min={10}
           max={200}
           step={1}
-          onChange={this.handleChange}
+          onChange={(event) => this.handleChange(event)}
         />Tempo: {value}
       </div>
     );
