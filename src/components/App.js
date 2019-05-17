@@ -49,7 +49,7 @@ class App extends Component {
 
         this.state.steps.map((row, noteIndex) => {
           if (row[col]) {
-            // debugger
+
             // Trigger the sound to be played here
              this.synth.triggerAttackRelease(
               this.state.notes[noteIndex],
@@ -241,8 +241,6 @@ class App extends Component {
         />
 
         <ClearPattern clearPattern={this.clearPattern} />
-
-        <button onClick={this.toggle}> test click </button>
 
         <StepSlider>Tempo</StepSlider>
       </div>

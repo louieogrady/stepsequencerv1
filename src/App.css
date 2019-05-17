@@ -3,7 +3,7 @@
   width: 80vw;
   max-width: 160vh;
   height: 160vw;
-  max-height: 80vh;
+  max-height: 68vh;
   font-size: 1rem;
   position: absolute;
   top: 0;
@@ -41,6 +41,8 @@
   align-items: center;
   justify-content: center;
 }
+
+
 
 
 
