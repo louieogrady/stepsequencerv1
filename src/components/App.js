@@ -39,25 +39,52 @@ class App extends Component {
           if (row[col]) {
             // Trigger the sound to be played here
             return this.synth.triggerAttackRelease(
-              this.state.notes[0],
+              this.state.notes[noteIndex],
               "8n",
               time
             );
           }
         });
-      },
+      console.log(time)},
       this.state.steps[0], // defines the parts of the sequence, lets use first row of the steps
       "16n"
-    );
-    //Tone.Transport.scheduleRepeat(this.triggerDrumSynth, '8n');  -- this makes sound
-    Tone.Transport.loop = true
-    Tone.Transport.start()
+    ).start(0);
+    //
+    // Tone.Transport.loop = true
+    // Tone.Transport.start()
+    // this.loop.start(0)
 
   }
 
   // componentWillMount() {
   //   this.loop.dispose()
   // }
+
+
+    pause = () => {
+      Tone.Transport.stop();
+      console.log("paused")
+    };
+
+    toggle = () => {
+      // Tone.Transport.start();
+      Tone.Transport.toggle();
+    };
+
+    play = () => {
+      this.loop.start(0)
+      // Tone.Transport.bpm.value = this.state.bpm;
+      // Tone.Transport.toggle();
+
+
+      this.setState({
+        playState: Tone.Transport.State
+      });
+
+      console.log("transport started");
+      // debugger
+    };
+
 
   // testHandleClick = () => {
   //
@@ -136,29 +163,6 @@ class App extends Component {
   // }, "8n").start(0);
   // Transport.start();
 
-  pause = () => {
-    Tone.Transport.stop();
-    console.log("paused")
-  };
-
-  toggle = () => {
-    // Tone.Transport.start();
-    Tone.Transport.toggle();
-  };
-
-  play = () => {
-    this.loop.start(0)
-    // Tone.Transport.bpm.value = this.state.bpm;
-    // Tone.Transport.toggle();
-
-
-    this.setState({
-      playState: Tone.Transport.State
-    });
-
-    console.log("transport started");
-    // debugger
-  };
 
   stepToggle = (x, y) => {
     if (this.state.steps[x][y] === 0) {
