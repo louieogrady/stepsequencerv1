@@ -1,8 +1,6 @@
 .grid {
-  margin: 0 auto;
   width: 80vw;
   max-width: 160vh;
-  height: 160vw;
   max-height: 68vh;
   font-size: 1rem;
   position: absolute;
@@ -10,7 +8,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-
+  overflow: hidden;
   margin: auto;
 }
 .row {
@@ -40,6 +38,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.body {
+  overflow: hidden
 }
 
 

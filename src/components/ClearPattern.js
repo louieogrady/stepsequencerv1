@@ -8,8 +8,8 @@ class ClearPattern extends Component {
 
   render() {
     return (
-      <button class="ui basic button"  onClick={this.handleClick} style={{position: "absolute", margin: "563px 10px 150px 175px"}}>
-      Clear Pattern
+      <button class="ui basic button big"  onClick={this.handleClick} style={{position: "absolute", top: "40rem", left: "20.7rem"}}>
+      <i class="trash icon" ></i>Clear Pattern
       </button>
     );
   }

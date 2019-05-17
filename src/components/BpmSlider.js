@@ -6,7 +6,8 @@ import Slider, { defaultValueReducer } from '@material-ui/lab/Slider';
 const styles = {
   root: {
     width: 150,
-    margin: '540px 300px 400px 1100px',
+    top: "40rem",
+    left: "506rem"
   },
 };
 
@@ -48,13 +49,14 @@ class StepSlider extends React.Component {
     value: 120,
   };
 
-  handleChange = (event) => {
-    event.persist()
+  handleChange = (event, value) => {
+    // debugger
+    // event.persist();
     this.setState({
-      value: event.target.value
+      value: value
     })
 
-    // this.props.changeBpm(event)
+    this.props.changeBpm(value)
   };
 
 
@@ -71,7 +73,7 @@ class StepSlider extends React.Component {
           min={10}
           max={200}
           step={1}
-          onChange={(event) => this.handleChange(event)}
+          onChange={this.handleChange}
         />Tempo: {value}
       </div>
     );

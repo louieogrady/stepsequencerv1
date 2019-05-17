@@ -214,11 +214,12 @@ class App extends Component {
     });
   };
 
-  changeBpm = (event) => {
-    Tone.Transport.bpm.value = event.target.value
+  changeBpm = (value) => {
+    console.log(value)
+    Tone.Transport.bpm.value = value
 
     this.setState({
-      bpm: event.target.value
+      bpm: value
     })
   }
 
