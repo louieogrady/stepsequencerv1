@@ -10,7 +10,7 @@ import PlayPause from "./PlayPause.js";
 import ClearPattern from "./ClearPattern.js";
 
 class App extends Component {
-  synth = new Tone.MonoSynth().toMaster();
+  synth = new Tone.MembraneSynth().toMaster();
 
   state = {
     steps: [
@@ -48,11 +48,12 @@ class App extends Component {
       console.log(time)},
       this.state.steps[0], // defines the parts of the sequence, lets use first row of the steps
       "16n"
-    ).start(0);
+    ).start(0)
+    return () => this.loop.dispose()
     //
     // Tone.Transport.loop = true
     // Tone.Transport.start()
-    // this.loop.start(0)
+    this.loop.start(0)
 
   }
 
@@ -72,9 +73,9 @@ class App extends Component {
     };
 
     play = () => {
-      this.loop.start(0)
+      // this.loop.start(0)
       // Tone.Transport.bpm.value = this.state.bpm;
-      // Tone.Transport.toggle();
+      Tone.Transport.toggle();
 
 
       this.setState({
