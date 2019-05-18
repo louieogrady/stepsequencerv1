@@ -19,11 +19,13 @@ class Cell extends Component {
   }
 
 
-style="{isLoggedIn ? 'display:' : 'display:none'}"
+
+
+
 
   render() {
     return (
-            <div className="box" style={this.props.activeColumn === this.props.id ? {background: "15px solid gray;"} : null}> <div className="inner" id={this.props.id} onClick={this.clickHandler}  > </div></div>
+            <div className="box" style={{border: this.props.activeColumn === this.props.y ? "5px solid red" : "2px solid black;"} }> <div className="inner" id={this.props.id} onClick={this.clickHandler}  > </div></div>
     );
   }
 

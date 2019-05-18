@@ -66,8 +66,7 @@ class App extends Component {
       // this.state.steps[0], // defines the parts of the sequence, lets use first row of the steps - doesn't matter what number this is as long as its 0-5 (pertaining to rows)
       // "16n"
     ).start(0);
-    // debugger
-    // return () => this.loop.dispose()
+    return () => this.loop.dispose()
     //
     // Tone.Transport.loop = true
     // Tone.Transport.start()
@@ -91,6 +90,7 @@ class App extends Component {
     };
 
     play = () => {
+
       Tone.Transport.bpm.value = this.state.bpm
       // this.loop.start(0)
       Tone.Transport.toggle();
@@ -227,7 +227,7 @@ class App extends Component {
       return (
         <div className="row" >
           {row.map((cell, yCoord) => (
-            <Cell stepToggle={this.stepToggle} x={xCoord} y={yCoord} activeColumn={this.state.activeColumn}/>
+            <Cell stepToggle={this.stepToggle} x={xCoord} y={yCoord} activeColumn={this.state.activeColumn} />
           ))}
         </div>
       );
@@ -240,7 +240,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <div className="grid">{cells}</div>
+        <div className="grid" >{cells}</div>
 
         <PlayPause
           play={this.play}
