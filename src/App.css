@@ -44,6 +44,11 @@
     /* background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
     display: block; */
     overflow: hidden;
+    /* background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)' */
+}
+
+#text {
+  top: 50rem
 }
 
 .StepSlider-root-1 {

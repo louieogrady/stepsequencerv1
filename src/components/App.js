@@ -10,7 +10,10 @@ import BpmSlider from './BpmSlider.js'
 import VolumeSlider from './VolumeSlider.js'
 
 class App extends Component {
+
+  // create volume
   appVol = new Tone.Volume()
+  //create drum synth with 
   synth = new Tone.MembraneSynth().chain(this.appVol, Tone.Master);
 
 

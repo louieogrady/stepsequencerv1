@@ -6,9 +6,9 @@ import Slider, { defaultValueReducer } from '@material-ui/lab/Slider';
 const styles = {
   root: {
     width: 160,
-    top: "40rem", left: "50.2rem"
+    top: "40rem", left: "50.2rem",
   },
-};
+}
 
 /**
  * a value reducer that will snap to multiple of 10 but also to the edge value
@@ -65,15 +65,16 @@ class VolumeSlider extends React.Component {
     const { value } = this.state;
 
     return (
-      <div className={classes.root}     >
+      <div className={classes.root}>
         <Slider style={{ top: "40rem", left: "45.2rem"}}
           value={value}
+          name={"volume"}
           valueReducer={valueReducer}
           min={-50}
           max={0}
           step={1}
           onChange={this.handleChange}
-        />Volume: {value}
+        />
       </div>
     );
   }

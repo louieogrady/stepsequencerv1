@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Slider, { defaultValueReducer } from '@material-ui/lab/Slider';
+import Typography from '@material-ui/core/Typography';
 
 const styles = {
   root: {
@@ -65,6 +66,7 @@ class BpmSlider extends React.Component {
 
     return (
       <div className={classes.root}     >
+      <Typography style={{ top: "100rem", left: "50.2rem"}} id="label">Slider label</Typography>
         <Slider style={{ top: "40rem", left: "50.2rem"}}
           value={value}
           valueReducer={valueReducer}
