@@ -1,14 +1,8 @@
 import React, { Component } from "react";
 import * as Tone from "tone";
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/lab/Slider';
 
 import "../App.css";
 
-import Hihat from "./Hihat.js";
-import Snare from "./Snare.js";
 import Cell from "./Cell.js";
 import PlayPause from "./PlayPause.js";
 import ClearPattern from "./ClearPattern.js";
@@ -50,15 +44,20 @@ class App extends Component {
         this.state.steps.map((row, noteIndex) => {
           if (row[col]) {
 
+            // randomised velocities (volume of each triggered note)
+            let vel = Math.random() * 0.5 + 0.5;
             // Trigger the sound to be played here
              this.synth.triggerAttackRelease(
               this.state.notes[noteIndex],
               "16n",
-              time
+              time, vel
             );
           }
         });
-
+        this.state.activeColumn = col
+      //   Tone.Draw.schedule(function(){
+			// 	document.querySelector(".grid").setAttribute("highlight", col);
+			// }, time);
         //this.state.steps.map((row) => { return row.map((x, ycoord) => { return ycoord})})
 
       console.log(time)},
@@ -66,7 +65,7 @@ class App extends Component {
       "16n"
       // this.state.steps[0], // defines the parts of the sequence, lets use first row of the steps - doesn't matter what number this is as long as its 0-5 (pertaining to rows)
       // "16n"
-    ).start(0)
+    ).start(0);
     // debugger
     // return () => this.loop.dispose()
     //
@@ -228,7 +227,7 @@ class App extends Component {
       return (
         <div className="row" >
           {row.map((cell, yCoord) => (
-            <Cell stepToggle={this.stepToggle} x={xCoord} y={yCoord} />
+            <Cell stepToggle={this.stepToggle} x={xCoord} y={yCoord} activeColumn={this.state.activeColumn}/>
           ))}
         </div>
       );

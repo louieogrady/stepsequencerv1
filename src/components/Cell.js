@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 
-
 class Cell extends Component {
 
   state = {
@@ -20,12 +19,18 @@ class Cell extends Component {
   }
 
 
+style="{isLoggedIn ? 'display:' : 'display:none'}"
+
   render() {
     return (
-            <div className="box" > <div className="inner" id={this.props.id} onClick={this.clickHandler}  > </div></div>
+            <div className="box" style={this.props.activeColumn === this.props.id ? {background: "15px solid gray;"} : null}> <div className="inner" id={this.props.id} onClick={this.clickHandler}  > </div></div>
     );
   }
 
 }
+
+
+
+
 
 export default Cell
