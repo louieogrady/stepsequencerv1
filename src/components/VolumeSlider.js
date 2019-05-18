@@ -70,7 +70,7 @@ class VolumeSlider extends React.Component {
           value={value}
           name={"volume"}
           valueReducer={valueReducer}
-          min={-50}
+          min={-35}
           max={0}
           step={1}
           onChange={this.handleChange}
