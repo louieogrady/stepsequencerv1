@@ -18,21 +18,12 @@ class Cell extends Component {
     this.state.active ? event.target.style.background = 'white' : event.target.style.background = '#6FE596'
   }
 
-
-
-
-
-
   render() {
     return (
-            <div className="box" style={{border: this.props.activeColumn === this.props.y ? "2px solid red" : null} }> <div className="inner" id={this.props.id} onClick={this.clickHandler}  > </div></div>
+            <div className="box" style={{border: this.props.activeColumn === this.props.y ? "2px solid pink" : null} }> <div className="inner" id={this.props.id} onClick={this.clickHandler}  > </div></div>
     );
   }
 
 }
-
-
-
-
 
 export default Cell

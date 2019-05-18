@@ -43,9 +43,10 @@ function valueReducer(rawValue, props, event) {
  * this slider has a max that is not a multiple of its step. We use a custom
  * `valueReducer` to adjust the given values
  */
-class BpmSlider extends React.Component {
+class VolumeSlider extends React.Component {
+
   state = {
-    value: 120,
+    value: 0,
   };
 
   handleChange = (event, value) => {
@@ -54,7 +55,7 @@ class BpmSlider extends React.Component {
       value: value
     })
 
-    this.props.changeBpm(value)
+    this.props.changeVolume(value)
   };
 
 
@@ -65,21 +66,21 @@ class BpmSlider extends React.Component {
 
     return (
       <div className={classes.root}     >
-        <Slider style={{ top: "40rem", left: "50.2rem"}}
+        <Slider style={{ top: "40rem", left: "45.2rem"}}
           value={value}
           valueReducer={valueReducer}
-          min={10}
-          max={200}
+          min={-50}
+          max={0}
           step={1}
           onChange={this.handleChange}
-        />Tempo: {value}
+        />Volume: {value}
       </div>
     );
   }
 }
 
-BpmSlider.propTypes = {
+VolumeSlider.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(BpmSlider);
+export default withStyles(styles)(VolumeSlider);

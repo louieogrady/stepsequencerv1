@@ -6,10 +6,15 @@ import "../App.css";
 import Cell from "./Cell.js";
 import PlayPause from "./PlayPause.js";
 import ClearPattern from "./ClearPattern.js";
-import StepSlider from './BpmSlider.js'
+import BpmSlider from './BpmSlider.js'
+import VolumeSlider from './VolumeSlider.js'
 
 class App extends Component {
-  synth = new Tone.MembraneSynth().toMaster();
+  appVol = new Tone.Volume()
+  synth = new Tone.MembraneSynth().chain(this.appVol, Tone.Master);
+
+
+// Volume = new Tone.Volume(volume)
 
   state = {
     steps: [
@@ -25,7 +30,9 @@ class App extends Component {
     notes: ["C#2", "D#3", "F#2", "G#1", "A#2", "C#1", "D#3", "F#2"].reverse(),
     playState: Tone.Transport.state,
     column: 0,
-    activeColumn: 0
+    activeColumn: 0,
+    time: 0,
+    masterVolume: 0
   };
 
   triggerDrumSynth = () => {
@@ -34,6 +41,7 @@ class App extends Component {
   };
 
   componentDidMount() {
+
     this.loop = new Tone.Sequence(
       (time, col) => {
 
@@ -55,6 +63,11 @@ class App extends Component {
           }
         });
         this.state.activeColumn = col
+
+
+                this.setState({
+                  time: time
+                })
       //   Tone.Draw.schedule(function(){
 			// 	document.querySelector(".grid").setAttribute("highlight", col);
 			// }, time);
@@ -66,6 +79,12 @@ class App extends Component {
       // this.state.steps[0], // defines the parts of the sequence, lets use first row of the steps - doesn't matter what number this is as long as its 0-5 (pertaining to rows)
       // "16n"
     ).start(0);
+
+    this.setState({
+      masterVolume: this.appVol.volume.value
+    })
+
+
     return () => this.loop.dispose()
     //
     // Tone.Transport.loop = true
@@ -74,10 +93,6 @@ class App extends Component {
 
   }
 
-  // componentWillMount() {
-  //   this.loop.dispose()
-  // }
-
 
     pause = () => {
       Tone.Transport.stop();
@@ -85,11 +100,13 @@ class App extends Component {
     };
 
     toggle = () => {
+
       // Tone.Transport.start();
       Tone.Transport.toggle();
     };
 
     play = () => {
+
 
       Tone.Transport.bpm.value = this.state.bpm
       // this.loop.start(0)
@@ -222,6 +239,14 @@ class App extends Component {
     })
   }
 
+  changeVolume = (value) => {
+    this.appVol.volume.value = value
+
+    this.setState({
+      masterVolume: value
+    })
+  }
+
   render() {
     let cells = this.state.steps.map((row, xCoord) => {
       return (
@@ -250,7 +275,8 @@ class App extends Component {
 
         <ClearPattern clearPattern={this.clearPattern} />
 
-        <StepSlider changeBpm={this.changeBpm} >Tempo</StepSlider>
+        <BpmSlider changeBpm={this.changeBpm} ></BpmSlider>
+        <VolumeSlider changeVolume={this.changeVolume} ></VolumeSlider>
       </div>
     );
 

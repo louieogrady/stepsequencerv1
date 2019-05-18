@@ -41,7 +41,14 @@
 }
 
 .body {
-  overflow: hidden
+    /* background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+    display: block; */
+    overflow: hidden;
+}
+
+.StepSlider-root-1 {
+  top: 84rem;
+  left: 484.2rem
 }
 
 
