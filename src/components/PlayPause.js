@@ -15,13 +15,18 @@ class PlayPause extends Component {
     this.setState({
       playing: !this.state.playing
     });
+
   }
 
   render() {
     return (
-      <button className="play-pause-button" onClick={this.handleClick}>
+      <div class="ui vertical labeled icon buttons"  onClick={this.handleClick}>
+      <button class="play button big" style={{ top: "40rem", left: "10.5rem"}}>
+      <i class="play icon" ></i>
       {this.state.playing ? 'Pause' : 'Play'}
       </button>
+      </div>
+
     );
   }
 }
