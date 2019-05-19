@@ -14,18 +14,19 @@ class App extends Component {
 
   // create volume
   appVol = new Tone.Volume()
-  //create drum synth -
+
+  //create drum synth
   synth = new Tone.MembraneSynth().chain(this.appVol, Tone.Master);
   //create poly synth
   synth1 = new Tone.PolySynth().chain(this.appVol, Tone.Master);
   //create mono synth
   synth2 = new Tone.MonoSynth().chain(this.appVol, Tone.Master);
   //create mono synth
-  synth3 = new Tone.MonoSynth().chain(this.appVol, Tone.Master);
-  //create poly synth
-  synth4 = new Tone.PolySynth().chain(this.appVol, Tone.Master);
-  //create poly synth
-  synth5 = new Tone.PolySynth().chain(this.appVol, Tone.Master);
+  synth3 = new Tone.AMSynth().chain(this.appVol, Tone.Master);
+  //create FM synth
+  synth4 = new Tone.FMSynth().chain(this.appVol, Tone.Master);
+  //create Pluck synth
+  synth5 = new Tone.PluckSynth().chain(this.appVol, Tone.Master);
 
 
   // keys = new Tone.Players({
@@ -112,8 +113,38 @@ class App extends Component {
               "16n",
               time, vel
             );
-        }
-      } );
+        } else if (row === this.state.steps[3] && row[col]) {
+
+        // randomised velocities (volume of each triggered note)
+        let vel = Math.random() * 0.5 + 0.5;
+        // Trigger the sound to be played here
+         this.synth3.triggerAttackRelease(
+          this.state.notes[noteIndex],
+          "16n",
+          time, vel
+        );
+    } else if (row === this.state.steps[4] && row[col]) {
+
+    // randomised velocities (volume of each triggered note)
+    let vel = Math.random() * 0.5 + 0.5;
+    // Trigger the sound to be played here
+     this.synth4.triggerAttackRelease(
+      this.state.notes[noteIndex],
+      "16n",
+      time, vel
+    );
+  } else if (row === this.state.steps[5] && row[col]) {
+
+  // randomised velocities (volume of each triggered note)
+  let vel = Math.random() * 0.5 + 0.5;
+  // Trigger the sound to be played here
+   this.synth5.triggerAttackRelease(
+    this.state.notes[noteIndex],
+    "16n",
+    time, vel
+  );
+}
+  } );
         this.setState({
           activeColumn: col
         })
