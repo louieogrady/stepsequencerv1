@@ -3,19 +3,42 @@ import React, { Component } from "react";
 class Cell extends Component {
 
   state = {
-    active: false
+    active: false,
+    steps: this.props.steps
   }
 
-  toggleActive = () => {
-    this.setState({
-      active: !this.state.active
-    })
+  // toggleActive = () => {
+  //   this.setState({
+  //     active: !this.state.active
+  //   })
+  // }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+  return nextProps.steps === prevState.steps
+    ? {}
+    : {steps: nextProps.steps}
   }
+
+
+
+
 
   clickHandler = (event) => {
-    this.toggleActive()
+    // this.toggleActive()
     this.props.stepToggle(this.props.x, this.props.y)
-    this.state.active ? event.target.style.background = 'white' : event.target.style.background = '#6FE596'
+
+    if (this.props.steps[this.props.x][this.props.y] === 0) {
+      event.target.style.background = 'white'
+    } else {
+      event.target.style.background = '#6FE596'
+    }
+
+    this.setState({
+      steps: this.props.steps
+    })
+
+    // this.state.active ? event.target.style.background = 'white' : event.target.style.background = '#6FE596'
+
   }
 
   render() {

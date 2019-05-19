@@ -13,8 +13,10 @@ class App extends Component {
 
   // create volume
   appVol = new Tone.Volume()
-  //create drum synth with 
+  //create drum synth with
   synth = new Tone.MembraneSynth().chain(this.appVol, Tone.Master);
+
+  synth2 = new Tone.PolySynth.chain(this.appVol, Tone.Master);
 
 
 // Volume = new Tone.Volume(volume)
@@ -30,7 +32,7 @@ class App extends Component {
     ],
     bpm: 120,
     playing: Tone.Transport.state, // returns the playback state of Transport, either “started”, “stopped”, or “paused”
-    notes: ["C#2", "D#3", "F#2", "G#1", "A#2", "C#1", "D#3", "F#2"].reverse(),
+    notes: ["C#2", "D#3", "F#2", "G#1", "A#2", "C#1", "G#3", "F#2"].reverse(),
     playState: Tone.Transport.state,
     column: 0,
     activeColumn: 0,
@@ -44,7 +46,6 @@ class App extends Component {
   };
 
   componentDidMount() {
-
     this.loop = new Tone.Sequence(
       (time, col) => {
 
@@ -65,7 +66,10 @@ class App extends Component {
             );
           }
         });
-        this.state.activeColumn = col
+        this.setState({
+          activeColumn: col
+        })
+        // this.state.activeColumn = col
 
 
                 this.setState({
@@ -231,7 +235,10 @@ class App extends Component {
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       ]
     });
+    //window.location.reload()
   };
+
+
 
   changeBpm = (value) => {
     console.log(value)
@@ -255,20 +262,15 @@ class App extends Component {
       return (
         <div className="row" >
           {row.map((cell, yCoord) => (
-            <Cell stepToggle={this.stepToggle} x={xCoord} y={yCoord} activeColumn={this.state.activeColumn} />
+            <Cell stepToggle={this.stepToggle} x={xCoord} y={yCoord} activeColumn={this.state.activeColumn} steps={this.state.steps} />
           ))}
         </div>
       );
     });
 
-    // let cells = [];
-    // for (let i = 0; i < 16; i++) {
-    //   cells.push(<Cell stepToggle={this.stepToggle} buttonToggle={this.state.buttonToggle} key={i} id={i} steps={this.state.steps}/>)
-    // }
-
     return (
       <div className="App">
-        <div className="grid" >{cells}</div>
+        <div className="grid" steps={this.state.steps}>{cells}</div>
 
         <PlayPause
           play={this.play}

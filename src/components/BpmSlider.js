@@ -58,8 +58,6 @@ class BpmSlider extends React.Component {
     this.props.changeBpm(value)
   };
 
-
-
   render() {
     const { classes } = this.props;
     const { value } = this.state;
