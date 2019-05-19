@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Slider, { defaultValueReducer } from '@material-ui/lab/Slider';
+import Typography from '@material-ui/core/Typography';
+
 
 const styles = {
   root: {
@@ -66,7 +68,9 @@ class VolumeSlider extends React.Component {
 
     return (
       <div className={classes.root}>
+      <Typography style={{ top: "500rem", left: "50.2rem"}} id="label">Volume</Typography>
         <Slider style={{ top: "40rem", left: "45.2rem"}}
+
           value={value}
           name={"volume"}
           valueReducer={valueReducer}

@@ -16,7 +16,24 @@ class App extends Component {
   appVol = new Tone.Volume()
 
   //create drum synth
-  synth = new Tone.MembraneSynth().chain(this.appVol, Tone.Master);
+  synth = new Tone.MembraneSynth({
+  pitchDecay:2.05,
+  octaves: 2,
+  oscillator : {
+    type :"fmsine",
+    phase: 140,
+    modulationType: "sine",
+    modulationIndex:0.8,
+    partials: [2] //1,0.1,0.01,0.01
+  },
+  envelope :{
+    attack:0.01,
+    decay :0.74,
+    sustain: 0.4,
+    release: 0.02,
+    attackCurve :"exponential"
+  }
+}).chain(this.appVol, Tone.Master);
   //create poly synth
   synth1 = new Tone.PolySynth().chain(this.appVol, Tone.Master);
   //create mono synth
@@ -53,7 +70,7 @@ class App extends Component {
     ],
     bpm: 120,
     playing: Tone.Transport.state, // returns the playback state of Transport, either “started”, “stopped”, or “paused”
-    notes: ["C#2", "D#3", "F#2", "G#1", "A#2", "C#1", "G#3", "F#2"].reverse(),
+    notes: ["C1", "D#3", "F#2", "G#1", "A#2", "C#1", "G#3", "F#2"].reverse(),
     // noteNames: ["A", "C#", "E", "F#"],
     playState: Tone.Transport.state,
     column: 0,

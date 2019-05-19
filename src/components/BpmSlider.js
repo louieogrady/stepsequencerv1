@@ -4,12 +4,16 @@ import { withStyles } from '@material-ui/core/styles';
 import Slider, { defaultValueReducer } from '@material-ui/lab/Slider';
 import Typography from '@material-ui/core/Typography';
 
+const style = {
+  margin: "38rem"
+}
+
 const styles = {
   root: {
     width: 160,
-    top: "40rem", left: "50.2rem"
   },
-};
+}
+
 
 /**
  * a value reducer that will snap to multiple of 10 but also to the edge value
@@ -63,16 +67,16 @@ class BpmSlider extends React.Component {
     const { value } = this.state;
 
     return (
-      <div className={classes.root}     >
-      <Typography style={{ top: "100rem", left: "50.2rem"}} id="label">Slider label</Typography>
-        <Slider style={{ top: "40rem", left: "50.2rem"}}
+      <div className={classes.root} style={style}     >
+      <Typography id="label">Tempo: {value} bpm</Typography>
+        <Slider
           value={value}
           valueReducer={valueReducer}
           min={10}
           max={200}
           step={1}
           onChange={this.handleChange}
-        />Tempo: {value}
+        />
       </div>
     );
   }

@@ -6,7 +6,7 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 0;
+  left: 4rem;
   right: 0;
   overflow: hidden;
   margin: auto;
@@ -51,10 +51,7 @@
   top: 50rem
 }
 
-.StepSlider-root-1 {
-  top: 84rem;
-  left: 484.2rem
-}
+
 
 
 
