@@ -1,3 +1,8 @@
+html, body, .App {
+  background: rgb(238,174,202);
+  background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%) !important;
+}
+
 .grid {
   width: 80vw;
   max-width: 160vh;
@@ -6,7 +11,7 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 0;
+  left: 4rem;
   right: 0;
   overflow: hidden;
   margin: auto;
@@ -29,7 +34,7 @@
   padding-top: 100%;
 }
 .box .inner {
-  background: white;
+  background: #F7F5E1;
   position: absolute;
   left: 0;
   right: 0;
@@ -40,8 +45,15 @@
   justify-content: center;
 }
 
-.body {
-  overflow: hidden
+#body {
+
+    /* overflow: hidden; */
+
+    background: linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)
+}
+
+#text {
+  top: 50rem
 }
 
 

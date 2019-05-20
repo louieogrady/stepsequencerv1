@@ -8,6 +8,8 @@
     "@material-ui/styles": "^3.0.0-alpha.10",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-rotary-knob": "^1.1.5",
+    "react-rotary-knob-skin-pack": "^1.0.2",
     "react-scripts": "3.0.1",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.87.1",

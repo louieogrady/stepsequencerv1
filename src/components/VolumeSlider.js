@@ -6,13 +6,13 @@ import React from "react";
 import { Knob } from "react-rotary-knob";
 import * as skins from "react-rotary-knob-skin-pack";
 
-class BpmSlider extends React.Component {
+class VolumeSlider extends React.Component {
   state = {
-    value: 120
+    value: -5
   };
 
   handleChange = value => {
-    const maxDistance = 100;
+    const maxDistance = 5;
     let distance = Math.abs(value - this.state.value);
 
     if (distance > maxDistance) {
@@ -23,7 +23,7 @@ class BpmSlider extends React.Component {
       });
     }
 
-    this.props.changeBpm(value);
+    this.props.changeVolume(value);
   };
 
   render() {
@@ -33,27 +33,27 @@ class BpmSlider extends React.Component {
           style={{
             position: "absolute",
             width: "60px",
-            marginTop: "-4.5rem",
-            marginLeft: "69.5rem",
+            marginTop: "-4.38rem",
+            marginLeft: "59.2rem",
             height: "60px",
             display: "inline-block"
+            // display: "inline-block"
           }}
           onChange={value => {
             this.handleChange(value);
           }}
-          min={10}
-          defaultValue={120}
-          max={200}
+          min={-12}
+          max={0}
           value={this.state.value}
           unlockDistance={30}
           preciseMode={false}
           skin={skins.s8}
           {...this.props.rest}
         />{" "}
-        <h5 style={{ marginLeft: "68.9rem", marginTop: "-0.1rem"}}>Tempo (BPM)</h5>
+        <h5 style={{ marginLeft: "58.6rem", marginTop: "-1.3rem" }}>Volume (dB)</h5>
       </div>
     );
   }
 }
 
-export default BpmSlider;
+export default VolumeSlider;

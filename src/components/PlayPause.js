@@ -20,9 +20,9 @@ class PlayPause extends Component {
 
   render() {
     return (
-      <div class="ui vertical labeled icon buttons"  onClick={this.handleClick}>
-      <button class="play button big" style={{ top: "40rem", left: "10.5rem"}}>
-      <i class="play icon" ></i>
+      <div className="huge ui vertical labeled icon buttons" >
+      <button className="play button " onClick={this.handleClick}  style={{ height: "3.95rem", width: "15.2rem", marginTop: "32.5rem", marginLeft: "12.4rem", border: "2px solid black"}}>
+      <i className="play icon" ></i>
       {this.state.playing ? 'Pause' : 'Play'}
       </button>
       </div>

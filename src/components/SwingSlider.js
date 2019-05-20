@@ -1,18 +1,15 @@
 import React from "react";
-// import PropTypes from 'prop-types';
-// import { withStyles } from '@material-ui/core/styles';
-// import Slider, { defaultValueReducer } from '@material-ui/lab/Slider';
-// import Typography from '@material-ui/core/Typography';
 import { Knob } from "react-rotary-knob";
 import * as skins from "react-rotary-knob-skin-pack";
 
-class BpmSlider extends React.Component {
+class SwingSlider extends React.Component {
+
   state = {
-    value: 120
+    value: 0
   };
 
   handleChange = value => {
-    const maxDistance = 100;
+    const maxDistance = 0.25;
     let distance = Math.abs(value - this.state.value);
 
     if (distance > maxDistance) {
@@ -23,7 +20,7 @@ class BpmSlider extends React.Component {
       });
     }
 
-    this.props.changeBpm(value);
+    this.props.changeSwing(value);
   };
 
   render() {
@@ -33,27 +30,27 @@ class BpmSlider extends React.Component {
           style={{
             position: "absolute",
             width: "60px",
-            marginTop: "-4.5rem",
-            marginLeft: "69.5rem",
+            marginTop: "-4.3rem",
+            marginLeft: "79.7rem",
             height: "60px",
             display: "inline-block"
+            // display: "inline-block"
           }}
           onChange={value => {
             this.handleChange(value);
           }}
-          min={10}
-          defaultValue={120}
-          max={200}
+          min={0}
+          max={0.5}
           value={this.state.value}
           unlockDistance={30}
           preciseMode={false}
-          skin={skins.s8}
+          skin={skins.s6}
           {...this.props.rest}
         />{" "}
-        <h5 style={{ marginLeft: "68.9rem", marginTop: "-0.1rem"}}>Tempo (BPM)</h5>
+        <h5 style={{ marginLeft: "80.5rem", marginTop: "-1.4rem" }}>Swing</h5>
       </div>
     );
   }
 }
 
-export default BpmSlider;
+export default SwingSlider;

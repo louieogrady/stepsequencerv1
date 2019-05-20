@@ -1,21 +1,94 @@
 import React, { Component } from "react";
 import * as Tone from "tone";
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/lab/Slider';
 
 import "../App.css";
 
-import Hihat from "./Hihat.js";
-import Snare from "./Snare.js";
 import Cell from "./Cell.js";
 import PlayPause from "./PlayPause.js";
 import ClearPattern from "./ClearPattern.js";
-import StepSlider from './BpmSlider.js'
+import BpmSlider from "./BpmSlider.js";
+import VolumeSlider from "./VolumeSlider.js";
+import SwingSlider from "./SwingSlider.js";
+import Title from "./Title.js";
 
 class App extends Component {
-  synth = new Tone.MembraneSynth().toMaster();
+  // create master volume for App
+  appVol = new Tone.Volume();
+
+  //create drum synth for Kick row
+  kick = new Tone.MembraneSynth({
+    pitchDecay: 1,
+    octaves: 1,
+    oscillator: {
+      type: "sine",
+      modulationType: "sine",
+      modulationIndex: 0.1,
+      partials: [1, 0.2, 0.01]
+    },
+    envelope: {
+      attack: 0.05,
+      decay: 0.5,
+      sustain: 0.5,
+      release: 0.75,
+      attackCurve: "exponential"
+    }
+  }).chain(this.appVol, Tone.Master);
+
+  kickVolume = (this.kick.volume.value = 8);
+  kickVolume;
+
+  randDecay = Math.random() * (0.25 - 0.1) + 0.1
+
+  // snare
+  snare = new Tone.NoiseSynth({
+    noise: {
+      type: "white"
+    },
+    envelope: {
+      attack: 0.005,
+      decay: this.randDecay, // decay: 0.21,
+      sustain: 0
+    }
+  }).chain(this.appVol, Tone.Master);
+
+  closedHihat = new Tone.MetalSynth({
+    frequency: 150,
+    envelope: {
+      attack: 0.0009,
+      decay: 0.35,
+      release: 0.1
+    },
+    harmonicity: 4.1,
+    modulationIndex: 40,
+    resonance: 2000,
+    octaves: 1
+  }).chain(this.appVol, Tone.Master);
+
+  closedHiHatVolume = (this.closedHihat.volume.value = -45);
+  closedHiHatVolume;
+
+  //create poly synth
+  synth1 = new Tone.PolySynth().chain(this.appVol, Tone.Master);
+  //create mono synth
+  synth2 = new Tone.MonoSynth().chain(this.appVol, Tone.Master);
+  //create mono synth
+  synth3 = new Tone.AMSynth().chain(this.appVol, Tone.Master);
+  //create FM synth
+  synth4 = new Tone.FMSynth().chain(this.appVol, Tone.Master);
+  //create Pluck synth
+  synth5 = new Tone.PluckSynth().chain(this.appVol, Tone.Master);
+
+  // keys = new Tone.Players({
+  // 		"A" : "../assets/ch.[mp3|ogg|wav]",
+  // 		"C#" : "../assets/clap.[mp3|ogg|wav]",
+  // 		"E" : "../assets/claves.[mp3|ogg|wav]",
+  // 		"F#" : "../assets/kick.[mp3|ogg|wav]",
+  // 	}, {
+  // 		"volume" : -5,
+  // 		"fadeOut" : "64n",
+  // 	}).toMaster();
+
+  // Volume = new Tone.Volume(volume)
 
   state = {
     steps: [
@@ -28,10 +101,13 @@ class App extends Component {
     ],
     bpm: 120,
     playing: Tone.Transport.state, // returns the playback state of Transport, either “started”, “stopped”, or “paused”
-    notes: ["C#2", "D#3", "F#2", "G#1", "A#2", "C#1", "D#3", "F#2"].reverse(),
+    notes: ["D1", "D#3", "F#2", "G#1", "A#2", "C#1", "G#3", "G1"],
+    // noteNames: ["A", "C#", "E", "F#"],
     playState: Tone.Transport.state,
     column: 0,
-    activeColumn: 0
+    activeColumn: 0,
+    time: 0,
+    masterVolume: 0
   };
 
   triggerDrumSynth = () => {
@@ -42,71 +118,122 @@ class App extends Component {
   componentDidMount() {
     this.loop = new Tone.Sequence(
       (time, col) => {
-
         this.setState({
           column: col
-        })
+        });
 
         this.state.steps.map((row, noteIndex) => {
-          if (row[col]) {
-
+          if (row === this.state.steps[0] && row[col]) {
+            // randomised velocities (volume of each triggered note)
+            let vel = Math.random() * 0.5 + 0.5;
             // Trigger the sound to be played here
-             this.synth.triggerAttackRelease(
+
+            this.kick.triggerAttackRelease(
+              "D1",
+              "16n",
+              time,
+              vel
+            );
+
+            // this.keys.get(this.state.noteNames[col]).start(time, 0, "32n", 0, vel);
+          } else if (row === this.state.steps[1] && row[col]) {
+            // randomised velocities (volume of each triggered note)
+            let vel = Math.random() * 0.5 + 0.5;
+            // Trigger the sound to be played here
+            this.synth1.triggerAttackRelease(
               this.state.notes[noteIndex],
               "16n",
-              time
+              time,
+              vel
+            );
+          } else if (row === this.state.steps[2] && row[col]) {
+            // randomised velocities (volume of each triggered note)
+            let vel = Math.random() * 0.5 + 0.5;
+            // Trigger the sound to be played here
+            this.synth2.triggerAttackRelease(
+              this.state.notes[noteIndex],
+              "16n",
+              time,
+              vel
+            );
+          } else if (row === this.state.steps[3] && row[col]) {
+            // randomised velocities (volume of each triggered note)
+            let vel = Math.random() * 0.45 + 0.45;
+            // Trigger the sound to be played here
+            this.snare.triggerAttackRelease("16n", time, vel);
+          } else if (row === this.state.steps[4] && row[col]) {
+            // randomised velocities (volume of each triggered note)
+            let vel = Math.random() * 0.5 + 0.5;
+            // Trigger the sound to be played here
+            this.closedHihat.triggerAttackRelease("16n", time, -12);
+          } else if (row === this.state.steps[5] && row[col]) {
+            // randomised velocities (volume of each triggered note)
+            let vel = Math.random() * 0.5 + 0.5;
+            // Trigger the sound to be played here
+            this.synth5.triggerAttackRelease(
+              this.state.notes[noteIndex],
+              "16n",
+              time,
+              vel
             );
           }
         });
+        this.setState({
+          activeColumn: col
+        });
+        // this.state.activeColumn = col
 
+        this.setState({
+          time: time
+        });
+        //   Tone.Draw.schedule(function(){
+        // 	document.querySelector(".grid").setAttribute("highlight", col);
+        // }, time);
         //this.state.steps.map((row) => { return row.map((x, ycoord) => { return ycoord})})
 
-      console.log(time)},
-      [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ],
+        console.log(time);
+      },
+      [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
       "16n"
       // this.state.steps[0], // defines the parts of the sequence, lets use first row of the steps - doesn't matter what number this is as long as its 0-5 (pertaining to rows)
       // "16n"
-    ).start(0)
-    // debugger
-    // return () => this.loop.dispose()
+    ).start(0);
+
+    this.setState({
+      masterVolume: this.appVol.volume.value
+    });
+
+    return () => this.loop.dispose();
     //
     // Tone.Transport.loop = true
     // Tone.Transport.start()
     // this.loop.start(0)
-
   }
 
-  // componentWillMount() {
-  //   this.loop.dispose()
-  // }
+  pause = () => {
+    Tone.Transport.stop();
+    console.log("paused");
+  };
 
+  toggle = () => {
+    // Tone.Transport.start();
+    Tone.Transport.toggle();
+  };
 
-    pause = () => {
-      Tone.Transport.stop();
-      console.log("paused")
-    };
+  play = () => {
+    Tone.Transport.bpm.value = this.state.bpm;
+    // this.loop.start(0)
+    Tone.Transport.toggle();
+    // Tone.Transport.bpm.value = this.state.bpm;
+    // Tone.Transport.toggle();
 
-    toggle = () => {
-      // Tone.Transport.start();
-      Tone.Transport.toggle();
-    };
+    this.setState({
+      playState: Tone.Transport.State
+    });
 
-    play = () => {
-      Tone.Transport.bpm.value = this.state.bpm
-      // this.loop.start(0)
-      Tone.Transport.toggle();
-      // Tone.Transport.bpm.value = this.state.bpm;
-      // Tone.Transport.toggle();
-
-
-      this.setState({
-        playState: Tone.Transport.State
-      });
-
-      console.log("transport started");
-      // debugger
-    };
-
+    console.log("transport started");
+    // debugger
+  };
 
   // testHandleClick = () => {
   //
@@ -185,7 +312,6 @@ class App extends Component {
   // }, "8n").start(0);
   // Transport.start();
 
-
   stepToggle = (x, y) => {
     if (this.state.steps[x][y] === 0) {
       const newSteps = this.state.steps;
@@ -214,33 +340,46 @@ class App extends Component {
     });
   };
 
-  changeBpm = (value) => {
-    console.log(value)
-    Tone.Transport.bpm.value = value
+  changeBpm = value => {
+    Tone.Transport.bpm.value = value;
 
     this.setState({
       bpm: value
-    })
-  }
+    });
+  };
+
+  changeVolume = value => {
+    this.appVol.volume.value = value;
+
+    this.setState({
+      masterVolume: value
+    });
+  };
+
+  changeSwing = value => {
+    Tone.Transport.swing = value;
+  };
 
   render() {
     let cells = this.state.steps.map((row, xCoord) => {
       return (
-        <div className="row" >
+        <div className="row">
           {row.map((cell, yCoord) => (
-            <Cell stepToggle={this.stepToggle} x={xCoord} y={yCoord} />
+            <Cell
+              stepToggle={this.stepToggle}
+              x={xCoord}
+              y={yCoord}
+              activeColumn={this.state.activeColumn}
+              steps={this.state.steps}
+            />
           ))}
         </div>
       );
     });
 
-    // let cells = [];
-    // for (let i = 0; i < 16; i++) {
-    //   cells.push(<Cell stepToggle={this.stepToggle} buttonToggle={this.state.buttonToggle} key={i} id={i} steps={this.state.steps}/>)
-    // }
-
     return (
       <div className="App">
+        <Title />
         <div className="grid">{cells}</div>
 
         <PlayPause
@@ -251,10 +390,11 @@ class App extends Component {
 
         <ClearPattern clearPattern={this.clearPattern} />
 
-        <StepSlider changeBpm={this.changeBpm} >Tempo</StepSlider>
+        <BpmSlider changeBpm={this.changeBpm} />
+        <VolumeSlider changeVolume={this.changeVolume} />
+        <SwingSlider changeSwing={this.changeSwing} />
       </div>
     );
-
   }
 }
 
