@@ -1,3 +1,8 @@
+html, body, .App {
+  background: rgb(238,174,202);
+  background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%) !important;
+}
+
 .grid {
   width: 80vw;
   max-width: 160vh;
@@ -40,10 +45,10 @@
   justify-content: center;
 }
 
-.body {
-    /* background: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%); */
-    display: block;
-    overflow: hidden;
+#body {
+
+    /* overflow: hidden; */
+
     background: linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)
 }
 
