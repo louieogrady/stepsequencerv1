@@ -33,8 +33,8 @@ class VolumeSlider extends React.Component {
           style={{
             position: "absolute",
             width: "60px",
-            marginTop: "-4.1rem",
-            marginLeft: "50.59rem",
+            marginTop: "-4.2rem",
+            marginLeft: "59rem",
             height: "60px",
             display: "inline"
             // display: "inline-block"
@@ -50,7 +50,7 @@ class VolumeSlider extends React.Component {
           skin={skins.s8}
           {...this.props.rest}
         />{" "}
-        <h5 style={{ marginLeft: "51rem", marginTop: "-1.24rem" }}>Volume </h5>
+        <h5 style={{ marginLeft: "59.5rem", marginTop: "-2rem" }}>Volume </h5>
       </div>
     );
   }
