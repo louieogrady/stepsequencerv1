@@ -34,29 +34,31 @@ class App extends Component {
     }
   }).chain(this.appVol, Tone.Master);
 
+  kickVolume = this.synth.volume.value = 8
+  kickVolume;
+
   // snare
   snare = new Tone.NoiseSynth({
-    noise: {
-      type: "white"
-    },
-    envelope: {
-      attack: 0.005,
-      decay: 0.5,
-      sustain: 0.1,
-      release: 0.4
+    noise  : {
+      type  : "white"
+    }  ,
+    envelope  : {
+      attack  : 0.005 ,
+      decay  : 0.1 ,
+      sustain  : 0
     }
   }).chain(this.appVol, Tone.Master);
 
-  closedHihat = new Tone.MetalSynth({
-    frequency: 100,
-    envelope: { attack: 0.0015, decay: 0.2, release: 0.75 },
-    harmonicity: 5.1,
-    modulationIndex: 50,
-    resonance: 3500,
+  closedHihat = new Tone.MetalSynth(({
+    frequency: 150,
+    envelope: {attack: 0.0009, decay  : 0.35, release: 0.1 },
+    harmonicity: 4.1,
+    modulationIndex: 40,
+    resonance: 2000,
     octaves: 1
-  }).chain(this.appVol, Tone.Master);
+  })).chain(this.appVol, Tone.Master);
 
-  closedHiHatVolume = this.closedHihat.volume.value = -7.2;
+  closedHiHatVolume = this.closedHihat.volume.value = -45;
   closedHiHatVolume;
 
   //create poly synth
@@ -153,7 +155,6 @@ class App extends Component {
             let vel = Math.random() * 0.45 + 0.45;
             // Trigger the sound to be played here
             this.snare.triggerAttackRelease(
-              "F2",
               "16n",
               time,
               vel
@@ -163,7 +164,6 @@ class App extends Component {
             let vel = Math.random() * 0.5 + 0.5;
             // Trigger the sound to be played here
             this.closedHihat.triggerAttackRelease(
-              this.state.notes[noteIndex],
               "16n",
               time,
               -12
