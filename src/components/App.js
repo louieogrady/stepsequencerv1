@@ -16,7 +16,7 @@ class App extends Component {
   appVol = new Tone.Volume();
 
   //create drum synth for Kick row
-  synth = new Tone.MembraneSynth({
+  kick = new Tone.MembraneSynth({
     pitchDecay: 1,
     octaves: 1,
     oscillator: {
@@ -34,31 +34,37 @@ class App extends Component {
     }
   }).chain(this.appVol, Tone.Master);
 
-  kickVolume = this.synth.volume.value = 8
+  kickVolume = (this.kick.volume.value = 8);
   kickVolume;
+
+  randDecay = Math.random() * (0.25 - 0.1) + 0.1
 
   // snare
   snare = new Tone.NoiseSynth({
-    noise  : {
-      type  : "white"
-    }  ,
-    envelope  : {
-      attack  : 0.005 ,
-      decay  : 0.1 ,
-      sustain  : 0
+    noise: {
+      type: "white"
+    },
+    envelope: {
+      attack: 0.005,
+      decay: this.randDecay, // decay: 0.21,
+      sustain: 0
     }
   }).chain(this.appVol, Tone.Master);
 
-  closedHihat = new Tone.MetalSynth(({
+  closedHihat = new Tone.MetalSynth({
     frequency: 150,
-    envelope: {attack: 0.0009, decay  : 0.35, release: 0.1 },
+    envelope: {
+      attack: 0.0009,
+      decay: 0.35,
+      release: 0.1
+    },
     harmonicity: 4.1,
     modulationIndex: 40,
     resonance: 2000,
     octaves: 1
-  })).chain(this.appVol, Tone.Master);
+  }).chain(this.appVol, Tone.Master);
 
-  closedHiHatVolume = this.closedHihat.volume.value = -45;
+  closedHiHatVolume = (this.closedHihat.volume.value = -45);
   closedHiHatVolume;
 
   //create poly synth
@@ -122,8 +128,8 @@ class App extends Component {
             let vel = Math.random() * 0.5 + 0.5;
             // Trigger the sound to be played here
 
-            this.synth.triggerAttackRelease(
-              this.state.notes[noteIndex],
+            this.kick.triggerAttackRelease(
+              "D1",
               "16n",
               time,
               vel
@@ -154,20 +160,12 @@ class App extends Component {
             // randomised velocities (volume of each triggered note)
             let vel = Math.random() * 0.45 + 0.45;
             // Trigger the sound to be played here
-            this.snare.triggerAttackRelease(
-              "16n",
-              time,
-              vel
-            );
+            this.snare.triggerAttackRelease("16n", time, vel);
           } else if (row === this.state.steps[4] && row[col]) {
             // randomised velocities (volume of each triggered note)
             let vel = Math.random() * 0.5 + 0.5;
             // Trigger the sound to be played here
-            this.closedHihat.triggerAttackRelease(
-              "16n",
-              time,
-              -12
-            );
+            this.closedHihat.triggerAttackRelease("16n", time, -12);
           } else if (row === this.state.steps[5] && row[col]) {
             // randomised velocities (volume of each triggered note)
             let vel = Math.random() * 0.5 + 0.5;
