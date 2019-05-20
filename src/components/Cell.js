@@ -35,7 +35,7 @@ class Cell extends Component {
             background:
               this.props.steps[this.props.x][this.props.y] === 0
                 ? "#F7F5E1"
-                : "#6FE596"
+                : "#b0c4e8"
           }}
         >
         </div>

@@ -8,7 +8,7 @@ import * as skins from "react-rotary-knob-skin-pack";
 
 class VolumeSlider extends React.Component {
   state = {
-    value: 7
+    value: -3
   };
 
   handleChange = value => {
@@ -42,15 +42,15 @@ class VolumeSlider extends React.Component {
           onChange={value => {
             this.handleChange(value);
           }}
-          min={0}
-          max={10}
+          min={-12}
+          max={0}
           value={this.state.value}
           unlockDistance={30}
           preciseMode={false}
           skin={skins.s8}
           {...this.props.rest}
         />{" "}
-        <h5 style={{ marginLeft: "59.5rem", marginTop: "-2rem" }}>Volume</h5>
+        <h5 style={{ marginLeft: "59.5rem", marginTop: "-2rem" }}>Volume (dB)</h5>
       </div>
     );
   }

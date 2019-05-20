@@ -6,35 +6,59 @@ import "../App.css";
 import Cell from "./Cell.js";
 import PlayPause from "./PlayPause.js";
 import ClearPattern from "./ClearPattern.js";
-import BpmSlider from './BpmSlider.js';
-import VolumeSlider from './VolumeSlider.js';
-import SwingSlider from './SwingSlider.js'
-import Title from './Title.js'
-
+import BpmSlider from "./BpmSlider.js";
+import VolumeSlider from "./VolumeSlider.js";
+import SwingSlider from "./SwingSlider.js";
+import Title from "./Title.js";
 
 class App extends Component {
+  // create master volume for App
+  appVol = new Tone.Volume();
 
-  // create volume
-  appVol = new Tone.Volume()
-
-  //create drum synth
+  //create drum synth for Kick row
   synth = new Tone.MembraneSynth({
-  pitchDecay:1,
-  octaves: 1,
-  oscillator : {
-    type :"sine",
-    modulationType: "sine",
-    modulationIndex:0.1,
-    partials: [1, 0.2, 0.01]
-  },
-  envelope :{
-    attack:0.01,
-    decay :0.5,
-    sustain: 0.5,
-    release: 0.8,
-    attackCurve :"exponential"
-  }
-}).chain(this.appVol, Tone.Master);
+    pitchDecay: 1,
+    octaves: 1,
+    oscillator: {
+      type: "sine",
+      modulationType: "sine",
+      modulationIndex: 0.1,
+      partials: [1, 0.2, 0.01]
+    },
+    envelope: {
+      attack: 0.05,
+      decay: 0.5,
+      sustain: 0.5,
+      release: 0.75,
+      attackCurve: "exponential"
+    }
+  }).chain(this.appVol, Tone.Master);
+
+  // snare
+  snare = new Tone.NoiseSynth({
+    noise: {
+      type: "white"
+    },
+    envelope: {
+      attack: 0.005,
+      decay: 0.5,
+      sustain: 0.1,
+      release: 0.4
+    }
+  }).chain(this.appVol, Tone.Master);
+
+  closedHihat = new Tone.MetalSynth({
+    frequency: 100,
+    envelope: { attack: 0.002, decay: 0.2, release: 0.75 },
+    harmonicity: 5.1,
+    modulationIndex: 50,
+    resonance: 3500,
+    octaves: 1
+  }).chain(this.appVol, Tone.Master);
+
+  closedHiHatVolume = this.closedHihat.volume.value = -6;
+  closedHiHatVolume;
+
   //create poly synth
   synth1 = new Tone.PolySynth().chain(this.appVol, Tone.Master);
   //create mono synth
@@ -46,19 +70,17 @@ class App extends Component {
   //create Pluck synth
   synth5 = new Tone.PluckSynth().chain(this.appVol, Tone.Master);
 
-
   // keys = new Tone.Players({
-	// 		"A" : "../assets/ch.[mp3|ogg|wav]",
-	// 		"C#" : "../assets/clap.[mp3|ogg|wav]",
-	// 		"E" : "../assets/claves.[mp3|ogg|wav]",
-	// 		"F#" : "../assets/kick.[mp3|ogg|wav]",
-	// 	}, {
-	// 		"volume" : -5,
-	// 		"fadeOut" : "64n",
-	// 	}).toMaster();
+  // 		"A" : "../assets/ch.[mp3|ogg|wav]",
+  // 		"C#" : "../assets/clap.[mp3|ogg|wav]",
+  // 		"E" : "../assets/claves.[mp3|ogg|wav]",
+  // 		"F#" : "../assets/kick.[mp3|ogg|wav]",
+  // 	}, {
+  // 		"volume" : -5,
+  // 		"fadeOut" : "64n",
+  // 	}).toMaster();
 
-
-// Volume = new Tone.Volume(volume)
+  // Volume = new Tone.Volume(volume)
 
   state = {
     steps: [
@@ -86,99 +108,94 @@ class App extends Component {
   };
 
   componentDidMount() {
-
     this.loop = new Tone.Sequence(
       (time, col) => {
-
         this.setState({
           column: col
-        })
+        });
 
         this.state.steps.map((row, noteIndex) => {
           if (row === this.state.steps[0] && row[col]) {
-
             // randomised velocities (volume of each triggered note)
             let vel = Math.random() * 0.5 + 0.5;
             // Trigger the sound to be played here
 
-             this.synth.triggerAttackRelease(
+            this.synth.triggerAttackRelease(
               this.state.notes[noteIndex],
               "16n",
-              time, vel
-
+              time,
+              vel
             );
 
-        // this.keys.get(this.state.noteNames[col]).start(time, 0, "32n", 0, vel);
-
-
-      } else if (row === this.state.steps[1] && row[col]) {
-
-              // randomised velocities (volume of each triggered note)
-              let vel = Math.random() * 0.5 + 0.5;
-              // Trigger the sound to be played here
-               this.synth1.triggerAttackRelease(
-                this.state.notes[noteIndex],
-                "16n",
-                time, vel
-              );
+            // this.keys.get(this.state.noteNames[col]).start(time, 0, "32n", 0, vel);
+          } else if (row === this.state.steps[1] && row[col]) {
+            // randomised velocities (volume of each triggered note)
+            let vel = Math.random() * 0.5 + 0.5;
+            // Trigger the sound to be played here
+            this.synth1.triggerAttackRelease(
+              this.state.notes[noteIndex],
+              "16n",
+              time,
+              vel
+            );
           } else if (row === this.state.steps[2] && row[col]) {
-
             // randomised velocities (volume of each triggered note)
             let vel = Math.random() * 0.5 + 0.5;
             // Trigger the sound to be played here
-             this.synth2.triggerAttackRelease(
+            this.synth2.triggerAttackRelease(
               this.state.notes[noteIndex],
               "16n",
-              time, vel
+              time,
+              vel
             );
-        } else if (row === this.state.steps[3] && row[col]) {
-
-        // randomised velocities (volume of each triggered note)
-        let vel = Math.random() * 0.5 + 0.5;
-        // Trigger the sound to be played here
-         this.synth3.triggerAttackRelease(
-          this.state.notes[noteIndex],
-          "16n",
-          time, vel
-        );
-    } else if (row === this.state.steps[4] && row[col]) {
-
-    // randomised velocities (volume of each triggered note)
-    let vel = Math.random() * 0.5 + 0.5;
-    // Trigger the sound to be played here
-     this.synth4.triggerAttackRelease(
-      this.state.notes[noteIndex],
-      "16n",
-      time, vel
-    );
-  } else if (row === this.state.steps[5] && row[col]) {
-
-  // randomised velocities (volume of each triggered note)
-  let vel = Math.random() * 0.5 + 0.5;
-  // Trigger the sound to be played here
-   this.synth5.triggerAttackRelease(
-    this.state.notes[noteIndex],
-    "16n",
-    time, vel
-  );
-}
-  } );
+          } else if (row === this.state.steps[3] && row[col]) {
+            // randomised velocities (volume of each triggered note)
+            let vel = Math.random() * 0.5 + 0.5;
+            // Trigger the sound to be played here
+            this.snare.triggerAttackRelease(
+              this.state.notes[noteIndex],
+              "16n",
+              time,
+              vel
+            );
+          } else if (row === this.state.steps[4] && row[col]) {
+            // randomised velocities (volume of each triggered note)
+            let vel = Math.random() * 0.5 + 0.5;
+            // Trigger the sound to be played here
+            this.closedHihat.triggerAttackRelease(
+              this.state.notes[noteIndex],
+              "16n",
+              time,
+              -12
+            );
+          } else if (row === this.state.steps[5] && row[col]) {
+            // randomised velocities (volume of each triggered note)
+            let vel = Math.random() * 0.5 + 0.5;
+            // Trigger the sound to be played here
+            this.synth5.triggerAttackRelease(
+              this.state.notes[noteIndex],
+              "16n",
+              time,
+              vel
+            );
+          }
+        });
         this.setState({
           activeColumn: col
-        })
+        });
         // this.state.activeColumn = col
 
-
-                this.setState({
-                  time: time
-                })
-      //   Tone.Draw.schedule(function(){
-			// 	document.querySelector(".grid").setAttribute("highlight", col);
-			// }, time);
+        this.setState({
+          time: time
+        });
+        //   Tone.Draw.schedule(function(){
+        // 	document.querySelector(".grid").setAttribute("highlight", col);
+        // }, time);
         //this.state.steps.map((row) => { return row.map((x, ycoord) => { return ycoord})})
 
-      console.log(time)},
-      [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ],
+        console.log(time);
+      },
+      [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
       "16n"
       // this.state.steps[0], // defines the parts of the sequence, lets use first row of the steps - doesn't matter what number this is as long as its 0-5 (pertaining to rows)
       // "16n"
@@ -186,47 +203,39 @@ class App extends Component {
 
     this.setState({
       masterVolume: this.appVol.volume.value
-    })
+    });
 
-
-    return () => this.loop.dispose()
+    return () => this.loop.dispose();
     //
     // Tone.Transport.loop = true
     // Tone.Transport.start()
     // this.loop.start(0)
-
   }
 
+  pause = () => {
+    Tone.Transport.stop();
+    console.log("paused");
+  };
 
-    pause = () => {
-      Tone.Transport.stop();
-      console.log("paused")
-    };
+  toggle = () => {
+    // Tone.Transport.start();
+    Tone.Transport.toggle();
+  };
 
-    toggle = () => {
+  play = () => {
+    Tone.Transport.bpm.value = this.state.bpm;
+    // this.loop.start(0)
+    Tone.Transport.toggle();
+    // Tone.Transport.bpm.value = this.state.bpm;
+    // Tone.Transport.toggle();
 
-      // Tone.Transport.start();
-      Tone.Transport.toggle();
-    };
+    this.setState({
+      playState: Tone.Transport.State
+    });
 
-    play = () => {
-
-
-      Tone.Transport.bpm.value = this.state.bpm
-      // this.loop.start(0)
-      Tone.Transport.toggle();
-      // Tone.Transport.bpm.value = this.state.bpm;
-      // Tone.Transport.toggle();
-
-
-      this.setState({
-        playState: Tone.Transport.State
-      });
-
-      console.log("transport started");
-      // debugger
-    };
-
+    console.log("transport started");
+    // debugger
+  };
 
   // testHandleClick = () => {
   //
@@ -305,7 +314,6 @@ class App extends Component {
   // }, "8n").start(0);
   // Transport.start();
 
-
   stepToggle = (x, y) => {
     if (this.state.steps[x][y] === 0) {
       const newSteps = this.state.steps;
@@ -334,34 +342,38 @@ class App extends Component {
     });
   };
 
-
-
-  changeBpm = (value) => {
-    Tone.Transport.bpm.value = value
+  changeBpm = value => {
+    Tone.Transport.bpm.value = value;
 
     this.setState({
       bpm: value
-    })
-  }
+    });
+  };
 
-  changeVolume = (value) => {
-    this.appVol.volume.value = value
+  changeVolume = value => {
+    this.appVol.volume.value = value;
 
     this.setState({
       masterVolume: value
-    })
-  }
+    });
+  };
 
-  changeSwing = (value) => {
-    Tone.Transport.swing = value
-  }
+  changeSwing = value => {
+    Tone.Transport.swing = value;
+  };
 
   render() {
     let cells = this.state.steps.map((row, xCoord) => {
       return (
-        <div className="row" >
+        <div className="row">
           {row.map((cell, yCoord) => (
-            <Cell stepToggle={this.stepToggle} x={xCoord} y={yCoord} activeColumn={this.state.activeColumn} steps={this.state.steps} />
+            <Cell
+              stepToggle={this.stepToggle}
+              x={xCoord}
+              y={yCoord}
+              activeColumn={this.state.activeColumn}
+              steps={this.state.steps}
+            />
           ))}
         </div>
       );
@@ -369,7 +381,7 @@ class App extends Component {
 
     return (
       <div className="App">
-      <Title/>
+        <Title />
         <div className="grid">{cells}</div>
 
         <PlayPause
@@ -380,12 +392,11 @@ class App extends Component {
 
         <ClearPattern clearPattern={this.clearPattern} />
 
-        <BpmSlider changeBpm={this.changeBpm} ></BpmSlider>
-        <VolumeSlider changeVolume={this.changeVolume} ></VolumeSlider>
-        <SwingSlider changeSwing={this.changeSwing}></SwingSlider>
+        <BpmSlider changeBpm={this.changeBpm} />
+        <VolumeSlider changeVolume={this.changeVolume} />
+        <SwingSlider changeSwing={this.changeSwing} />
       </div>
     );
-
   }
 }
 
