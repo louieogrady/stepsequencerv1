@@ -1,14 +1,20 @@
 import React, { Component } from "react";
 
+  let style = {
+    fontSize: "70px",
+    marginLeft: "35rem"
+  }
 
 class Title extends Component {
+
+
 
 
 
   render() {
 
     return (
-      <h5>Step Sequencer</h5>
+      <h1 style={style}> Step Sequencer </h1>
     );
 
   }

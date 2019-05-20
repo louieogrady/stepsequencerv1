@@ -367,7 +367,7 @@ class App extends Component {
     return (
       <div className="App">
       <Title/>
-        <div className="grid" steps={this.state.steps}>{cells}</div>
+        <div className="grid">{cells}</div>
 
         <PlayPause
           play={this.play}
