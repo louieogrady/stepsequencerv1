@@ -8,6 +8,7 @@ import PlayPause from "./PlayPause.js";
 import ClearPattern from "./ClearPattern.js";
 import BpmSlider from './BpmSlider.js';
 import VolumeSlider from './VolumeSlider.js';
+import SwingSlider from './SwingSlider.js'
 import Title from './Title.js'
 
 
@@ -18,20 +19,20 @@ class App extends Component {
 
   //create drum synth
   synth = new Tone.MembraneSynth({
-  pitchDecay:2.05,
-  octaves: 2,
+  pitchDecay:1,
+  octaves: 1,
   oscillator : {
-    type :"fmsine",
-    phase: 140,
+    type :"sine",
+    phase: 0,
     modulationType: "sine",
-    modulationIndex:0.8,
-    partials: [2] //1,0.1,0.01,0.01
+    modulationIndex:0.1,
+    partials: [1] //1,0.1,0.01,0.01
   },
   envelope :{
     attack:0.01,
-    decay :0.74,
-    sustain: 0.4,
-    release: 0.02,
+    decay :0.5,
+    sustain: 0.5,
+    release: 0.4,
     attackCurve :"exponential"
   }
 }).chain(this.appVol, Tone.Master);
@@ -71,7 +72,7 @@ class App extends Component {
     ],
     bpm: 120,
     playing: Tone.Transport.state, // returns the playback state of Transport, either “started”, “stopped”, or “paused”
-    notes: ["C1", "D#3", "F#2", "G#1", "A#2", "C#1", "G#3", "F#2"].reverse(),
+    notes: ["C1", "D#3", "F#2", "G#1", "A#2", "C#1", "G#3", "G1"].reverse(),
     // noteNames: ["A", "C#", "E", "F#"],
     playState: Tone.Transport.state,
     column: 0,
@@ -337,7 +338,6 @@ class App extends Component {
 
 
   changeBpm = (value) => {
-    console.log(value)
     Tone.Transport.bpm.value = value
 
     this.setState({
@@ -351,6 +351,10 @@ class App extends Component {
     this.setState({
       masterVolume: value
     })
+  }
+
+  changeSwing = (value) => {
+    Tone.Transport.swing = value
   }
 
   render() {
@@ -379,6 +383,7 @@ class App extends Component {
 
         <BpmSlider changeBpm={this.changeBpm} ></BpmSlider>
         <VolumeSlider changeVolume={this.changeVolume} ></VolumeSlider>
+        <SwingSlider changeSwing={this.changeSwing}></SwingSlider>
       </div>
     );
 

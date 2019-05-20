@@ -23,7 +23,7 @@ class Cell extends Component {
         style={{
           border:
             this.props.activeColumn === this.props.y
-              ? "2px solid #5B5D98"
+              ? "2px solid #ffff4d"
               : "2px solid black"
         }}
       >
