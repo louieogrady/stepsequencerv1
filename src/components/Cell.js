@@ -13,15 +13,11 @@ class Cell extends Component {
   //   })
   // }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-  return nextProps.steps === prevState.steps
-    ? {}
-    : {steps: nextProps.steps}
-  }
-
-
-
-
+  // static getDerivedStateFromProps(nextProps, prevState) {
+  // return nextProps.steps === prevState.steps
+  //   ? {}
+  //   : {steps: nextProps.steps}
+  // }
 
   clickHandler = (event) => {
     // this.toggleActive()
@@ -36,8 +32,6 @@ class Cell extends Component {
     this.setState({
       steps: this.props.steps
     })
-
-    this.forceUpdate();
 
     // this.state.active ? event.target.style.background = 'white' : event.target.style.background = '#6FE596'
 
