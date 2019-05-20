@@ -7,27 +7,9 @@ class Cell extends Component {
     steps: this.props.steps
   }
 
-  // toggleActive = () => {
-  //   this.setState({
-  //     active: !this.state.active
-  //   })
-  // }
-
-  // static getDerivedStateFromProps(nextProps, prevState) {
-  // return nextProps.steps === prevState.steps
-  //   ? {}
-  //   : {steps: nextProps.steps}
-  // }
-
   clickHandler = (event) => {
     // this.toggleActive()
     this.props.stepToggle(this.props.x, this.props.y)
-
-    if (this.props.steps[this.props.x][this.props.y] === 0) {
-      event.target.style.background = 'white'
-    } else {
-      event.target.style.background = '#6FE596'
-    }
 
     this.setState({
       steps: this.props.steps
@@ -39,7 +21,13 @@ class Cell extends Component {
 
   render() {
     return (
-            <div className="box" style={{border: this.props.activeColumn === this.props.y ? "2px solid pink" : null} }> <div className="inner" id={this.props.id} onClick={this.clickHandler}  > </div></div>
+       <div className="box" style={
+         {
+           border: this.props.activeColumn === this.props.y ? "2px solid #5B5D98" : "2px solid black"
+         }
+       }
+       >
+       <div className="inner" id={this.props.id} onClick={this.clickHandler} style={{background: this.props.steps[this.props.x][this.props.y] === 0 ? '#F7F5E1' : '#6FE596'}}  > </div></div>
     );
   }
 

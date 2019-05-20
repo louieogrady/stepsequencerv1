@@ -8,6 +8,7 @@ import PlayPause from "./PlayPause.js";
 import ClearPattern from "./ClearPattern.js";
 import BpmSlider from './BpmSlider.js';
 import VolumeSlider from './VolumeSlider.js';
+import Title from './Title.js'
 
 
 class App extends Component {
@@ -331,7 +332,6 @@ class App extends Component {
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       ]
     });
-    //window.location.reload()
   };
 
 
@@ -366,6 +366,7 @@ class App extends Component {
 
     return (
       <div className="App">
+      <Title/>
         <div className="grid" steps={this.state.steps}>{cells}</div>
 
         <PlayPause

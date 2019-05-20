@@ -29,7 +29,7 @@
   padding-top: 100%;
 }
 .box .inner {
-  background: white;
+  background: #F7F5E1;
   position: absolute;
   left: 0;
   right: 0;
@@ -41,17 +41,15 @@
 }
 
 .body {
-    /* background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
-    display: block; */
+    /* background: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%); */
+    display: block;
     overflow: hidden;
-    /* background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)' */
+    background: linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)
 }
 
 #text {
   top: 50rem
 }
-
-
 
 
 
