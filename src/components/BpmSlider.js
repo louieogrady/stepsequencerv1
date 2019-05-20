@@ -44,7 +44,7 @@ render() {
         value={this.state.value}
         unlockDistance={30}
         skin={skins.s8}
-      />  <h5 style={{marginLeft: "8rem", marginBottom: "9rem"}}>Tempo </h5>
+      />  <h5 style={{marginLeft: "8.35rem", }}>Tempo </h5>
     </div>
   );
 }
