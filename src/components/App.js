@@ -49,14 +49,14 @@ class App extends Component {
 
   closedHihat = new Tone.MetalSynth({
     frequency: 100,
-    envelope: { attack: 0.002, decay: 0.2, release: 0.75 },
+    envelope: { attack: 0.0015, decay: 0.2, release: 0.75 },
     harmonicity: 5.1,
     modulationIndex: 50,
     resonance: 3500,
     octaves: 1
   }).chain(this.appVol, Tone.Master);
 
-  closedHiHatVolume = this.closedHihat.volume.value = -6;
+  closedHiHatVolume = this.closedHihat.volume.value = -7.2;
   closedHiHatVolume;
 
   //create poly synth
@@ -150,10 +150,10 @@ class App extends Component {
             );
           } else if (row === this.state.steps[3] && row[col]) {
             // randomised velocities (volume of each triggered note)
-            let vel = Math.random() * 0.5 + 0.5;
+            let vel = Math.random() * 0.45 + 0.45;
             // Trigger the sound to be played here
             this.snare.triggerAttackRelease(
-              this.state.notes[noteIndex],
+              "F2",
               "16n",
               time,
               vel
