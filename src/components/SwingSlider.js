@@ -9,7 +9,7 @@ class SwingSlider extends React.Component {
   };
 
   handleChange = value => {
-    const maxDistance = 0.5;
+    const maxDistance = 0.25;
     let distance = Math.abs(value - this.state.value);
 
     if (distance > maxDistance) {
@@ -40,11 +40,11 @@ class SwingSlider extends React.Component {
             this.handleChange(value);
           }}
           min={0}
-          max={1}
+          max={0.5}
           value={this.state.value}
           unlockDistance={30}
           preciseMode={false}
-          skin={skins.s8}
+          skin={skins.s6}
           {...this.props.rest}
         />{" "}
         <h5 style={{ marginLeft: "80.5rem", marginTop: "-1rem" }}>Swing</h5>

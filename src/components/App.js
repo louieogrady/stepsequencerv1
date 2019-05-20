@@ -23,16 +23,15 @@ class App extends Component {
   octaves: 1,
   oscillator : {
     type :"sine",
-    phase: 0,
     modulationType: "sine",
     modulationIndex:0.1,
-    partials: [1] //1,0.1,0.01,0.01
+    partials: [1, 0.2, 0.01]
   },
   envelope :{
     attack:0.01,
     decay :0.5,
     sustain: 0.5,
-    release: 0.4,
+    release: 0.8,
     attackCurve :"exponential"
   }
 }).chain(this.appVol, Tone.Master);
@@ -72,7 +71,7 @@ class App extends Component {
     ],
     bpm: 120,
     playing: Tone.Transport.state, // returns the playback state of Transport, either “started”, “stopped”, or “paused”
-    notes: ["C1", "D#3", "F#2", "G#1", "A#2", "C#1", "G#3", "G1"].reverse(),
+    notes: ["D1", "D#3", "F#2", "G#1", "A#2", "C#1", "G#3", "G1"],
     // noteNames: ["A", "C#", "E", "F#"],
     playState: Tone.Transport.state,
     column: 0,
