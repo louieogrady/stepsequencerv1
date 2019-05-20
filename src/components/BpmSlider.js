@@ -16,9 +16,16 @@ state = {
 
 handleChange = (value) => {
 
-  this.setState({
-    value: value
-  })
+  const maxDistance = 100
+  let distance = Math.abs(value - this.state.value);
+
+  if (distance > maxDistance) {
+    return;
+  } else {
+    this.setState({
+      value: value
+    })
+  }
 
   this.props.changeBpm(value)
 };
@@ -43,7 +50,9 @@ render() {
         max={200}
         value={this.state.value}
         unlockDistance={30}
+        preciseMode={false}
         skin={skins.s8}
+        {...this.props.rest}
       />  <h5 style={{marginLeft: "8.35rem", }}>Tempo </h5>
     </div>
   );

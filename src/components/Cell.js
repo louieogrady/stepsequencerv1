@@ -37,6 +37,8 @@ class Cell extends Component {
       steps: this.props.steps
     })
 
+    this.forceUpdate();
+
     // this.state.active ? event.target.style.background = 'white' : event.target.style.background = '#6FE596'
 
   }
