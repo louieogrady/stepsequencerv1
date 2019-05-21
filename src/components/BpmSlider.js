@@ -50,7 +50,7 @@ class BpmSlider extends React.Component {
           skin={skins.s8}
           {...this.props.rest}
         />
-        <h5 style={{ marginLeft: "68.2rem", marginTop: "-0.48rem"}}>Tempo (BPM)</h5>
+        <h5 style={{ marginLeft: "68.2rem", marginTop: "-0.2rem"}}>Tempo (BPM)</h5>
       </div>
     );
   }

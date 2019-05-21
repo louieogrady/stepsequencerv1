@@ -134,6 +134,7 @@ class App extends Component {
   }).chain(this.clapFilter, this.appVol, Tone.Master);
 
   conga = new Tone.MembraneSynth({
+    volume: -2,
     "pitchDecay" : 0.005,
     "octaves" : 2,
     "envelope" : {
