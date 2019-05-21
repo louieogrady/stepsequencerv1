@@ -11,7 +11,7 @@ import BpmSlider from "./BpmSlider.js";
 import VolumeSlider from "./VolumeSlider.js";
 import SwingSlider from "./SwingSlider.js";
 import SnareDelayKnob from "./SnareDelayKnob.js";
-
+import KickTuningKnob from "./KickTuningKnob.js";
 
 
 class App extends Component {
@@ -33,6 +33,7 @@ class App extends Component {
     activeColumn: 0,
     time: 0,
     masterVolume: 0,
+    kickDrumTuning: 43.65
   };
 
 
@@ -144,6 +145,15 @@ class App extends Component {
   // 	}).toMaster();
 
   // Volume = new Tone.Volume(volume)
+  //
+
+
+  changeKickDrumTuning = (value) => {
+
+    this.setState({
+      kickDrumTuning: value
+    })
+  }
 
 
 
@@ -170,7 +180,7 @@ class App extends Component {
             // Trigger the sound to be played here
 
             this.kick.triggerAttackRelease(
-              "30",
+              this.state.kickDrumTuning,
               "16n",
               time,
               vel
@@ -432,6 +442,7 @@ class App extends Component {
         <VolumeSlider changeVolume={this.changeVolume} />
         <SwingSlider changeSwing={this.changeSwing} />
         <SnareDelayKnob changePingPongDelayLevel={this.changePingPongDelayLevel} />
+        <KickTuningKnob changeKickDrumTuning={this.changeKickDrumTuning} />
       </div>
     );
   }
