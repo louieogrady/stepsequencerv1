@@ -25,8 +25,8 @@ class PlayPause extends Component {
           style={{
             height: "3.95rem",
             width: "15.2rem",
-            marginTop: "32.5rem",
-            marginLeft: "12.4rem",
+            marginTop: "31.3rem",
+            marginLeft: "11.6rem",
             border: "2px solid black",
             background: "#F7F5E1",
             borderRadius: "13px"

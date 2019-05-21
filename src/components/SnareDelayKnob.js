@@ -45,7 +45,7 @@ class SnareDelayKnob extends React.Component {
           skin={skins.s7}
           {...this.props.rest}
         />{" "}
-        <h5 style={{ marginLeft: "95.9rem", marginTop: "-18.7rem" }}>Delay</h5>
+        <h5 style={{ marginLeft: "95.9rem", marginTop: "-16.3rem" }}>Delay</h5>
       </div>
     );
   }

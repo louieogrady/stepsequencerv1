@@ -16,7 +16,7 @@ class ClearPattern extends Component {
           style={{
             height: "3.95rem",
             width: "17rem",
-            marginTop: "32.5rem",
+            marginTop: "20rem",
             marginLeft: "5.3rem",
             border: "2px solid black",
             background: "#F7F5E1",

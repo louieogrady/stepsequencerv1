@@ -45,7 +45,7 @@ class CongaTuningKnob extends React.Component {
           skin={skins.s7}
           {...this.props.rest}
         />{" "}
-        <h5 style={{ marginLeft: "94.8rem", marginTop: "24.4rem" }}>Tuning (Hz)</h5>
+        <h5 style={{ marginLeft: "94.8rem", marginTop: "24.7rem" }}>Tuning (Hz)</h5>
       </div>
     );
   }
