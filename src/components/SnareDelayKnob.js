@@ -42,7 +42,7 @@ class SnareDelayKnob extends React.Component {
           value={this.state.value}
           unlockDistance={30}
           preciseMode={false}
-          skin={skins.s8}
+          skin={skins.s7}
           {...this.props.rest}
         />{" "}
         <h5 style={{ marginLeft: "96rem", marginTop: "-17.31rem" }}>Delay</h5>

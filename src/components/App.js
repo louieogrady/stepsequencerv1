@@ -12,6 +12,7 @@ import VolumeSlider from "./VolumeSlider.js";
 import SwingSlider from "./SwingSlider.js";
 import SnareDelayKnob from "./SnareDelayKnob.js";
 import KickTuningKnob from "./KickTuningKnob.js";
+import CongaTuningKnob from "./CongaTuningKnob.js";
 
 
 class App extends Component {
@@ -33,7 +34,8 @@ class App extends Component {
     activeColumn: 0,
     time: 0,
     masterVolume: 0,
-    kickDrumTuning: 43.65
+    kickDrumTuning: 43.65,
+    congaTuning: 220
   };
 
   // randomValue = () => { setInterval(() => {
@@ -70,7 +72,8 @@ class App extends Component {
 				decay: 0.2,
 				sustain : 0.01,
         release: 0.75,
-			}}).chain(this.kickComp, this.appVol, Tone.Master);
+			}
+    }).chain(this.kickComp, this.appVol, Tone.Master);
 
   kickVolume = (this.kick.volume.value = 0);
   kickVolume;
@@ -136,21 +139,22 @@ class App extends Component {
     "envelope" : {
       "attack" : 0.001,
       "decay" : 0.37,
-      "sustain" : 0.1
+      "sustain" : 0.08
     }
-  }).toMaster();
+  }).chain(this.appVol, Tone.Master);
 
-
-  //create poly synth
-  synth1 = new Tone.PolySynth().chain(this.appVol, Tone.Master);
-  //create mono synth
-  synth2 = new Tone.MonoSynth().chain(this.appVol, Tone.Master);
-  //create mono synth
-  synth3 = new Tone.AMSynth().chain(this.appVol, Tone.Master);
-  //create FM synth
-  synth4 = new Tone.FMSynth().chain(this.appVol, Tone.Master);
-  //create Pluck synth
-  synth5 = new Tone.PluckSynth().chain(this.appVol, Tone.Master);
+  cymbal = new Tone.MetalSynth({
+    frequency: 1200,
+    envelope: {
+      attack: 0.001,
+      decay: 0.15,
+      release: 0.25
+    },
+    harmonicity: 5.1,
+    modulationIndex: 32,
+    resonance: 4000,
+    octaves: 2
+  }).chain(this.appVol, Tone.Master);
 
   // keys = new Tone.Players({
   // 		"A" : "../assets/ch.[mp3|ogg|wav]",
@@ -164,19 +168,21 @@ class App extends Component {
 
 
   changeKickDrumTuning = (value) => {
-
     this.setState({
       kickDrumTuning: value
     })
   }
 
-
-
   changePingPongDelayLevel = (value) => {
-
-    this.pingPong.wet.value =  value
+    this.pingPong.wet.value = value
     this.setState({
       pingPongWetLevel: value
+    })
+  }
+
+  changeCongaTuning = (value) => {
+    this.setState({
+      congaTuning: value
     })
   }
 
@@ -202,9 +208,8 @@ class App extends Component {
             );
           } else if (row === this.state.steps[1] && row[col]) {
             let vel = Math.random() * 0.5 + 0.5;
-            this.synth1.triggerAttackRelease(
-              this.state.notes[noteIndex],
-              "16n",
+            this.cymbal.triggerAttackRelease(
+              "8n",
               time,
               vel
             );
@@ -224,7 +229,7 @@ class App extends Component {
           } else if (row === this.state.steps[5] && row[col]) {
             let vel = Math.random() * 0.5 + 0.5;
             this.conga.triggerAttackRelease(
-              "220", // A3
+              this.state.congaTuning,
               "16n",
               time,
               vel
@@ -442,6 +447,7 @@ class App extends Component {
         <SwingSlider changeSwing={this.changeSwing} />
         <SnareDelayKnob changePingPongDelayLevel={this.changePingPongDelayLevel} />
         <KickTuningKnob changeKickDrumTuning={this.changeKickDrumTuning} />
+        <CongaTuningKnob changeCongaTuning={this.changeCongaTuning} />
       </div>
     );
   }

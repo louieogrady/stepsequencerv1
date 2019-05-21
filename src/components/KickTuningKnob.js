@@ -42,7 +42,7 @@ class KickTuningKnob extends React.Component {
           value={this.state.value}
           unlockDistance={30}
           preciseMode={false}
-          skin={skins.s8}
+          skin={skins.s7}
           {...this.props.rest}
         />{" "}
         <h5 style={{ marginLeft: "95rem", marginTop: "-16.9rem" }}>Tuning (Hz)</h5>
