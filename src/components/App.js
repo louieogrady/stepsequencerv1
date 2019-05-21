@@ -59,8 +59,6 @@ class App extends Component {
   kickComp = new Tone.Compressor(-30, 2);
 
 
-
-
   kick = new Tone.MembraneSynth({
 			pitchDecay : 0.032,
 			octaves : 6,
@@ -119,18 +117,28 @@ class App extends Component {
 
   // create synth for clap
   clap = new Tone.NoiseSynth({
-  volume: -12,
-  noise: {
-    type: 'white',
-    playbackRate: 1,
-  },
-  envelope: {
-    attack: 0.001,
-    decay: 0.13,
-    sustain: 0,
-    release: 0.02,
-  },
-}).chain(this.clapFilter, this.appVol, Tone.Master);
+    volume: -12,
+    noise: {
+      type: 'white',
+      playbackRate: 1,
+    },
+    envelope: {
+      attack: 0.001,
+      decay: 0.13,
+      sustain: 0,
+      release: 0.02,
+    },
+  }).chain(this.clapFilter, this.appVol, Tone.Master);
+
+  conga = new Tone.MembraneSynth({
+    "pitchDecay" : 0.005,
+    "octaves" : 2,
+    "envelope" : {
+      "attack" : 0.001,
+      "decay" : 0.37,
+      "sustain" : 0.1
+    }
+  }).toMaster();
 
 
   //create poly synth
@@ -174,7 +182,6 @@ class App extends Component {
 
   componentDidMount() {
 
-
     this.loop = new Tone.Sequence(
       (time, col) => {
         this.setState({
@@ -193,12 +200,8 @@ class App extends Component {
               time,
               vel
             );
-
-            // this.keys.get(this.state.noteNames[col]).start(time, 0, "32n", 0, vel);
           } else if (row === this.state.steps[1] && row[col]) {
-            // randomised velocities (volume of each triggered note)
             let vel = Math.random() * 0.5 + 0.5;
-            // Trigger the sound to be played here
             this.synth1.triggerAttackRelease(
               this.state.notes[noteIndex],
               "16n",
@@ -206,30 +209,22 @@ class App extends Component {
               vel
             );
           } else if (row === this.state.steps[2] && row[col]) {
-            // randomised velocities (volume of each triggered note)
             let vel = Math.random() * 0.5 + 0.5;
-            // Trigger the sound to be played here
             this.clap.triggerAttackRelease(
               "16n",
               time,
               vel
             );
           } else if (row === this.state.steps[3] && row[col]) {
-            // randomised velocities (volume of each triggered note)
             let vel = Math.random() * 0.45 + 0.45;
-            // Trigger the sound to be played here
             this.snare.triggerAttackRelease("16n", time, vel);
           } else if (row === this.state.steps[4] && row[col]) {
-            // randomised velocities (volume of each triggered note)
             let vel = Math.random() * 0.5 + 0.5;
-            // Trigger the sound to be played here
             this.closedHihat.triggerAttackRelease("16n", time, -12);
           } else if (row === this.state.steps[5] && row[col]) {
-            // randomised velocities (volume of each triggered note)
             let vel = Math.random() * 0.5 + 0.5;
-            // Trigger the sound to be played here
-            this.synth5.triggerAttackRelease(
-              this.state.notes[noteIndex],
+            this.conga.triggerAttackRelease(
+              "220", // A3
               "16n",
               time,
               vel
