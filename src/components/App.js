@@ -3,13 +3,16 @@ import * as Tone from "tone";
 
 import "../App.css";
 
+import Title from "./Title.js";
 import Cell from "./Cell.js";
 import PlayPause from "./PlayPause.js";
 import ClearPattern from "./ClearPattern.js";
 import BpmSlider from "./BpmSlider.js";
 import VolumeSlider from "./VolumeSlider.js";
 import SwingSlider from "./SwingSlider.js";
-import Title from "./Title.js";
+import SnareDelayKnob from "./SnareDelayKnob.js";
+
+
 
 class App extends Component {
 
@@ -25,13 +28,11 @@ class App extends Component {
     bpm: 120,
     playing: Tone.Transport.state, // returns the playback state of Transport, either “started”, “stopped”, or “paused”
     notes: ["D1", "D#3", "F#2", "G#1", "A#2", "C#1", "G#3", "G1"],
-    // noteNames: ["A", "C#", "E", "F#"],
     playState: Tone.Transport.state,
     column: 0,
     activeColumn: 0,
     time: 0,
     masterVolume: 0,
-    pingPongWetLevel: 0
   };
 
 
@@ -42,7 +43,10 @@ class App extends Component {
   chorus = new Tone.Chorus(4, 2.5, 0.5);
 
   // create pingpong delay
-  pingPong = new Tone.PingPongDelay({delayTime: "8n", feedback: 0.2, wet: this.state.pingPongWetLevel});
+  pingPong = new Tone.PingPongDelay({delayTime: "8n", feedback: 0.45, wet: 0});
+
+
+
 
   //create drum synth to create the kick sound
   kick = new Tone.MembraneSynth({
@@ -85,6 +89,7 @@ class App extends Component {
 
   // snare
   snare = new Tone.NoiseSynth({
+    volume: -8.3,
     noise: {
       type: "pink"
     },
@@ -94,8 +99,6 @@ class App extends Component {
       sustain: this.snareRandSustain
     }
   }).chain(this.pingPong, this.appVol, Tone.Master);
-
-  snareVolume = (this.snare.volume.value = -10);
 
   closedHihat = new Tone.MetalSynth({
     frequency: 150,
@@ -139,8 +142,10 @@ class App extends Component {
 
 
   changePingPongDelayLevel = (value) => {
+
+    this.pingPong.wet.value =  value
     this.setState({
-      pingPongDelayFeedback: value
+      pingPongWetLevel: value
     })
   }
 
@@ -424,6 +429,7 @@ class App extends Component {
         <BpmSlider changeBpm={this.changeBpm} />
         <VolumeSlider changeVolume={this.changeVolume} />
         <SwingSlider changeSwing={this.changeSwing} />
+        <SnareDelayKnob changePingPongDelayLevel={this.changePingPongDelayLevel} />
       </div>
     );
   }

@@ -2,15 +2,15 @@ import React from "react";
 import { Knob } from "react-rotary-knob";
 import * as skins from "react-rotary-knob-skin-pack";
 
-class VolumeSlider extends React.Component {
+class SnareDelayKnob extends React.Component {
   state = {
-    value: -3
+    value: 0
   };
 
   handleChange = value => {
-    const maxDistance = 5;
-    let distance = Math.abs(value - this.state.value);
 
+    const maxDistance = 2.5;
+    let distance = Math.abs(value - this.state.value);
     if (distance > maxDistance) {
       return;
     } else {
@@ -19,7 +19,7 @@ class VolumeSlider extends React.Component {
       });
     }
 
-    this.props.changeVolume(value);
+    this.props.changePingPongDelayLevel(value);
   };
 
   render() {
@@ -29,27 +29,26 @@ class VolumeSlider extends React.Component {
           style={{
             position: "absolute",
             width: "60px",
-            marginTop: "-4.38rem",
-            marginLeft: "59.2rem",
+            marginTop: "-19.7rem",
+            marginLeft: "95.2rem",
             height: "60px",
             display: "inline-block"
-            // display: "inline-block"
           }}
           onChange={value => {
             this.handleChange(value);
           }}
-          min={-12}
-          max={0}
+          min={0}
+          max={10}
           value={this.state.value}
           unlockDistance={30}
           preciseMode={false}
           skin={skins.s8}
           {...this.props.rest}
         />{" "}
-        <h5 style={{ marginLeft: "58.6rem", marginTop: "-1.3rem" }}>Volume (dB)</h5>
+        <h5 style={{ marginLeft: "58.6rem", marginTop: "-1.3rem" }}>Delay</h5>
       </div>
     );
   }
 }
 
-export default VolumeSlider;
+export default SnareDelayKnob;
