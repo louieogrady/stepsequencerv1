@@ -36,6 +36,15 @@ class App extends Component {
     kickDrumTuning: 43.65
   };
 
+  // randomValue = () => { setInterval(() => {
+  //   return Math.random() * (0.01 - 2) + 1 }, 3000)
+  // }
+  //
+  // randomisedKickValue = this.randomValue()
+  // using Math.random() to generate random values to humanize certain attributes of the synth sounds
+  // kickRandAttack = Math.random() * (0.004 - 0.002) + 0.1
+  // snareRandDecay = Math.random() * (0.22 - 0.1) + 0.1
+  // snareRandSustain = Math.random() * (0.1 - 0) + 0
 
   // create master volume for App
   appVol = new Tone.Volume();
@@ -49,50 +58,24 @@ class App extends Component {
   // create compressor for kick
   kickComp = new Tone.Compressor(-30, 2);
 
-  // using Math.random() to generate random values to humanize certain attributes of the synth sounds
-  kickRandAttack = Math.random() * (0.004 - 0.002) + 0.1
-  kickRandSustain = Math.random() * (0.7 - 0.1) + 0.1
 
-  //create drum synth to create the kick sound
+
+
   kick = new Tone.MembraneSynth({
-    pitchDecay: 1,
-    octaves: 1,
-    oscillator: {
-      type: "sine",
-      modulationType: "square",
-      modulationIndex: 0.1,
-      partials: [1, 0.2, 0.01, ]
-    },
-    envelope: {
-      attack: this.kickRandAttack,
-      decay: 0.5,
-      sustain: 0.7,
-      release: 0.8,
-      attackCurve: "exponential"
-    }
-  }).chain(this.kickComp, this.appVol, Tone.Master);
-
-  noise = new Tone.NoiseSynth({
-  volume: -12,
-  noise: {
-    type: 'pink',
-    playbackRate: 3,
-  },
-  envelope: {
-    attack: 0.001,
-    decay: 0.13,
-    sustain: 0,
-    release: 0.03,
-  },
-});
-
-
+			pitchDecay : 0.032,
+			octaves : 6,
+			oscillator : {
+				type : "square4"
+			},
+			envelope : {
+				attack : 0.001,
+				decay: 0.2,
+				sustain : 0.01,
+        release: 0.75,
+			}}).chain(this.kickComp, this.appVol, Tone.Master);
 
   kickVolume = (this.kick.volume.value = 0);
   kickVolume;
-
-  snareRandDecay = Math.random() * (0.22 - 0.1) + 0.1
-  snareRandSustain = Math.random() * (0.1 - 0) + 0
 
   // snare
   snare = new Tone.NoiseSynth({
@@ -102,11 +85,13 @@ class App extends Component {
     },
     envelope: {
       attack: 0.002,
-      decay: this.snareRandDecay, // decay: 0.21,
-      sustain: this.snareRandSustain
+      decay: 0.21,
+      sustain: 0.05
     }
   }).chain(this.pingPong, this.appVol, Tone.Master);
 
+
+  // hihat
   closedHihat = new Tone.MetalSynth({
     frequency: 150,
     envelope: {
@@ -122,6 +107,31 @@ class App extends Component {
 
   closedHiHatVolume = (this.closedHihat.volume.value = -55);
   closedHiHatVolume;
+
+  // filter for clap
+  clapFilter = new Tone.Filter({
+    type  : "bandpass" ,
+    frequency  : 1100,
+    rolloff  : -12 ,
+    Q  : 1 ,
+    gain  : 1
+  })
+
+  // create synth for clap
+  clap = new Tone.NoiseSynth({
+  volume: -12,
+  noise: {
+    type: 'white',
+    playbackRate: 1,
+  },
+  envelope: {
+    attack: 0.001,
+    decay: 0.13,
+    sustain: 0,
+    release: 0.02,
+  },
+}).chain(this.clapFilter, this.appVol, Tone.Master);
+
 
   //create poly synth
   synth1 = new Tone.PolySynth().chain(this.appVol, Tone.Master);
@@ -144,9 +154,6 @@ class App extends Component {
   // 		"fadeOut" : "64n",
   // 	}).toMaster();
 
-  // Volume = new Tone.Volume(volume)
-  //
-
 
   changeKickDrumTuning = (value) => {
 
@@ -166,6 +173,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+
 
     this.loop = new Tone.Sequence(
       (time, col) => {
@@ -201,8 +209,7 @@ class App extends Component {
             // randomised velocities (volume of each triggered note)
             let vel = Math.random() * 0.5 + 0.5;
             // Trigger the sound to be played here
-            this.synth2.triggerAttackRelease(
-              this.state.notes[noteIndex],
+            this.clap.triggerAttackRelease(
               "16n",
               time,
               vel
@@ -267,7 +274,6 @@ class App extends Component {
   };
 
   toggle = () => {
-    // Tone.Transport.start();
     Tone.Transport.toggle();
   };
 
@@ -278,8 +284,6 @@ class App extends Component {
     this.setState({
       playState: Tone.Transport.State
     });
-
-    console.log("transport started");
   };
 
   // testHandleClick = () => {
