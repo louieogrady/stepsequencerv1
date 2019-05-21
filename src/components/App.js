@@ -43,7 +43,9 @@ class App extends Component {
   chorus = new Tone.Chorus(4, 2.5, 0.5);
 
   // create pingpong delay
-  pingPong = new Tone.PingPongDelay({delayTime: "8n", feedback: 0.45, wet: 0});
+  pingPong = new Tone.PingPongDelay({delayTime: "8n", feedback: 0.32, wet: 0}) // wet level can be modified by user via the snaredelayknob
+
+  kickComp = new Tone.Compressor(-30, 3);
 
 
 
@@ -59,13 +61,13 @@ class App extends Component {
       partials: [1, 0.2, 0.01, ]
     },
     envelope: {
-      attack: 0.02,
+      attack: 0.004,
       decay: 0.5,
       sustain: 0.7,
       release: 0.8,
       attackCurve: "exponential"
     }
-  }).chain(this.appVol, Tone.Master);
+  }).chain(this.kickComp, this.appVol, Tone.Master);
 
   noise = new Tone.NoiseSynth({
   volume: -12,
@@ -83,6 +85,9 @@ class App extends Component {
 
   kickVolume = (this.kick.volume.value = 0);
   kickVolume;
+
+
+
 
   snareRandDecay = Math.random() * (0.22 - 0.1) + 0.1
   snareRandSustain = Math.random() * (0.1 - 0) + 0
@@ -168,7 +173,7 @@ class App extends Component {
             // Trigger the sound to be played here
 
             this.kick.triggerAttackRelease(
-              "D1",
+              "F1",
               "16n",
               time,
               vel
