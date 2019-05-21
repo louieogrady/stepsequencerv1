@@ -19,7 +19,8 @@ class ClearPattern extends Component {
             marginTop: "32.5rem",
             marginLeft: "5.3rem",
             border: "2px solid black",
-            background: "#F7F5E1"
+            background: "#F7F5E1",
+            borderRadius: "13px"
           }}
         >
           <i className="trash icon" />Clear Pattern

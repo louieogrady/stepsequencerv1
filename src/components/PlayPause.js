@@ -28,7 +28,8 @@ class PlayPause extends Component {
             marginTop: "32.5rem",
             marginLeft: "12.4rem",
             border: "2px solid black",
-            background: "#F7F5E1"
+            background: "#F7F5E1",
+            borderRadius: "13px"
           }}
         >
           <i className="play icon" />

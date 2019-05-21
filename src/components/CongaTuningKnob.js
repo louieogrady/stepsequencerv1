@@ -9,7 +9,7 @@ class CongaTuningKnob extends React.Component {
 
   handleChange = value => {
 
-    const maxDistance = 300;
+    const maxDistance = 200;
     let distance = Math.abs(value - this.state.value);
     if (distance > maxDistance) {
       return;
