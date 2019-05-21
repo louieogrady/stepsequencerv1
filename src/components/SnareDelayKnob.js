@@ -2,16 +2,15 @@ import React from "react";
 import { Knob } from "react-rotary-knob";
 import * as skins from "react-rotary-knob-skin-pack";
 
-class SwingSlider extends React.Component {
-
+class SnareDelayKnob extends React.Component {
   state = {
     value: 0
   };
 
   handleChange = value => {
-    const maxDistance = 0.125;
-    let distance = Math.abs(value - this.state.value);
 
+    const maxDistance = 2.5;
+    let distance = Math.abs(value - this.state.value);
     if (distance > maxDistance) {
       return;
     } else {
@@ -20,7 +19,7 @@ class SwingSlider extends React.Component {
       });
     }
 
-    this.props.changeSwing(value);
+    this.props.changePingPongDelayLevel(value);
   };
 
   render() {
@@ -29,27 +28,27 @@ class SwingSlider extends React.Component {
         <Knob
           style={{
             position: "absolute",
-            width: "60px",
-            marginTop: "-4.4rem",
-            marginLeft: "79rem",
-            height: "60px",
+            width: "50px",
+            marginTop: "-3.5rem",
+            marginLeft: "95.4rem",
+            height: "50px",
             display: "inline-block"
           }}
           onChange={value => {
             this.handleChange(value);
           }}
           min={0}
-          max={0.25}
+          max={10}
           value={this.state.value}
           unlockDistance={30}
           preciseMode={false}
-          skin={skins.s6}
+          skin={skins.s7}
           {...this.props.rest}
         />{" "}
-        <h5 style={{ marginLeft: "79.8rem", marginTop: "-1.5rem" }}>Swing</h5>
+        <h5 style={{ marginLeft: "95.9rem", marginTop: "-16.3rem" }}>Delay</h5>
       </div>
     );
   }
 }
 
-export default SwingSlider;
+export default SnareDelayKnob;
