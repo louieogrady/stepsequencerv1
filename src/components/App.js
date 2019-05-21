@@ -45,10 +45,12 @@ class App extends Component {
   // create pingpong delay
   pingPong = new Tone.PingPongDelay({delayTime: "8n", feedback: 0.32, wet: 0}) // wet level can be modified by user via the snaredelayknob
 
-  kickComp = new Tone.Compressor(-30, 3);
+  // create compressor for kick
+  kickComp = new Tone.Compressor(-30, 2);
 
-
-
+  // using Math.random() to generate random values to humanize certain attributes of the synth sounds
+  kickRandAttack = Math.random() * (0.004 - 0.002) + 0.1
+  kickRandSustain = Math.random() * (0.7 - 0.1) + 0.1
 
   //create drum synth to create the kick sound
   kick = new Tone.MembraneSynth({
@@ -61,7 +63,7 @@ class App extends Component {
       partials: [1, 0.2, 0.01, ]
     },
     envelope: {
-      attack: 0.004,
+      attack: this.kickRandAttack,
       decay: 0.5,
       sustain: 0.7,
       release: 0.8,
@@ -83,11 +85,10 @@ class App extends Component {
   },
 });
 
+
+
   kickVolume = (this.kick.volume.value = 0);
   kickVolume;
-
-
-
 
   snareRandDecay = Math.random() * (0.22 - 0.1) + 0.1
   snareRandSustain = Math.random() * (0.1 - 0) + 0
@@ -154,12 +155,8 @@ class App extends Component {
     })
   }
 
-  // triggerDrumSynth = () => {
-  //   const drumSynth = new Tone.MembraneSynth().toMaster();
-  //   drumSynth.triggerAttackRelease("c1", "8n");
-  // };
-
   componentDidMount() {
+
     this.loop = new Tone.Sequence(
       (time, col) => {
         this.setState({
@@ -173,7 +170,7 @@ class App extends Component {
             // Trigger the sound to be played here
 
             this.kick.triggerAttackRelease(
-              "F1",
+              "30",
               "16n",
               time,
               vel
