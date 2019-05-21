@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 
   let style = {
-    fontSize: "70px",
+    fontSize: "79px",
+    marginTop: "0.5rem",
     marginLeft: "32rem",
+    fontFamily: 'Lato'
   }
 
 class Title extends Component {

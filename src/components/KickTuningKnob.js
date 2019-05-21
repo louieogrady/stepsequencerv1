@@ -29,8 +29,8 @@ class KickTuningKnob extends React.Component {
           style={{
             position: "absolute",
             width: "50px",
-            marginTop: "-3.5rem",
-            marginLeft: "95.5rem",
+            marginTop: "-3.48rem",
+            marginLeft: "95.4rem",
             height: "50px",
             display: "inline-block"
           }}
@@ -45,7 +45,7 @@ class KickTuningKnob extends React.Component {
           skin={skins.s7}
           {...this.props.rest}
         />{" "}
-        <h5 style={{ marginLeft: "95rem", marginTop: "-16.9rem" }}>Tuning (Hz)</h5>
+        <h5 style={{ marginLeft: "94.8rem", marginTop: "-16.8rem" }}>Tuning (Hz)</h5>
       </div>
     );
   }
