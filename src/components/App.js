@@ -15,7 +15,7 @@ class App extends Component {
   // create master volume for App
   appVol = new Tone.Volume();
 
-  //create drum synth for Kick row
+  //create drum synth to create the kick sound
   kick = new Tone.MembraneSynth({
     pitchDecay: 1,
     octaves: 1,
@@ -34,10 +34,11 @@ class App extends Component {
     }
   }).chain(this.appVol, Tone.Master);
 
-  kickVolume = (this.kick.volume.value = 8);
+  kickVolume = (this.kick.volume.value = 0);
   kickVolume;
 
-  randDecay = Math.random() * (0.25 - 0.1) + 0.1
+  snareRandDecay = Math.random() * (0.22 - 0.1) + 0.1
+  snareRandSustain = Math.random() * (0.1 - 0) + 0
 
   // snare
   snare = new Tone.NoiseSynth({
@@ -45,16 +46,18 @@ class App extends Component {
       type: "white"
     },
     envelope: {
-      attack: 0.005,
-      decay: this.randDecay, // decay: 0.21,
-      sustain: 0
+      attack: 0.002,
+      decay: this.snareRandDecay, // decay: 0.21,
+      sustain: this.snareRandSustain
     }
   }).chain(this.appVol, Tone.Master);
+
+  snareVolume = (this.snare.volume.value = -15);
 
   closedHihat = new Tone.MetalSynth({
     frequency: 150,
     envelope: {
-      attack: 0.0009,
+      attack: 0.002,
       decay: 0.35,
       release: 0.1
     },
@@ -64,7 +67,7 @@ class App extends Component {
     octaves: 1
   }).chain(this.appVol, Tone.Master);
 
-  closedHiHatVolume = (this.closedHihat.volume.value = -45);
+  closedHiHatVolume = (this.closedHihat.volume.value = -55);
   closedHiHatVolume;
 
   //create poly synth
@@ -191,7 +194,7 @@ class App extends Component {
         // }, time);
         //this.state.steps.map((row) => { return row.map((x, ycoord) => { return ycoord})})
 
-        console.log(time);
+        console.log(Tone.Transport.position);
       },
       [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
       "16n"
@@ -222,17 +225,13 @@ class App extends Component {
 
   play = () => {
     Tone.Transport.bpm.value = this.state.bpm;
-    // this.loop.start(0)
-    Tone.Transport.toggle();
-    // Tone.Transport.bpm.value = this.state.bpm;
-    // Tone.Transport.toggle();
+    Tone.Transport.toggle()
 
     this.setState({
       playState: Tone.Transport.State
     });
 
     console.log("transport started");
-    // debugger
   };
 
   // testHandleClick = () => {
@@ -380,6 +379,7 @@ class App extends Component {
     return (
       <div className="App">
         <Title />
+
         <div className="grid">{cells}</div>
 
         <PlayPause
