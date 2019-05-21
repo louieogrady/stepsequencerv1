@@ -12,8 +12,37 @@ import SwingSlider from "./SwingSlider.js";
 import Title from "./Title.js";
 
 class App extends Component {
+
+  state = {
+    steps: [
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    ],
+    bpm: 120,
+    playing: Tone.Transport.state, // returns the playback state of Transport, either “started”, “stopped”, or “paused”
+    notes: ["D1", "D#3", "F#2", "G#1", "A#2", "C#1", "G#3", "G1"],
+    // noteNames: ["A", "C#", "E", "F#"],
+    playState: Tone.Transport.state,
+    column: 0,
+    activeColumn: 0,
+    time: 0,
+    masterVolume: 0,
+    pingPongWetLevel: 0
+  };
+
+
   // create master volume for App
   appVol = new Tone.Volume();
+
+  // create chorus effect
+  chorus = new Tone.Chorus(4, 2.5, 0.5);
+
+  // create pingpong delay
+  pingPong = new Tone.PingPongDelay({delayTime: "8n", feedback: 0.2, wet: this.state.pingPongWetLevel});
 
   //create drum synth to create the kick sound
   kick = new Tone.MembraneSynth({
@@ -21,18 +50,32 @@ class App extends Component {
     octaves: 1,
     oscillator: {
       type: "sine",
-      modulationType: "sine",
+      modulationType: "square",
       modulationIndex: 0.1,
-      partials: [1, 0.2, 0.01]
+      partials: [1, 0.2, 0.01, ]
     },
     envelope: {
-      attack: 0.05,
+      attack: 0.02,
       decay: 0.5,
-      sustain: 0.5,
-      release: 0.75,
+      sustain: 0.7,
+      release: 0.8,
       attackCurve: "exponential"
     }
   }).chain(this.appVol, Tone.Master);
+
+  noise = new Tone.NoiseSynth({
+  volume: -12,
+  noise: {
+    type: 'pink',
+    playbackRate: 3,
+  },
+  envelope: {
+    attack: 0.001,
+    decay: 0.13,
+    sustain: 0,
+    release: 0.03,
+  },
+});
 
   kickVolume = (this.kick.volume.value = 0);
   kickVolume;
@@ -43,16 +86,16 @@ class App extends Component {
   // snare
   snare = new Tone.NoiseSynth({
     noise: {
-      type: "white"
+      type: "pink"
     },
     envelope: {
       attack: 0.002,
       decay: this.snareRandDecay, // decay: 0.21,
       sustain: this.snareRandSustain
     }
-  }).chain(this.appVol, Tone.Master);
+  }).chain(this.pingPong, this.appVol, Tone.Master);
 
-  snareVolume = (this.snare.volume.value = -15);
+  snareVolume = (this.snare.volume.value = -10);
 
   closedHihat = new Tone.MetalSynth({
     frequency: 150,
@@ -93,30 +136,18 @@ class App extends Component {
 
   // Volume = new Tone.Volume(volume)
 
-  state = {
-    steps: [
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    ],
-    bpm: 120,
-    playing: Tone.Transport.state, // returns the playback state of Transport, either “started”, “stopped”, or “paused”
-    notes: ["D1", "D#3", "F#2", "G#1", "A#2", "C#1", "G#3", "G1"],
-    // noteNames: ["A", "C#", "E", "F#"],
-    playState: Tone.Transport.state,
-    column: 0,
-    activeColumn: 0,
-    time: 0,
-    masterVolume: 0
-  };
 
-  triggerDrumSynth = () => {
-    const drumSynth = new Tone.MembraneSynth().toMaster();
-    drumSynth.triggerAttackRelease("c1", "8n");
-  };
+
+  changePingPongDelayLevel = (value) => {
+    this.setState({
+      pingPongDelayFeedback: value
+    })
+  }
+
+  // triggerDrumSynth = () => {
+  //   const drumSynth = new Tone.MembraneSynth().toMaster();
+  //   drumSynth.triggerAttackRelease("c1", "8n");
+  // };
 
   componentDidMount() {
     this.loop = new Tone.Sequence(
