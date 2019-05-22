@@ -28,9 +28,9 @@ class App extends Component {
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     ],
     bpm: 120,
-    playing: Tone.Transport.state, // returns the playback state of Transport, either “started”, “stopped”, or “paused”
+    // playing: Tone.Transport.state, // returns the playback state of Transport, either “started”, “stopped”, or “paused”
     // notes: ["D1", "D#3", "F#2", "G#1", "A#2", "C#1", "G#3", "G1"],
-    playState: Tone.Transport.state,
+    // playState: Tone.Transport.state,
     column: 0,
     activeColumn: 0,
     time: 0,
@@ -48,6 +48,17 @@ class App extends Component {
   // kickRandAttack = Math.random() * (0.004 - 0.002) + 0.1
   // snareRandDecay = Math.random() * (0.22 - 0.1) + 0.1
   // snareRandSustain = Math.random() * (0.1 - 0) + 0
+  //
+  //
+  //      keys = new Tone.Players({
+  // 		"A" : "../assets/ch.[mp3|ogg|wav]",
+  // 		"C#" : "../assets/clap.[mp3|ogg|wav]",
+  // 		"E" : "../assets/claves.[mp3|ogg|wav]",
+  // 		"F#" : "../assets/kick.[mp3|ogg|wav]",
+  // 	}, {
+  // 		"volume" : -5,
+  // 		"fadeOut" : "64n",
+  // 	}).toMaster();
 
   // create master volume for App
   appVol = new Tone.Volume();
@@ -61,7 +72,7 @@ class App extends Component {
   // create compressor for kick
   kickComp = new Tone.Compressor(-30, 2);
 
-
+  // kick
   kick = new Tone.MembraneSynth({
     volume: 0,
     pitchDecay : 0.032,
@@ -90,9 +101,9 @@ class App extends Component {
     }
   }).chain(this.pingPong, this.appVol, Tone.Master);
 
-
   // hihat
   closedHihat = new Tone.MetalSynth({
+    volume: -55,
     frequency: 150,
     envelope: {
       attack: 0.002,
@@ -105,19 +116,16 @@ class App extends Component {
     octaves: 1
   }).chain(this.appVol, Tone.Master);
 
-  closedHiHatVolume = (this.closedHihat.volume.value = -55);
-  closedHiHatVolume;
-
   // filter for clap
   clapFilter = new Tone.Filter({
     type  : "bandpass" ,
     frequency  : 1100,
     rolloff  : -12 ,
-    Q  : 1 ,
+    Q  : 1,
     gain  : 1
   })
 
-  // create synth for clap
+  // clap
   clap = new Tone.NoiseSynth({
     volume: -12,
     noise: {
@@ -132,6 +140,7 @@ class App extends Component {
     },
   }).chain(this.clapFilter, this.appVol, Tone.Master);
 
+  // conga
   conga = new Tone.MembraneSynth({
     volume: -2,
     "pitchDecay" : 0.005,
@@ -143,6 +152,7 @@ class App extends Component {
     }
   }).chain(this.appVol, Tone.Master);
 
+  // cymbal
   cymbal = new Tone.MetalSynth({
     frequency: 1200,
     envelope: {
@@ -155,16 +165,6 @@ class App extends Component {
     resonance: 4000,
     octaves: 2
   }).chain(this.appVol, Tone.Master);
-
-  // keys = new Tone.Players({
-  // 		"A" : "../assets/ch.[mp3|ogg|wav]",
-  // 		"C#" : "../assets/clap.[mp3|ogg|wav]",
-  // 		"E" : "../assets/claves.[mp3|ogg|wav]",
-  // 		"F#" : "../assets/kick.[mp3|ogg|wav]",
-  // 	}, {
-  // 		"volume" : -5,
-  // 		"fadeOut" : "64n",
-  // 	}).toMaster();
 
 
   changeKickDrumTuning = (value) => {
@@ -251,18 +251,14 @@ class App extends Component {
 
         console.log(Tone.Transport.position);
       },
-      [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+      [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],   // or this.state.steps[0].map((_, i) => i) -
       "16n"
-      // this.state.steps[0], // defines the parts of the sequence, lets use first row of the steps - doesn't matter what number this is as long as its 0-5 (pertaining to rows)
-      // "16n"
     ).start(0);
 
     this.setState({
       masterVolume: this.appVol.volume.value
     });
-
     return () => this.loop.dispose();
-
   }
 
   pause = () => {
@@ -270,9 +266,9 @@ class App extends Component {
     console.log("paused");
   };
 
-  toggle = () => {
-    Tone.Transport.toggle();
-  };
+  // toggle = () => {
+  //   Tone.Transport.toggle();
+  // };
 
   play = () => {
     Tone.Transport.bpm.value = this.state.bpm;
