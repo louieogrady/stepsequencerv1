@@ -35,7 +35,7 @@ class App extends Component {
     time: 0,
     masterVolume: 0,
     kickDrumTuning: 43.65,
-    congaTuning: 220
+    congaTuning: 107
   };
 
   // randomValue = () => { setInterval(() => {
