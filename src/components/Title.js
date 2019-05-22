@@ -4,7 +4,10 @@ import React, { Component } from "react";
     fontSize: "79px",
     marginTop: "0.5rem",
     marginLeft: "32rem",
-    fontFamily: 'Lato'
+    fontFamily: 'Lato',
+    color: "#F7F5E1",
+    border: "black",
+    textShadow: "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black"
   }
 
 class Title extends Component {
@@ -17,7 +20,5 @@ class Title extends Component {
 
   }
 }
-
-
 
 export default Title

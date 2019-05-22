@@ -14,6 +14,7 @@ import SwingSlider from "./SwingSlider.js";
 import SnareDelayKnob from "./SnareDelayKnob.js";
 import KickTuningKnob from "./KickTuningKnob.js";
 import CongaTuningKnob from "./CongaTuningKnob.js";
+import ClapReverbKnob from "./ClapReverbKnob.js"
 
 
 class App extends Component {
@@ -36,7 +37,8 @@ class App extends Component {
     time: 0,
     masterVolume: 0,
     kickDrumTuning: 43.65,
-    congaTuning: 107
+    congaTuning: 107,
+    clapReverbWetLevel: 0
   };
 
   // randomValue = () => { setInterval(() => {
@@ -66,11 +68,37 @@ class App extends Component {
   // create chorus effect
   chorus = new Tone.Chorus(4, 2.5, 0.5);
 
-  // create pingpong delay
-  pingPong = new Tone.PingPongDelay({delayTime: "8n", feedback: 0.32, wet: 0}) // wet level can be modified by user via the snaredelayknob
+  // create pingpong delay for snare
+  pingPong = new Tone.PingPongDelay({
+    delayTime: "8n",
+    feedback: 0.32,
+    wet: 0            // wet level can be modified by user via the snaredelayknob
+  })
 
   // create compressor for kick
   kickComp = new Tone.Compressor(-30, 2);
+
+  // create reverb for clap
+  clapReverb = new Tone.JCReverb({
+    roomSize  : 0.3,
+    wet: 0
+  })
+
+  // randomKickSustain = () => new Tone.CtrlRandom({
+  //   min  : 0.01 ,
+  //   max  : 0.06,
+  //   integer  : false
+  // })
+  //
+  // randomNum = () => setInterval(this.randomKickSustain, 1000)
+
+
+  pitchShift = new Tone.PitchShift({
+    pitch  : 0 ,
+    windowSize  : 0.1 ,
+    delayTime  : 0 ,
+    feedback  : 0
+  })
 
   // kick
   kick = new Tone.MembraneSynth({
@@ -81,7 +109,7 @@ class App extends Component {
       type : "square4"
     },
     envelope : {
-      attack : 0.001,
+      attack : 0.01,
       decay: 0.2,
       sustain : 0.01,
       release: 0.75,
@@ -138,7 +166,7 @@ class App extends Component {
       sustain: 0,
       release: 0.02,
     },
-  }).chain(this.clapFilter, this.appVol, Tone.Master);
+  }).chain(this.clapFilter, this.clapReverb, this.appVol, Tone.Master);
 
   // conga
   conga = new Tone.MembraneSynth({
@@ -173,11 +201,18 @@ class App extends Component {
     })
   }
 
-  changePingPongDelayLevel = (value) => {
-    this.pingPong.wet.value = value
+  changeClapReverbLevel = (value) => {
+    this.clapReverb.wet.value = value
+
     this.setState({
-      pingPongWetLevel: value
+      clapReverbWetLevel: value
     })
+
+  }
+
+  changePingPongDelayLevel = (value) => {
+    this.pingPong.wet.value = value;
+
   }
 
   changeCongaTuning = (value) => {
@@ -265,10 +300,6 @@ class App extends Component {
     Tone.Transport.stop();
     console.log("paused");
   };
-
-  // toggle = () => {
-  //   Tone.Transport.toggle();
-  // };
 
   play = () => {
     Tone.Transport.bpm.value = this.state.bpm;
@@ -372,7 +403,7 @@ class App extends Component {
 
   randomPattern = () => {
     let makeARandomNumber = () => {
-      return Math.random() > 0.8 ? 1 : 0;  // if number retruns is greater 0.8 than make it 1 otherwise its 0
+      return Math.random() > 0.8 ? 1 : 0;  // if number returned is greater 0.8 than make it 1 otherwise its 0
     }
 
     let randoms = Array(16).fill(0).map(makeARandomNumber);
@@ -458,9 +489,11 @@ class App extends Component {
         <BpmSlider changeBpm={this.changeBpm} />
         <VolumeSlider changeVolume={this.changeVolume} />
         <SwingSlider changeSwing={this.changeSwing} />
+        <ClapReverbKnob changeClapReverbLevel={this.changeClapReverbLevel} />
         <SnareDelayKnob changePingPongDelayLevel={this.changePingPongDelayLevel} />
         <KickTuningKnob changeKickDrumTuning={this.changeKickDrumTuning} />
         <CongaTuningKnob changeCongaTuning={this.changeCongaTuning} />
+
       </div>
     );
   }
