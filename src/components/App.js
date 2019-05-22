@@ -376,7 +376,7 @@ class App extends Component {
 
   randomPattern = () => {
     let makeARandomNumber = () => {
-      return Math.random() > 0.8 ? 1 : 0;
+      return Math.random() > 0.8 ? 1 : 0;  // if number retruns is greater 0.8 than make it 1 otherwise its 0
     }
 
     let randoms = Array(16).fill(0).map(makeARandomNumber);
@@ -457,6 +457,7 @@ class App extends Component {
 
         <ClearPattern clearPattern={this.clearPattern} />
         <RandomPattern randomPattern={this.randomPattern} />
+
 
         <BpmSlider changeBpm={this.changeBpm} />
         <VolumeSlider changeVolume={this.changeVolume} />

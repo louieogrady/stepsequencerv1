@@ -17,7 +17,7 @@ class RandomPattern extends Component {
             height: "3.95rem",
             width: "18.8rem",
             marginTop: "2rem",
-            marginLeft: "5.3rem",
+            marginLeft: "2.3rem",
             border: "2px solid black",
             background: "#F7F5E1",
             borderRadius: "13px"
