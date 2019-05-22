@@ -4,11 +4,11 @@ overflow: hidden;
 
 width: 100wh;
 height: 100vh;
-background: linear-gradient(247deg, #d29ace, #e682de, #82c2e6);
-background-size: 400% 400%;
--webkit-animation: Gradient 30s ease infinite;
--moz-animation: Gradient 30s ease infinite;
-animation: Gradient 30s ease infinite;
+background: linear-gradient(247deg, #d29ace, #e682de, #82c2e6, #84b9bf, #b1a4d2, #d480af, #dbc4ea, #bac8e3, #9bd9dd, #9addc6, #a6e6ab, #c0dd9f, #cddf83, #ceaa87, #e1bf9e);
+background-size: 3000% 3000%;
+-webkit-animation: Gradient 90s ease infinite;
+-moz-animation: Gradient 90s ease infinite;
+animation: Gradient 90s ease infinite;
 }
 
 @-webkit-keyframes Gradient {
