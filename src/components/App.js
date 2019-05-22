@@ -304,11 +304,8 @@ class App extends Component {
   play = () => {
     Tone.Transport.bpm.value = this.state.bpm;
     Tone.Transport.toggle()
-
-    this.setState({
-      playState: Tone.Transport.State
-    });
   };
+
 
   // testHandleClick = () => {
   //
