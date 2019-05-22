@@ -7,6 +7,7 @@ import Title from "./Title.js";
 import Cell from "./Cell.js";
 import PlayPause from "./PlayPause.js";
 import ClearPattern from "./ClearPattern.js";
+import RandomPattern from "./RandomPattern.js";
 import BpmSlider from "./BpmSlider.js";
 import VolumeSlider from "./VolumeSlider.js";
 import SwingSlider from "./SwingSlider.js";
@@ -28,7 +29,7 @@ class App extends Component {
     ],
     bpm: 120,
     playing: Tone.Transport.state, // returns the playback state of Transport, either “started”, “stopped”, or “paused”
-    notes: ["D1", "D#3", "F#2", "G#1", "A#2", "C#1", "G#3", "G1"],
+    // notes: ["D1", "D#3", "F#2", "G#1", "A#2", "C#1", "G#3", "G1"],
     playState: Tone.Transport.state,
     column: 0,
     activeColumn: 0,
@@ -62,21 +63,19 @@ class App extends Component {
 
 
   kick = new Tone.MembraneSynth({
-			pitchDecay : 0.032,
-			octaves : 6,
-			oscillator : {
-				type : "square4"
-			},
-			envelope : {
-				attack : 0.001,
-				decay: 0.2,
-				sustain : 0.01,
-        release: 0.75,
-			}
-    }).chain(this.kickComp, this.appVol, Tone.Master);
-
-  kickVolume = (this.kick.volume.value = 0);
-  kickVolume;
+    volume: 0,
+    pitchDecay : 0.032,
+    octaves : 6,
+    oscillator : {
+      type : "square4"
+    },
+    envelope : {
+      attack : 0.001,
+      decay: 0.2,
+      sustain : 0.01,
+      release: 0.75,
+    }
+  }).chain(this.kickComp, this.appVol, Tone.Master);
 
   // snare
   snare = new Tone.NoiseSynth({
@@ -263,10 +262,7 @@ class App extends Component {
     });
 
     return () => this.loop.dispose();
-    //
-    // Tone.Transport.loop = true
-    // Tone.Transport.start()
-    // this.loop.start(0)
+
   }
 
   pause = () => {
@@ -378,8 +374,26 @@ class App extends Component {
     console.log(`You Clicked ${x} and ${y}`);
   };
 
+  randomPattern = () => {
+    let makeARandomNumber = () => {
+      return Math.random() > 0.8 ? 1 : 0;
+    }
+
+    let randoms = Array(16).fill(0).map(makeARandomNumber);
+    let randoms1 = Array(16).fill(0).map(makeARandomNumber);
+    let randoms2 = Array(16).fill(0).map(makeARandomNumber);
+    let randoms3 = Array(16).fill(0).map(makeARandomNumber);
+    let randoms4 = Array(16).fill(0).map(makeARandomNumber);
+    let randoms5 = Array(16).fill(0).map(makeARandomNumber);
+
+    let randomSteps = [randoms, randoms1, randoms2, randoms3, randoms4, randoms5]
+
+    this.setState({
+      steps: randomSteps
+    })
+  }
+
   clearPattern = () => {
-    console.log("You cleared the pattern");
     this.setState({
       steps: [
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -442,6 +456,7 @@ class App extends Component {
         />
 
         <ClearPattern clearPattern={this.clearPattern} />
+        <RandomPattern randomPattern={this.randomPattern} />
 
         <BpmSlider changeBpm={this.changeBpm} />
         <VolumeSlider changeVolume={this.changeVolume} />
