@@ -474,13 +474,6 @@ class App extends Component {
 
         <div className="grid">{cells}</div>
 
-
-        <div className='bottom-sliders'>
-        <BpmSlider changeBpm={this.changeBpm} />
-        <VolumeSlider changeVolume={this.changeVolume} />
-        <SwingSlider changeSwing={this.changeSwing} />
-        </div>
-
         <div className="buttons" >
         <PlayPause
           play={this.play}
@@ -491,22 +484,18 @@ class App extends Component {
         <RandomPattern randomPattern={this.randomPattern} />
         </div>
 
-
-
-        <div className='side-knobs'>
-        <ClapReverbKnob changeClapReverbLevel={this.changeClapReverbLevel} />
-        <SnareDelayKnob changePingPongDelayLevel={this.changePingPongDelayLevel} />
-        <KickTuningKnob changeKickDrumTuning={this.changeKickDrumTuning} />
-        <CongaTuningKnob changeCongaTuning={this.changeCongaTuning} />
+        <div className="bottom-knobs">
+        <div className="bpm-slider"><BpmSlider changeBpm={this.changeBpm} /></div>
+        <div className="volume-slider"><VolumeSlider changeVolume={this.changeVolume} /></div>
+        <div className="swing-slider"><SwingSlider changeSwing={this.changeSwing} /></div>
         </div>
 
 
-
-
-
-
-
-
+        <div className="clap-reverb-knob"><ClapReverbKnob changeClapReverbLevel={this.changeClapReverbLevel} /></div>
+        <div className="snare-delay-knob"><SnareDelayKnob changePingPongDelayLevel={this.changePingPongDelayLevel} /></div>
+        <div className="kick-tuning-knob"><KickTuningKnob changeKickDrumTuning={this.changeKickDrumTuning} /></div>
+        <div className="conga-tuning-knob"><CongaTuningKnob changeCongaTuning={this.changeCongaTuning} /></div>
+        
 
 
 

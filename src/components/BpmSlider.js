@@ -33,7 +33,6 @@ class BpmSlider extends React.Component {
           style={{
             width: "60px",
             height: "60px",
-            display: "inline-block"
           }}
           onChange={value => {
             this.handleChange(value);
@@ -47,7 +46,7 @@ class BpmSlider extends React.Component {
           skin={skins.s8}
           {...this.props.rest}
         />
-        <h5>Tempo (BPM)</h5>
+        <h5 style={{marginTop: "0rem", marginLeft: "0.66rem"}}>Tempo (BPM)</h5>
       </div>
     );
   }

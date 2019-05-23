@@ -8,7 +8,7 @@ import React, { Component } from "react";
     color: "#F7F5E1",
     border: "black",
     textShadow: "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black",
-    position: "absolute"
+    position: "relative"
   }
 
 class Title extends Component {

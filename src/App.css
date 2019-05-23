@@ -71,10 +71,12 @@ right:0;
 
 .buttons {
   display: grid;
+  width: 92%;
   grid-template-columns: 15% 15% 15%;
-  grid-column-end: span 1;
-  margin: 45rem 0rem 0rem 16.4rem;
+  justify-content: flex-start;
+  margin: 43rem 0rem 0rem 17rem;
   position: relative;
+  grid-gap: 30px;
 }
 
 .side-knobs {
@@ -83,12 +85,36 @@ right:0;
   justify-content: flex-start;
   position: absolute;
 }
-
-.bottom-sliders {
+/*
+.bottom-knobs {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  position: absolute;
+  justify-content: flex-end;
+} */
+
+.bpm-slider {
+  display: flex;
+  flex-direction: 'row';
+  margin: -5rem 105.5rem
+}
+
+.volume-slider {
+  margin: -6.81rem 49.4rem
+}
+
+.swing-slider {
+  display: flex;
+  flex-direction: row;
+  margin: -4rem 110rem
+}
+
+
+.side-knobs {
+  margin: -39rem 127rem
+}
+
+.clap-reverb-knob {
+  margin: -26.5rem 126rem
 }
 
 .grid {

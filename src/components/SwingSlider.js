@@ -25,7 +25,7 @@ class SwingSlider extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='swing-slider'>
         <Knob
           style={{
             width: "60px",
