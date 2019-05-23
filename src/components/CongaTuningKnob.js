@@ -27,8 +27,8 @@ class CongaTuningKnob extends React.Component {
       <div>
         <Knob
           style={{
-            width: "50px",
-            height: "50px",
+            width: "80px",
+            height: "80px",
           }}
           onChange={value => {
             this.handleChange(value);
@@ -41,7 +41,7 @@ class CongaTuningKnob extends React.Component {
           skin={skins.s7}
           {...this.props.rest}
         />{" "}
-        <h5 style={{marginTop: "0rem", marginLeft: "0.35rem"}}>Tuning (Hz)</h5>
+        <h5 style={{marginTop: "0rem", marginLeft: "0.35rem", width: "80px"}}>Tuning (Hz)</h5>
       </div>
     );
   }

@@ -27,8 +27,8 @@ class SnareDelayKnob extends React.Component {
       <div>
         <Knob
           style={{
-            width: "50px",
-            height: "50px",
+            width: "80px",
+            height: "80px",
           }}
           onChange={value => {
             this.handleChange(value);

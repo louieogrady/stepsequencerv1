@@ -28,8 +28,8 @@ class SwingSlider extends React.Component {
       <div className='swing-slider'>
         <Knob
           style={{
-            width: "60px",
-            height: "60px",
+            width: "80px",
+            height: "80px",
           }}
           onChange={value => {
             this.handleChange(value);
@@ -39,10 +39,10 @@ class SwingSlider extends React.Component {
           value={this.state.value}
           unlockDistance={30}
           preciseMode={false}
-          skin={skins.s6}
+          skin={skins.s8}
           {...this.props.rest}
         />
-        <h5 style={{ margin: "0rem", marginLeft: "0.81rem"}}>Swing</h5>
+        <h5 style={{ margin: "0rem", marginLeft: "1.4rem"}}>Swing</h5>
       </div>
     );
   }

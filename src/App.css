@@ -30,9 +30,9 @@ height: 1200px; */
     #e1bf9e
   );
   background-size: 3000% 3000%;
-  -webkit-animation: Gradient 90s ease infinite;
-  -moz-animation: Gradient 90s ease infinite;
-  animation: Gradient 90s ease infinite;
+  -webkit-animation: Gradient 100s ease infinite;
+  -moz-animation: Gradient 100s ease infinite;
+  animation: Gradient 100s ease infinite;
 }
 
 @-webkit-keyframes Gradient {
@@ -98,19 +98,19 @@ height: 1200px; */
 .bpm-slider {
   display: flex;
   flex-direction: 'row';
-  margin: -5rem 106.1rem
+  margin: -5rem 104.8rem
 }
 
 .volume-slider {
-  margin: -6.81rem 56.5rem
+  margin: -8.3rem 56.5rem
 }
 
 .swing-slider {
-  margin: -6.5rem 59.9rem
+  margin: 1.17rem 59.9rem
 }
 
 .side-knobs {
-  margin: -39rem 127rem
+  margin: -30rem 120rem
 }
 
 .clap-reverb-knob {
@@ -122,7 +122,7 @@ height: 1200px; */
 }
 
 .kick-tuning-knob {
-  margin: -59.5rem 125.5rem
+  margin: -58.5rem 125.5rem
 }
 
 .conga-tuning-knob {
