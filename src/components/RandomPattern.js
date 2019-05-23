@@ -19,7 +19,7 @@ class RandomPattern extends Component {
             borderRadius: "13px",
           }}
         >
-          <i className="random icon" />Random
+          <i className="random icon" />Randomize
         </button>
       </div>
     );
