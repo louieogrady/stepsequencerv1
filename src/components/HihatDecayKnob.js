@@ -33,8 +33,8 @@ class HihatDecayKnob extends React.Component {
           onChange={value => {
             this.handleChange(value);
           }}
-          min={0}
-          max={10}
+          min={0.25}
+          max={1.5}
           value={this.state.value}
           unlockDistance={30}
           preciseMode={false}
