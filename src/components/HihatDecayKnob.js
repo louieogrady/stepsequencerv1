@@ -2,14 +2,14 @@ import React from "react";
 import { Knob } from "react-rotary-knob";
 import * as skins from "react-rotary-knob-skin-pack";
 
-class SnareDelayKnob extends React.Component {
+class HihatDecayKnob extends React.Component {
   state = {
-    value: 0
+    value: 0.25
   };
 
   handleChange = value => {
 
-    const maxDistance = 2.5;
+    const maxDistance = 1;
     let distance = Math.abs(value - this.state.value);
     if (distance > maxDistance) {
       return;
@@ -19,7 +19,7 @@ class SnareDelayKnob extends React.Component {
       });
     }
 
-    this.props.changePingPongDelayLevel(value);
+    this.props.changeCymbalDecayLevel(value);
   };
 
   render() {
@@ -41,10 +41,10 @@ class SnareDelayKnob extends React.Component {
           skin={skins.s7}
           {...this.props.rest}
         />{" "}
-        <h5 style={{marginTop: "-0.15rem", marginLeft: "1.5rem"}}>Delay</h5>
+        <h5 style={{marginTop: "-0.3rem", marginLeft: "1.5rem"}}>Decay</h5>
       </div>
     );
   }
 }
 
-export default SnareDelayKnob;
+export default HihatDecayKnob;

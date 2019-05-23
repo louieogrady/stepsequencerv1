@@ -135,6 +135,13 @@ height: 1200px; */
   position: absolute;
 }
 
+.hihat-decay-knob {
+  margin: -18.7rem 125.5rem;
+  position: absolute;
+}
+
+
+
 .kick {
   margin: 1.2rem 9.9rem;
   position: absolute

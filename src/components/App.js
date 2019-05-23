@@ -22,6 +22,7 @@ import SnareDelayKnob from "./SnareDelayKnob.js";
 import KickTuningKnob from "./KickTuningKnob.js";
 import CongaTuningKnob from "./CongaTuningKnob.js";
 import ClapReverbKnob from "./ClapReverbKnob.js"
+import HihatDecayKnob from "./HihatDecayKnob.js"
 
 
 
@@ -46,7 +47,8 @@ class App extends Component {
     masterVolume: 0,
     kickDrumTuning: 43.65,
     congaTuning: 107,
-    clapReverbWetLevel: 0
+    clapReverbWetLevel: 0,
+    closedHihatDecayLevel: 0
   };
 
   // randomValue = () => { setInterval(() => {
@@ -73,9 +75,6 @@ class App extends Component {
   // create master volume for App
   appVol = new Tone.Volume();
 
-  // create chorus effect
-  chorus = new Tone.Chorus(4, 2.5, 0.5);
-
   // create pingpong delay for snare
   pingPong = new Tone.PingPongDelay({
     delayTime: "8n",
@@ -99,14 +98,6 @@ class App extends Component {
   // })
   //
   // randomNum = () => setInterval(this.randomKickSustain, 1000)
-
-
-  pitchShift = new Tone.PitchShift({
-    pitch  : 0 ,
-    windowSize  : 0.1 ,
-    delayTime  : 0 ,
-    feedback  : 0
-  })
 
   // kick
   kick = new Tone.MembraneSynth({
@@ -139,14 +130,14 @@ class App extends Component {
 
   // hihat
   closedHihat = new Tone.MetalSynth({
-    volume: -55,
+    volume: -58,
     frequency: 150,
     envelope: {
       attack: 0.002,
-      decay: 0.35,
-      release: 0.1
+      decay: 0.25,
+      release: 0.01
     },
-    harmonicity: 4.1,
+    harmonicity: this.state.closedHihatDecayLevel,
     modulationIndex: 40,
     resonance: 2000,
     octaves: 1
@@ -215,11 +206,20 @@ class App extends Component {
     this.setState({
       clapReverbWetLevel: value
     })
-
   }
 
   changePingPongDelayLevel = (value) => {
     this.pingPong.wet.value = value;
+
+  }
+
+  changeCymbalDecayLevel = (value) => {
+
+    this.closedHihat.envelope.decay = value
+
+    this.setState({
+      closedHihatDecayLevel: value
+    })
 
   }
 
@@ -508,6 +508,8 @@ class App extends Component {
         <div className="snare-delay-knob"><SnareDelayKnob changePingPongDelayLevel={this.changePingPongDelayLevel} /></div>
         <div className="kick-tuning-knob"><KickTuningKnob changeKickDrumTuning={this.changeKickDrumTuning} /></div>
         <div className="conga-tuning-knob"><CongaTuningKnob changeCongaTuning={this.changeCongaTuning} /></div>
+        <div className="hihat-decay-knob"><HihatDecayKnob changeCymbalDecayLevel={this.changeCymbalDecayLevel} /></div>
+
 
 
 
