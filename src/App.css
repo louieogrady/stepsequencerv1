@@ -96,37 +96,43 @@ height: 1200px; */
 } */
 
 .bpm-slider {
-  display: flex;
-  flex-direction: 'row';
-  margin: -5rem 104.8rem
+  margin: -5rem 98.5rem;
+  position: absolute;
 }
 
 .volume-slider {
-  margin: -8.3rem 56.5rem
+  margin: -2.5rem 59.6rem;
+  position: absolute;
 }
 
 .swing-slider {
-  margin: 1.17rem 59.9rem
+  margin: -2.5rem 54.5rem;
+  position: absolute;
 }
 
 .side-knobs {
-  margin: -30rem 120rem
+  margin: -30rem 120rem;
+  position: absolute;
 }
 
 .clap-reverb-knob {
-  margin: -32rem 125.5rem
+  margin: -32rem 125.5rem;
+  position: absolute;
 }
 
 .snare-delay-knob {
-  margin: 33.6rem 125.5rem
+  margin: 33.6rem 125.5rem;
+  position: absolute;
 }
 
 .kick-tuning-knob {
-  margin: -58.5rem 125.5rem
+  margin: -58.5rem 125.5rem;
+  position: absolute;
 }
 
 .conga-tuning-knob {
-  margin: 88.2rem 125.5rem
+  margin: 88.2rem 125.5rem;
+  position: absolute;
 }
 
 .kick {
