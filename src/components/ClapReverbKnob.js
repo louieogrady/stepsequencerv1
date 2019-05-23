@@ -27,12 +27,8 @@ class ClapReverbKnob extends React.Component {
       <div>
         <Knob
           style={{
-            position: "absolute",
             width: "50px",
-            marginTop: "-3.3rem",
-            marginLeft: "94.2rem",
             height: "50px",
-            display: "inline-block"
           }}
           onChange={value => {
             this.handleChange(value);
@@ -44,8 +40,8 @@ class ClapReverbKnob extends React.Component {
           preciseMode={false}
           skin={skins.s7}
           {...this.props.rest}
-        />{" "}
-        <h5 style={{ marginLeft: "94.7rem", marginTop: "-05.2rem" }}>Reverb</h5>
+        />{"Reverb "}
+        <h5>Reverb</h5>
       </div>
     );
   }

@@ -28,12 +28,8 @@ class SwingSlider extends React.Component {
       <div>
         <Knob
           style={{
-            position: "absolute",
             width: "60px",
-            marginTop: "-4.3rem",
-            marginLeft: "82.5rem",
             height: "60px",
-            display: "inline-block"
           }}
           onChange={value => {
             this.handleChange(value);
@@ -45,8 +41,8 @@ class SwingSlider extends React.Component {
           preciseMode={false}
           skin={skins.s6}
           {...this.props.rest}
-        />{" "}
-        <h5 style={{ marginLeft: "83.3rem", marginTop: "-1.35rem" }}>Swing</h5>
+        />
+        <h5>Swing</h5>
       </div>
     );
   }

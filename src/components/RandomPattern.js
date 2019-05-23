@@ -14,10 +14,6 @@ class RandomPattern extends Component {
         <button
           className="random pattern button "
           style={{
-            height: "3.95rem",
-            width: "15.2rem",
-            marginTop: "2rem",
-            marginLeft: "2.3rem",
             border: "2px solid black",
             background: "#F7F5E1",
             borderRadius: "13px"

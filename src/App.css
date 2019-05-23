@@ -1,53 +1,97 @@
-html, body, .App {
-
-overflow: hidden;
-
-width: 100wh;
-height: 100vh;
-background: linear-gradient(247deg, #d29ace, #e682de, #82c2e6, #84b9bf, #b1a4d2, #d480af, #dbc4ea, #bac8e3, #9bd9dd, #9addc6, #a6e6ab, #c0dd9f, #cddf83, #ceaa87, #e1bf9e);
-background-size: 3000% 3000%;
--webkit-animation: Gradient 90s ease infinite;
--moz-animation: Gradient 90s ease infinite;
-animation: Gradient 90s ease infinite;
+html,
+body,
+.App {
+  overflow: hidden;
+  position:fixed;
+  top:0;
+bottom:0;
+left:0;
+right:0;
+  width: 100wh;
+  height: 100vh;
+  background: linear-gradient(
+    247deg,
+    #d29ace,
+    #e682de,
+    #82c2e6,
+    #84b9bf,
+    #b1a4d2,
+    #d480af,
+    #dbc4ea,
+    #bac8e3,
+    #9bd9dd,
+    #9addc6,
+    #a6e6ab,
+    #c0dd9f,
+    #cddf83,
+    #ceaa87,
+    #e1bf9e
+  );
+  background-size: 3000% 3000%;
+  -webkit-animation: Gradient 90s ease infinite;
+  -moz-animation: Gradient 90s ease infinite;
+  animation: Gradient 90s ease infinite;
 }
 
 @-webkit-keyframes Gradient {
-0% {
-  background-position: 0% 50%
-}
-50% {
-  background-position: 100% 50%
-}
-100% {
-  background-position: 0% 50%
-}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 @-moz-keyframes Gradient {
-0% {
-  background-position: 0% 50%
-}
-50% {
-  background-position: 100% 50%
-}
-100% {
-  background-position: 0% 50%
-}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 @keyframes Gradient {
-0% {
-  background-position: 0% 50%
-}
-50% {
-  background-position: 100% 50%
-}
-100% {
-  background-position: 0% 50%
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
+.buttons {
+  /* display: flex; */
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-left: 10rem;
+  margin: 0 5px;
+  flex-basis: auto;
+  position: absolute;
+}
 
+.side-knobs {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: absolute;
+}
 
+.bottom-sliders {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  position: absolute;
 }
 
 .grid {
@@ -81,7 +125,7 @@ animation: Gradient 90s ease infinite;
   padding-top: 100%;
 }
 .box .inner {
-  background: #F7F5E1;
+  background: #f7f5e1;
   position: absolute;
   left: 0;
   right: 0;
@@ -92,22 +136,9 @@ animation: Gradient 90s ease infinite;
   justify-content: center;
 }
 
-
 #text {
-  top: 50rem
+  top: 50rem;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* .App {
   text-align: center;

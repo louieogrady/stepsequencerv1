@@ -31,10 +31,7 @@ class BpmSlider extends React.Component {
       <div>
         <Knob
           style={{
-            position: "absolute",
             width: "60px",
-            marginTop: "-4.3rem",
-            marginLeft: "76rem",
             height: "60px",
             display: "inline-block"
           }}
@@ -50,7 +47,7 @@ class BpmSlider extends React.Component {
           skin={skins.s8}
           {...this.props.rest}
         />
-        <h5 style={{ marginLeft: "75.2rem", marginTop: "-0.05rem"}}>Tempo (BPM)</h5>
+        <h5>Tempo (BPM)</h5>
       </div>
     );
   }

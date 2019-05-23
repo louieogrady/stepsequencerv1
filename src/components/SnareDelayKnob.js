@@ -27,12 +27,8 @@ class SnareDelayKnob extends React.Component {
       <div>
         <Knob
           style={{
-            position: "absolute",
             width: "50px",
-            marginTop: "-3.3rem",
-            marginLeft: "94.2rem",
             height: "50px",
-            display: "inline-block"
           }}
           onChange={value => {
             this.handleChange(value);
@@ -45,7 +41,7 @@ class SnareDelayKnob extends React.Component {
           skin={skins.s7}
           {...this.props.rest}
         />{" "}
-        <h5 style={{ marginLeft: "94.7rem", marginTop: "-17.2rem" }}>Delay</h5>
+        <h5>Delay</h5>
       </div>
     );
   }

@@ -17,6 +17,7 @@ import CongaTuningKnob from "./CongaTuningKnob.js";
 import ClapReverbKnob from "./ClapReverbKnob.js"
 
 
+
 class App extends Component {
 
   state = {
@@ -471,25 +472,41 @@ class App extends Component {
       <div className="App">
         <Title />
 
-        <div className="grid">{cells}</div>
+        <div className="grid">{cells}
 
+        <div className='bottom-sliders'>
+        <BpmSlider changeBpm={this.changeBpm} />
+        <VolumeSlider changeVolume={this.changeVolume} />
+        <SwingSlider changeSwing={this.changeSwing} />
+
+        <div className="buttons" >
         <PlayPause
           play={this.play}
           pause={this.pause}
           playState={this.playState}
         />
-
         <ClearPattern clearPattern={this.clearPattern} />
         <RandomPattern randomPattern={this.randomPattern} />
 
 
-        <BpmSlider changeBpm={this.changeBpm} />
-        <VolumeSlider changeVolume={this.changeVolume} />
-        <SwingSlider changeSwing={this.changeSwing} />
+        </div>
+
+        <div className='side-knobs'>
         <ClapReverbKnob changeClapReverbLevel={this.changeClapReverbLevel} />
         <SnareDelayKnob changePingPongDelayLevel={this.changePingPongDelayLevel} />
         <KickTuningKnob changeKickDrumTuning={this.changeKickDrumTuning} />
         <CongaTuningKnob changeCongaTuning={this.changeCongaTuning} />
+        </div>
+
+        </div>
+
+        </div>
+
+
+
+
+
+
 
       </div>
     );

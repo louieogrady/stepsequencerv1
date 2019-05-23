@@ -27,13 +27,12 @@ class VolumeSlider extends React.Component {
       <div>
         <Knob
           style={{
-            position: "absolute",
+            position: "relative",
             width: "60px",
-            marginTop: "-4.5rem",
-            marginLeft: "68.5rem",
+
+
             height: "60px",
-            display: "inline-block"
-            // display: "inline-block"
+
           }}
           onChange={value => {
             this.handleChange(value);
@@ -46,7 +45,7 @@ class VolumeSlider extends React.Component {
           skin={skins.s8}
           {...this.props.rest}
         />{" "}
-        <h5 style={{ marginLeft: "68rem", marginTop: "-1.2rem" }}>Volume (dB)</h5>
+        <h5>Volume (dB)</h5>
       </div>
     );
   }

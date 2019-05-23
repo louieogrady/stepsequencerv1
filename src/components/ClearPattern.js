@@ -14,13 +14,10 @@ class ClearPattern extends Component {
         <button
           className="clear pattern button "
           style={{
-            height: "3.95rem",
-            width: "17rem",
-            marginTop: "20rem",
-            marginLeft: "2.2rem",
             border: "2px solid black",
             background: "#F7F5E1",
-            borderRadius: "13px"
+            borderRadius: "13px",
+
           }}
         >
           <i className="trash icon" />Clear Pattern
