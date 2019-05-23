@@ -110,28 +110,28 @@ height: 1200px; */
   position: absolute;
 }
 
-.side-knobs {
-  margin: -30rem 120rem;
+/* .side-knobs {
+  margin: -10rem 120rem;
   position: absolute;
-}
+} */
 
 .clap-reverb-knob {
-  margin: -32rem 125.5rem;
+  margin: -32.8rem 125.5rem;
   position: absolute;
 }
 
 .snare-delay-knob {
-  margin: 33.6rem 125.5rem;
+  margin: -26rem 125.5rem;
   position: absolute;
 }
 
 .kick-tuning-knob {
-  margin: -58.5rem 125.5rem;
+  margin: -46.45rem 125.5rem;
   position: absolute;
 }
 
 .conga-tuning-knob {
-  margin: 88.2rem 125.5rem;
+  margin: -12.2rem 125.5rem;
   position: absolute;
 }
 
