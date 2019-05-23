@@ -42,7 +42,7 @@ class SwingSlider extends React.Component {
           skin={skins.s6}
           {...this.props.rest}
         />
-        <h5>Swing</h5>
+        <h5 style={{ margin: "0rem", marginLeft: "0.81rem"}}>Swing</h5>
       </div>
     );
   }

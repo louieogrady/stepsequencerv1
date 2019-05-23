@@ -7,6 +7,8 @@ body,
 bottom:0;
 left:0;
 right:0;
+/* width: 2100px;
+height: 1200px; */
   width: 100wh;
   height: 100vh;
   background: linear-gradient(
@@ -74,7 +76,7 @@ right:0;
   width: 92%;
   grid-template-columns: 15% 15% 15%;
   justify-content: flex-start;
-  margin: 43rem 0rem 0rem 17rem;
+  margin: 8rem 0rem 0rem 17.5rem;
   position: relative;
   grid-gap: 30px;
 }
@@ -85,6 +87,7 @@ right:0;
   justify-content: flex-start;
   position: absolute;
 }
+
 /*
 .bottom-knobs {
   display: flex;
@@ -95,27 +98,42 @@ right:0;
 .bpm-slider {
   display: flex;
   flex-direction: 'row';
-  margin: -5rem 105.5rem
+  margin: -5rem 106.1rem
 }
 
 .volume-slider {
-  margin: -6.81rem 49.4rem
+  margin: -6.81rem 56.5rem
 }
 
 .swing-slider {
-  display: flex;
-  flex-direction: row;
-  margin: -4rem 110rem
+  margin: -6.5rem 59.9rem
 }
-
 
 .side-knobs {
   margin: -39rem 127rem
 }
 
 .clap-reverb-knob {
-  margin: -26.5rem 126rem
+  margin: -32rem 125.5rem
 }
+
+.snare-delay-knob {
+  margin: 33.6rem 125.5rem
+}
+
+.kick-tuning-knob {
+  margin: -59.5rem 125.5rem
+}
+
+.conga-tuning-knob {
+  margin: 88.2rem 125.5rem
+}
+
+.clap {
+  margin: 13.87rem 11.3rem
+}
+
+
 
 .grid {
   width: 80vw;

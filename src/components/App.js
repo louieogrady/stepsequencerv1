@@ -3,6 +3,8 @@ import * as Tone from "tone";
 
 import "../App.css";
 
+import clap from '../images/clap.png'
+
 import Title from "./Title.js";
 import Cell from "./Cell.js";
 import PlayPause from "./PlayPause.js";
@@ -471,7 +473,7 @@ class App extends Component {
     return (
       <div className="App">
         <Title />
-
+        <img className="clap" src={clap} alt="clap" height="68px"/>
         <div className="grid">{cells}</div>
 
         <div className="buttons" >
@@ -495,7 +497,7 @@ class App extends Component {
         <div className="snare-delay-knob"><SnareDelayKnob changePingPongDelayLevel={this.changePingPongDelayLevel} /></div>
         <div className="kick-tuning-knob"><KickTuningKnob changeKickDrumTuning={this.changeKickDrumTuning} /></div>
         <div className="conga-tuning-knob"><CongaTuningKnob changeCongaTuning={this.changeCongaTuning} /></div>
-        
+
 
 
 
