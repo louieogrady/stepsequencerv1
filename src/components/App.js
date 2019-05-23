@@ -3,7 +3,12 @@ import * as Tone from "tone";
 
 import "../App.css";
 
+import kick from '../images/kick.png'
 import clap from '../images/clap.png'
+import snare from '../images/snare.png'
+import conga from '../images/conga.png'
+import cymbal from '../images/cymbal.png'
+import hihat from '../images/hihat.png'
 
 import Title from "./Title.js";
 import Cell from "./Cell.js";
@@ -473,7 +478,13 @@ class App extends Component {
     return (
       <div className="App">
         <Title />
+        <img className="kick" src={kick} alt="kick" height="68px"/>
         <img className="clap" src={clap} alt="clap" height="68px"/>
+        <img className="snare" src={snare} alt="snare" height="68px"/>
+        <img className="hihat" src={hihat} alt="hihat" height="68px"/>
+        <img className="conga" src={conga} alt="conga" height="68px"/>
+        <img className="cymbal" src={cymbal} alt="cymbal" height="68px"/>
+
         <div className="grid">{cells}</div>
 
         <div className="buttons" >
