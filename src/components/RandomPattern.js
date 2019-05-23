@@ -16,7 +16,7 @@ class RandomPattern extends Component {
           style={{
             border: "2px solid black",
             background: "#F7F5E1",
-            borderRadius: "13px"
+            borderRadius: "13px",
           }}
         >
           <i className="random icon" />Random

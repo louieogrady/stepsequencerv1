@@ -26,10 +26,10 @@ class PlayPause extends Component {
           className="play button "
           onClick={this.handleClick}
           style={{
-            
+
             border: "2px solid black",
             background: "#F7F5E1",
-            borderRadius: "13px"
+            borderRadius: "13px",
           }}
         >
           <i className={playButtonClass} />

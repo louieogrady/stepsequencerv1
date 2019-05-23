@@ -472,12 +472,14 @@ class App extends Component {
       <div className="App">
         <Title />
 
-        <div className="grid">{cells}
+        <div className="grid">{cells}</div>
+
 
         <div className='bottom-sliders'>
         <BpmSlider changeBpm={this.changeBpm} />
         <VolumeSlider changeVolume={this.changeVolume} />
         <SwingSlider changeSwing={this.changeSwing} />
+        </div>
 
         <div className="buttons" >
         <PlayPause
@@ -487,9 +489,9 @@ class App extends Component {
         />
         <ClearPattern clearPattern={this.clearPattern} />
         <RandomPattern randomPattern={this.randomPattern} />
-
-
         </div>
+
+
 
         <div className='side-knobs'>
         <ClapReverbKnob changeClapReverbLevel={this.changeClapReverbLevel} />
@@ -498,9 +500,9 @@ class App extends Component {
         <CongaTuningKnob changeCongaTuning={this.changeCongaTuning} />
         </div>
 
-        </div>
 
-        </div>
+
+
 
 
 

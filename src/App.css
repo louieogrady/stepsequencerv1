@@ -70,14 +70,11 @@ right:0;
 }
 
 .buttons {
-  /* display: flex; */
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-  margin-left: 10rem;
-  margin: 0 5px;
-  flex-basis: auto;
-  position: absolute;
+  display: grid;
+  grid-template-columns: 15% 15% 15%;
+  grid-column-end: span 1;
+  margin: 45rem 0rem 0rem 16.4rem;
+  position: relative;
 }
 
 .side-knobs {
