@@ -2,7 +2,7 @@ import React from "react";
 import { Knob } from "react-rotary-knob";
 import * as skins from "react-rotary-knob-skin-pack";
 
-class HihatDecayKnob extends React.Component {
+class CymbalReleaseKnob extends React.Component {
   state = {
     value: 0.25
   };
@@ -19,7 +19,7 @@ class HihatDecayKnob extends React.Component {
       });
     }
 
-    this.props.changeCymbalDecayLevel(value);
+    this.props.changeCymbalReleaseLevel(value);
   };
 
   render() {
@@ -33,18 +33,18 @@ class HihatDecayKnob extends React.Component {
           onChange={value => {
             this.handleChange(value);
           }}
-          min={0}
-          max={10}
+          min={0.25}
+          max={2}
           value={this.state.value}
           unlockDistance={30}
           preciseMode={false}
           skin={skins.s7}
           {...this.props.rest}
         />{" "}
-        <h5 style={{marginTop: "-0.3rem", marginLeft: "1.3rem"}}>Attack</h5>
+        <h5 style={{marginTop: "-0.3rem", marginLeft: "1.1rem"}}>Release</h5>
       </div>
     );
   }
 }
 
-export default HihatDecayKnob;
+export default CymbalReleaseKnob;

@@ -23,6 +23,7 @@ import KickTuningKnob from "./KickTuningKnob.js";
 import CongaTuningKnob from "./CongaTuningKnob.js";
 import ClapReverbKnob from "./ClapReverbKnob.js"
 import HihatDecayKnob from "./HihatDecayKnob.js"
+import CymbalReleaseKnob from "./CymbalReleaseKnob.js"
 
 
 
@@ -135,9 +136,9 @@ class App extends Component {
     envelope: {
       attack: 0.002,
       decay: 0.25,
-      release: 0.01
+      release: 0.025
     },
-    harmonicity: this.state.closedHihatDecayLevel,
+    harmonicity: 4.1,
     modulationIndex: 40,
     resonance: 2000,
     octaves: 1
@@ -181,6 +182,7 @@ class App extends Component {
 
   // cymbal
   cymbal = new Tone.MetalSynth({
+    volume: -5,
     frequency: 1200,
     envelope: {
       attack: 0.001,
@@ -217,9 +219,12 @@ class App extends Component {
 
     this.closedHihat.envelope.decay = value
 
-    this.setState({
-      closedHihatDecayLevel: value
-    })
+  }
+
+  changeCymbalReleaseLevel = (value) => {
+
+    this.cymbal.envelope.release = value
+    this.cymbal.envelope.decay = value / 2
 
   }
 
@@ -509,6 +514,7 @@ class App extends Component {
         <div className="kick-tuning-knob"><KickTuningKnob changeKickDrumTuning={this.changeKickDrumTuning} /></div>
         <div className="conga-tuning-knob"><CongaTuningKnob changeCongaTuning={this.changeCongaTuning} /></div>
         <div className="hihat-decay-knob"><HihatDecayKnob changeCymbalDecayLevel={this.changeCymbalDecayLevel} /></div>
+        <div className="cymbal-release-knob"><CymbalReleaseKnob changeCymbalReleaseLevel={this.changeCymbalReleaseLevel} /></div>
 
 
 
