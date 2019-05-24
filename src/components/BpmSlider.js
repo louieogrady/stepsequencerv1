@@ -42,7 +42,7 @@ class BpmSlider extends React.Component {
           max={200}
           value={this.state.value}
           unlockDistance={30}
-          preciseMode={false}
+          preciseMode={true}
           skin={skins.s8}
           {...this.props.rest}
         />

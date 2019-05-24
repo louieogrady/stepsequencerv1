@@ -73,6 +73,11 @@ class App extends Component {
   // 		"fadeOut" : "64n",
   // 	}).toMaster();
 
+
+
+
+  /// INIT SYNTHS & FX ///
+
   // create master volume for App
   appVol = new Tone.Volume();
 
@@ -212,20 +217,15 @@ class App extends Component {
 
   changePingPongDelayLevel = (value) => {
     this.pingPong.wet.value = value;
-
   }
 
   changeCymbalDecayLevel = (value) => {
-
     this.closedHihat.envelope.decay = value
-
   }
 
   changeCymbalReleaseLevel = (value) => {
-
     this.cymbal.envelope.release = value
     this.cymbal.envelope.decay = value / 2
-
   }
 
   changeCongaTuning = (value) => {
@@ -234,8 +234,9 @@ class App extends Component {
     })
   }
 
-  componentDidMount() {
+  // backgroundDisco = () => this.state.steps.map((row, x) => {row.map((cell, y) => {return  this.state.steps[x][y] === 1 ? "#E3C5BA"  : "#F7F5E1"})})
 
+  componentDidMount() {
     this.loop = new Tone.Sequence(
       (time, col) => {
         this.setState({
@@ -292,12 +293,12 @@ class App extends Component {
         this.setState({
           time: time
         });
-        //   Tone.Draw.schedule(function(){
-        // 	document.querySelector(".grid").setAttribute("highlight", col);
-        // }, time);
-        //this.state.steps.map((row) => { return row.map((x, ycoord) => { return ycoord})})
 
-        console.log(Tone.Transport.position);
+        // Tone.Draw.schedule(function(){
+        //   return this.backgroundDisco
+        // }, time);
+
+        // console.log(Tone.Transport.position);
       },
       [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],   // or this.state.steps[0].map((_, i) => i) -
       "16n"
@@ -318,84 +319,6 @@ class App extends Component {
     Tone.Transport.bpm.value = this.state.bpm;
     Tone.Transport.toggle()
   };
-
-
-  // testHandleClick = () => {
-  //
-  //   // var loop = new Tone.Loop(function(time) {
-  //
-  //     //triggered every eighth note.
-  //   //   console.log(time);
-  //   // }, "2n").start(0);
-  //   // Tone.Transport.start();
-  //
-  //   let loop = new Tone.Sequence(
-  //
-  //       (time, col) => {
-  //
-  //         this.state.setColumn(col)
-  //
-  //
-  //         // Loop current pattern
-  //         this.state.steps.map((row, noteIndex) => {
-  //           // Update active column for animation
-  //
-  //           // If active -- 0 will return falsy / 1 return truthy
-  //           if (row[col]) {
-  //             // Play based on which row
-  //             const drumSynth = new Tone.MembraneSynth().toMaster();
-  //               drumSynth.triggerAttackRelease("c1", "8n");   // ("c1", "8n", time);
-  //           }
-  //         })
-  //       },
-  //       [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ],
-  //       "16n"
-  //     ).start(0)
-  //   return () => loop.dispose()
-  // }, this.state.steps )
-  //
-
-  // drummer(time) {
-  //   const drumSynth = new Tone.MembraneSynth().toMaster();
-  //   // const triggerDrumSynth = drumSynth.triggerAttackRelease("c1", "8n", time);
-  //   // const triggerDrumSynth2 = drumSynth2.triggerAttackRelease("e2", "16n", time);
-  //
-  //   // let loopBeat = new Loop(this.triggerDrumSynth, "4n", time);
-  //   //
-  //   // let loopBeat2 = new Loop(this.triggerDrumSynth2, "8n", time)
-  //   // Transport.loop = '4'
-  //   // Transport.loopStart = '0'
-  //   // Transport.loopEnd = '1m'
-  //   //
-  //   // // Transport.start();
-  //   // //
-  //   // //
-  //   // // // loopBeat.start(0);
-  //   // // // loopBeat2.start(0);
-  //   console.log(time);
-  //
-  //   debugger;
-  // }
-
-  // createLoop = () => {
-  //     if (!this.state.steps) { return; }
-  //     Transport.clear(this.loopId);
-  //     const loop = (time: number) => {
-  //         this.state.steps.forEach((s, i) => {
-  //             if (s) {
-  //                 this.sound.trigger(time + i * Time('16n').toSeconds())
-  //             }
-  //         });
-  //     }
-  //     this.loopId = Transport.schedule(loop, "0");
-  // }
-  //
-  //
-  // loop = new Loop(function(time){
-  //   //triggered every eighth note.
-  //   console.log(time);
-  // }, "8n").start(0);
-  // Transport.start();
 
   stepToggle = (x, y) => {
     if (this.state.steps[x][y] === 0) {
@@ -515,10 +438,6 @@ class App extends Component {
         <div className="conga-tuning-knob"><CongaTuningKnob changeCongaTuning={this.changeCongaTuning} /></div>
         <div className="hihat-decay-knob"><HihatDecayKnob changeCymbalDecayLevel={this.changeCymbalDecayLevel} /></div>
         <div className="cymbal-release-knob"><CymbalReleaseKnob changeCymbalReleaseLevel={this.changeCymbalReleaseLevel} /></div>
-
-
-
-
 
       </div>
     );

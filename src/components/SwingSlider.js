@@ -38,7 +38,7 @@ class SwingSlider extends React.Component {
           max={0.25}
           value={this.state.value}
           unlockDistance={30}
-          preciseMode={false}
+          preciseMode={true}
           skin={skins.s8}
           {...this.props.rest}
         />
