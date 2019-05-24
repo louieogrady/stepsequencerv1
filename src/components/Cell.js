@@ -16,6 +16,9 @@ class Cell extends Component {
 
   };
 
+
+  renderDivColors = () => this.props.steps[this.props.x][this.props.y] === 1 ? "#b0c4e8": this.props.y % 4 === 0 ? '#E3C5BA' : '#F7F5E1'
+
   render() {
     return (
       <div
@@ -31,12 +34,8 @@ class Cell extends Component {
           className="inner"
           id={this.props.id}
           onClick={this.clickHandler}
-          style={{
-            background:
-              this.props.steps[this.props.x][this.props.y] === 0
-                ? "#F7F5E1"
-                : "#b0c4e8"
-          }}
+
+          style={{background: this.renderDivColors()}}
         >
         </div>
       </div>
@@ -45,3 +44,5 @@ class Cell extends Component {
 }
 
 export default Cell;
+
+// this.props.steps[this.props.x].map((e, i) => i === 0 || i === 4 || i  === 8 || i === 11)
