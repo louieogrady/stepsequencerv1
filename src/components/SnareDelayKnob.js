@@ -9,7 +9,7 @@ class SnareDelayKnob extends React.Component {
 
   handleChange = value => {
 
-    const maxDistance = 2.5;
+    const maxDistance = 2;
     let distance = Math.abs(value - this.state.value);
     if (distance > maxDistance) {
       return;
@@ -34,10 +34,10 @@ class SnareDelayKnob extends React.Component {
             this.handleChange(value);
           }}
           min={0}
-          max={10}
+          max={4}
           value={this.state.value}
-          unlockDistance={30}
-          preciseMode={true}
+          unlockDistance={0}
+          preciseMode={false}
           skin={skins.s7}
           {...this.props.rest}
         />{" "}

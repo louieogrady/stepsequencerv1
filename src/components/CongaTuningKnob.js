@@ -36,8 +36,8 @@ class CongaTuningKnob extends React.Component {
           min={80}
           max={400}
           value={this.state.value}
-          unlockDistance={30}
-          preciseMode={true}
+          unlockDistance={0}
+          preciseMode={false}
           skin={skins.s7}
           {...this.props.rest}
         />{" "}

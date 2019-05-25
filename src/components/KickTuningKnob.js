@@ -36,8 +36,8 @@ class KickTuningKnob extends React.Component {
           min={44}
           max={100}
           value={this.state.value}
-          unlockDistance={30}
-          preciseMode={true}
+          unlockDistance={0}
+          preciseMode={false}
           skin={skins.s7}
           {...this.props.rest}
         />{" "}

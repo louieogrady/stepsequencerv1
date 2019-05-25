@@ -10,6 +10,12 @@ import conga from '../images/conga.png'
 import cymbal from '../images/cymbal.png'
 import hihat from '../images/hihat.png'
 
+// import ch from "../samples/ch.wav",
+// import clap from "../samples/clap.wav",
+// // 		"E" : "../samples/claves.[mp3|ogg|wav]",
+// // 		"F#" : "../samples/kick.[mp3|ogg|wav]",
+
+
 import Title from "./Title.js";
 import Cell from "./Cell.js";
 import PlayPause from "./PlayPause.js";
@@ -40,7 +46,7 @@ class App extends Component {
     ],
     bpm: 120,
     // playing: Tone.Transport.state, // returns the playback state of Transport, either “started”, “stopped”, or “paused”
-    // notes: ["D1", "D#3", "F#2", "G#1", "A#2", "C#1", "G#3", "G1"],
+    notes: ["A", "C#", "E", "F#"],
     // playState: Tone.Transport.state,
     column: 0,
     activeColumn: 0,
@@ -64,10 +70,10 @@ class App extends Component {
   //
   //
   //      keys = new Tone.Players({
-  // 		"A" : "../assets/ch.[mp3|ogg|wav]",
-  // 		"C#" : "../assets/clap.[mp3|ogg|wav]",
-  // 		"E" : "../assets/claves.[mp3|ogg|wav]",
-  // 		"F#" : "../assets/kick.[mp3|ogg|wav]",
+  // 		"A" : "../samples/ch.[mp3|ogg|wav]",
+  // 		"C#" : "../samples/clap.[mp3|ogg|wav]",
+  // 		"E" : "../samples/claves.[mp3|ogg|wav]",
+  // 		"F#" : "../samples/kick.[mp3|ogg|wav]",
   // 	}, {
   // 		"volume" : -5,
   // 		"fadeOut" : "64n",
@@ -201,6 +207,10 @@ class App extends Component {
   }).chain(this.appVol, Tone.Master);
 
 
+
+
+  // CHANGE FUNCTIONS //
+
   changeKickDrumTuning = (value) => {
     this.setState({
       kickDrumTuning: value
@@ -234,7 +244,57 @@ class App extends Component {
     })
   }
 
-  // backgroundDisco = () => this.state.steps.map((row, x) => {row.map((cell, y) => {return  this.state.steps[x][y] === 1 ? "#E3C5BA"  : "#F7F5E1"})})
+  changeVolume = value => {
+    this.appVol.volume.value = value;
+
+    this.setState({
+      masterVolume: value
+    });
+  };
+
+  changeSwing = value => {
+    Tone.Transport.swing = value;
+  };
+
+  changeBpm = value => {
+    Tone.Transport.bpm.value = value;
+
+    this.setState({
+      bpm: value
+    });
+  };
+
+  play = () => {
+    Tone.Transport.bpm.value = this.state.bpm;
+    Tone.Transport.toggle()
+  };
+
+  pause = () => {
+    Tone.Transport.stop();
+    console.log("paused");
+  };
+
+  stepToggle = (x, y) => {
+    if (this.state.steps[x][y] === 0) {
+      const newSteps = this.state.steps;
+      newSteps[x][y] = 1;
+      this.setState({ steps: newSteps });
+    } else {
+      const newSteps = this.state.steps;
+      newSteps[x][y] = 0;
+      this.setState({ steps: newSteps });
+    }
+    console.log(`You Clicked ${x} and ${y}`);
+  };
+
+  // backgroundDisco = () => this.state.steps.map((row, x) => {row.map((cell, y) => this.state.steps[x][y] === 1 ? "#E3C5BA" : "#F7F5E1")})
+
+    // backgroundDisco = () => this.state.steps[0] === 1 && this.state.column === 0 ? "#E3C5BA" : "#F7F5E1"
+
+    // backgroundDisco = () => this.state.steps.map((row, noteIndex) => row === this.state.steps[0] && row[this.state.activeColumn] ? "#E3C5BA" : "#F7F5E1")
+
+
+  // ON INIT //
 
   componentDidMount() {
     this.loop = new Tone.Sequence(
@@ -288,17 +348,16 @@ class App extends Component {
         this.setState({
           activeColumn: col
         });
-        // this.state.activeColumn = col
 
         this.setState({
           time: time
         });
 
-        // Tone.Draw.schedule(function(){
-        //   return this.backgroundDisco
-        // }, time);
+        // Tone.Draw.schedule(() => {
+        //   this.backgroundDisco()
+        // }, "16n", time);
 
-        // console.log(Tone.Transport.position);
+
       },
       [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],   // or this.state.steps[0].map((_, i) => i) -
       "16n"
@@ -310,29 +369,8 @@ class App extends Component {
     return () => this.loop.dispose();
   }
 
-  pause = () => {
-    Tone.Transport.stop();
-    console.log("paused");
-  };
 
-  play = () => {
-    Tone.Transport.bpm.value = this.state.bpm;
-    Tone.Transport.toggle()
-  };
-
-  stepToggle = (x, y) => {
-    if (this.state.steps[x][y] === 0) {
-      const newSteps = this.state.steps;
-      newSteps[x][y] = 1;
-      this.setState({ steps: newSteps });
-    } else {
-      const newSteps = this.state.steps;
-      newSteps[x][y] = 0;
-      this.setState({ steps: newSteps });
-    }
-
-    console.log(`You Clicked ${x} and ${y}`);
-  };
+  // PATTERN-RELATED FUNCTIONS //
 
   randomPattern = () => {
     let makeARandomNumber = () => {
@@ -365,27 +403,7 @@ class App extends Component {
       ]
     });
   };
-
-  changeBpm = value => {
-    Tone.Transport.bpm.value = value;
-
-    this.setState({
-      bpm: value
-    });
-  };
-
-  changeVolume = value => {
-    this.appVol.volume.value = value;
-
-    this.setState({
-      masterVolume: value
-    });
-  };
-
-  changeSwing = value => {
-    Tone.Transport.swing = value;
-  };
-
+  
   render() {
     let cells = this.state.steps.map((row, xCoord) => {
       return (
@@ -403,15 +421,20 @@ class App extends Component {
       );
     });
 
+          // <div className="App" style={{ background: this.backgroundDisco() }}>
+
     return (
       <div className="App">
         <Title />
+
+        <div className="icons">
         <img className="kick" src={kick} alt="kick" height="68px"/>
         <img className="clap" src={clap} alt="clap" height="68px"/>
         <img className="snare" src={snare} alt="snare" height="68px"/>
         <img className="hihat" src={hihat} alt="hihat" height="68px"/>
         <img className="conga" src={conga} alt="conga" height="68px"/>
         <img className="cymbal" src={cymbal} alt="cymbal" height="68px"/>
+        </div>
 
         <div className="grid">{cells}</div>
 
@@ -438,6 +461,10 @@ class App extends Component {
         <div className="conga-tuning-knob"><CongaTuningKnob changeCongaTuning={this.changeCongaTuning} /></div>
         <div className="hihat-decay-knob"><HihatDecayKnob changeCymbalDecayLevel={this.changeCymbalDecayLevel} /></div>
         <div className="cymbal-release-knob"><CymbalReleaseKnob changeCymbalReleaseLevel={this.changeCymbalReleaseLevel} /></div>
+
+        <div>
+
+        </div>
 
       </div>
     );

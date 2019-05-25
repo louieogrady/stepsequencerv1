@@ -36,8 +36,8 @@ class VolumeSlider extends React.Component {
           min={-12}
           max={0}
           value={this.state.value}
-          unlockDistance={30}
-          preciseMode={true}
+          unlockDistance={0}
+          preciseMode={false}
           skin={skins.s8}
           {...this.props.rest}
         />{" "}
