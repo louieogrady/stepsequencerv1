@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import * as Tone from "tone";
+import * as download from 'downloadjs';
 
 import "../App.css";
 
@@ -30,6 +31,8 @@ import CongaTuningKnob from "./CongaTuningKnob.js";
 import ClapReverbKnob from "./ClapReverbKnob.js"
 import HihatDecayKnob from "./HihatDecayKnob.js"
 import CymbalReleaseKnob from "./CymbalReleaseKnob.js"
+import RecordStart from "./RecordStart.js"
+import RecordStop from "./RecordStop.js"
 
 
 
@@ -45,9 +48,7 @@ class App extends Component {
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     ],
     bpm: 120,
-    // playing: Tone.Transport.state, // returns the playback state of Transport, either “started”, “stopped”, or “paused”
     notes: ["A", "C#", "E", "F#"],
-    // playState: Tone.Transport.state,
     column: 0,
     activeColumn: 0,
     time: 0,
@@ -207,6 +208,17 @@ class App extends Component {
   }).chain(this.appVol, Tone.Master);
 
 
+  // RECORDING VARIABLES //
+
+  audioContext = Tone.context;
+
+  dest = this.audioContext.createMediaStreamDestination();
+
+  recorder = new MediaRecorder(this.dest.stream);
+
+  output = Tone.Master;
+
+  chunks = [];
 
 
   // CHANGE FUNCTIONS //
@@ -403,7 +415,26 @@ class App extends Component {
       ]
     });
   };
-  
+
+  record = () => {
+    this.output.connect(this.dest);
+    this.recorder.start()
+
+    this.recorder.ondataavailable = evt => this.chunks.push(evt.data);
+
+  }
+
+  stopRecord = () => {
+    this.recorder.stop()
+
+    this.recorder.onstop = evt => {
+      let blob = new Blob(this.chunks, { type: 'audio/ogg; codecs=opus' });
+      // this.audio.src = URL.createObjectURL(blob);
+      download(blob, "rhythmcomposer.ogg", 'audio/ogg')
+    };
+
+  }
+
   render() {
     let cells = this.state.steps.map((row, xCoord) => {
       return (
@@ -439,13 +470,14 @@ class App extends Component {
         <div className="grid">{cells}</div>
 
         <div className="buttons" >
-        <PlayPause
-          play={this.play}
-          pause={this.pause}
-          playState={this.playState}
-        />
+        <PlayPause play={this.play} pause={this.pause} playState={this.playState} />
         <ClearPattern clearPattern={this.clearPattern} />
         <RandomPattern randomPattern={this.randomPattern} />
+        </div>
+
+        <div className="recorder-buttons">
+        <RecordStart className="record-button" record={this.record}/>
+        <RecordStop className="stop-record-button" stopRecord={this.stopRecord}/>
         </div>
 
         <div className="bottom-knobs">
