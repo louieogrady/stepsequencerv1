@@ -12,7 +12,7 @@ class ClearPattern extends Component {
         onClick={this.handleClick}
       >
         <button
-          className="clear pattern button "
+          className="clear pattern button"
           style={{
             border: "2px solid black",
             background: "#F7F5E1",

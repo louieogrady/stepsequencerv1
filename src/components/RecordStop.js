@@ -16,7 +16,6 @@ class RecordStop extends Component {
             border: "2px solid black",
             background: "#F7F5E1",
             borderRadius: "13px",
-
           }}
         >
           <i className="stop icon" />Stop

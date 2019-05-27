@@ -56,7 +56,8 @@ class App extends Component {
     kickDrumTuning: 43.65,
     congaTuning: 107,
     clapReverbWetLevel: 0,
-    closedHihatDecayLevel: 0
+    closedHihatDecayLevel: 0,
+    mediaRecorderState: false
   };
 
   // randomValue = () => { setInterval(() => {
@@ -417,21 +418,38 @@ class App extends Component {
   };
 
   record = () => {
-    this.output.connect(this.dest);
-    this.recorder.start()
+    if (this.state.mediaRecorderState === false) {
+      this.output.connect(this.dest);
+      this.recorder.start()
 
-    this.recorder.ondataavailable = evt => this.chunks.push(evt.data);
+      this.recorder.ondataavailable = evt => this.chunks.push(evt.data);
+
+      this.setState({
+        mediaRecorderState: true
+      })
+    }
 
   }
 
   stopRecord = () => {
-    this.recorder.stop()
+    if (this.state.mediaRecorderState === true) {
+      this.recorder.stop()
 
     this.recorder.onstop = evt => {
       let blob = new Blob(this.chunks, { type: 'audio/ogg; codecs=opus' });
       // this.audio.src = URL.createObjectURL(blob);
       download(blob, "rhythmcomposer.ogg", 'audio/ogg')
     };
+
+    this.setState({
+      mediaRecorderState: false
+    })
+
+    this.chunks = [];
+
+    } else {
+      return null
+    }
 
   }
 

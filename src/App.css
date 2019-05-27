@@ -181,22 +181,19 @@ height: 1200px; */
 .recorder-buttons {
   display: grid;
   width: 92%;
-  grid-template-columns: 15% 15%;
+  grid-template-columns: 50% 50%;
   justify-content: flex-start;
   margin: -30.5rem 0rem 0rem 15.7rem;
   position: relative;
-  grid-gap: 30px;
+  grid-gap: 15px;
 }
 
 
 /* .icons {
-    width: 80vw;
-  max-width: 160vh;
-  max-height: 68vh;
-    margin: auto;
-    position: absolute;
-      flex: 1 0 auto;
+  width:80vw;
+  height:80vh;
 } */
+
 
 .grid {
   width: 80vw;
