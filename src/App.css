@@ -83,15 +83,16 @@ body,
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  position: absolute;
+  position: relative;
 }
 
-/*
+
 .bottom-knobs {
+  width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
-} */
+  position: relative;
+}
 
 .bpm-slider {
   margin: -5rem 98.5rem;
@@ -108,10 +109,10 @@ body,
   position: absolute;
 }
 
-/* .side-knobs {
+.side-knobs {
   margin: -10rem 120rem;
   position: absolute;
-} */
+}
 
 .clap-reverb-knob {
   margin: -32.8rem 125.5rem;
@@ -146,12 +147,12 @@ body,
 .icons {
   width: 100%;
   margin: 0 auto;
-    position: relative;
+  position: relative;
 }
 
 .kick {
 
-  margin: 1.5rem 10.1rem;
+  margin: 1.5rem 9.79rem;
   position: absolute;
 }
 
