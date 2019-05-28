@@ -23,10 +23,9 @@ class PlayPause extends Component {
     return (
       <div className="huge ui vertical labeled icon buttons">
         <button
-          className="play button "
+          className="play button"
           onClick={this.handleClick}
           style={{
-
             border: "2px solid black",
             background: "#F7F5E1",
             borderRadius: "13px",

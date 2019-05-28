@@ -431,9 +431,9 @@ class App extends Component {
       this.recorder.stop()
 
       this.recorder.onstop = evt => {
-        let blob = new Blob(this.chunks, { type: 'audio/ogg; codecs=opus' });
+        let blob = new Blob(this.chunks, { type: 'audio/wav; codecs=opus' });
     // this.audio.src = URL.createObjectURL(blob);
-        download(blob, "rhythmcomposer.ogg", 'audio/ogg')
+        download(blob, "rhythmcomposer.wav", 'audio/wav')
       };
 
       this.setState({
@@ -509,7 +509,6 @@ class App extends Component {
 
         <div className="recorder-buttons">
         <RecordStart className="record-button" record={this.record}/>
-        <RecordStop className="stop-record-button" stopRecord={this.stopRecord}/>
         </div>
 
         <div className="bottom-knobs">
