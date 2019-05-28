@@ -32,7 +32,6 @@ import ClapReverbKnob from "./ClapReverbKnob.js"
 import HihatDecayKnob from "./HihatDecayKnob.js"
 import CymbalReleaseKnob from "./CymbalReleaseKnob.js"
 import RecordStart from "./RecordStart.js"
-import RecordStop from "./RecordStop.js"
 
 
 
@@ -491,12 +490,12 @@ class App extends Component {
         <Title />
 
         <div className="icons">
-        <img className="kick" src={kick} alt="kick" height="68px"/>
-        <img className="clap" src={clap} alt="clap" height="68px"/>
-        <img className="snare" src={snare} alt="snare" height="68px"/>
-        <img className="hihat" src={hihat} alt="hihat" height="68px"/>
-        <img className="conga" src={conga} alt="conga" height="68px"/>
-        <img className="cymbal" src={cymbal} alt="cymbal" height="68px"/>
+        <img className="kick" src={kick} alt="kick"/>
+        <img className="clap" src={clap} alt="clap" />
+        <img className="snare" src={snare} alt="snare" />
+        <img className="hihat" src={hihat} alt="hihat" />
+        <img className="conga" src={conga} alt="conga" />
+        <img className="cymbal" src={cymbal} alt="cymbal" />
         </div>
 
         <div className="grid">{cells}</div>

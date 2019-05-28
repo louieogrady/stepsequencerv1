@@ -1,8 +1,4 @@
 import React from "react";
-// import PropTypes from 'prop-types';
-// import { withStyles } from '@material-ui/core/styles';
-// import Slider, { defaultValueReducer } from '@material-ui/lab/Slider';
-// import Typography from '@material-ui/core/Typography';
 import { Knob } from "react-rotary-knob";
 import * as skins from "react-rotary-knob-skin-pack";
 
@@ -25,6 +21,7 @@ class BpmSlider extends React.Component {
 
     this.props.changeBpm(value);
   };
+
 
   render() {
     return (
