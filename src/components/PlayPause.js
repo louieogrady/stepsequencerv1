@@ -17,22 +17,21 @@ class PlayPause extends Component {
   };
 
   render() {
+
+    const playButtonClass = this.state.playing ? 'pause icon' : 'play icon'
+
     return (
       <div className="huge ui vertical labeled icon buttons">
         <button
-          className="play button "
+          className="play button"
           onClick={this.handleClick}
           style={{
-            height: "3.95rem",
-            width: "15.2rem",
-            marginTop: "31.3rem",
-            marginLeft: "11.6rem",
             border: "2px solid black",
             background: "#F7F5E1",
-            borderRadius: "13px"
+            borderRadius: "13px",
           }}
         >
-          <i className="play icon" />
+          <i className={playButtonClass} />
           {this.state.playing ? "Pause" : "Play"}
         </button>
       </div>

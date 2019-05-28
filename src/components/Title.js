@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 
   let style = {
-    fontSize: "79px",
-    marginTop: "0.5rem",
-    marginLeft: "32rem",
-    fontFamily: 'Lato'
+    fontSize: "100px",
+    marginTop: "0.6rem",
+    marginLeft: "40.7rem",
+    fontFamily: 'Lato',
+    color: "#F7F5E1",
+    border: "black",
+    textShadow: "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black",
+    position: "relative"
   }
 
 class Title extends Component {
-
-
-
-
 
   render() {
 
@@ -21,7 +21,5 @@ class Title extends Component {
 
   }
 }
-
-
 
 export default Title

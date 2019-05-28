@@ -2,15 +2,15 @@ import React from "react";
 import { Knob } from "react-rotary-knob";
 import * as skins from "react-rotary-knob-skin-pack";
 
-class VolumeSlider extends React.Component {
+class CymbalReleaseKnob extends React.Component {
   state = {
-    value: -3
+    value: 0.25
   };
 
   handleChange = value => {
-    const maxDistance = 5;
-    let distance = Math.abs(value - this.state.value);
 
+    const maxDistance = 1;
+    let distance = Math.abs(value - this.state.value);
     if (distance > maxDistance) {
       return;
     } else {
@@ -19,12 +19,12 @@ class VolumeSlider extends React.Component {
       });
     }
 
-    this.props.changeVolume(value);
+    this.props.changeCymbalReleaseLevel(value);
   };
 
   render() {
     return (
-      <div className='volume-slider'>
+      <div>
         <Knob
           style={{
             width: "80px",
@@ -33,18 +33,18 @@ class VolumeSlider extends React.Component {
           onChange={value => {
             this.handleChange(value);
           }}
-          min={-12}
-          max={0}
+          min={0.25}
+          max={2}
           value={this.state.value}
           unlockDistance={0}
           preciseMode={false}
-          skin={skins.s8}
+          skin={skins.s7}
           {...this.props.rest}
         />{" "}
-        <h5 style={{ margin: "0rem", marginLeft: "0rem", width: "80px"}}>Volume (dB)</h5>
+        <h5 style={{marginTop: "-0.3rem", marginLeft: "1.1rem"}}>Release</h5>
       </div>
     );
   }
 }
 
-export default VolumeSlider;
+export default CymbalReleaseKnob;

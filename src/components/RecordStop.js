@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
-class ClearPattern extends Component {
+class RecordStop extends Component {
   handleClick = () => {
-    this.props.clearPattern();
+    this.props.stopRecord();
   };
 
   render() {
@@ -12,19 +12,18 @@ class ClearPattern extends Component {
         onClick={this.handleClick}
       >
         <button
-          className="clear pattern button"
+        className="record stop button"
           style={{
             border: "2px solid black",
             background: "#F7F5E1",
             borderRadius: "13px",
-
           }}
         >
-          <i className="trash icon" />Clear Pattern
+          <i className="stop icon" />Stop Recording
         </button>
       </div>
     );
   }
 }
 
-export default ClearPattern;
+export default RecordStop

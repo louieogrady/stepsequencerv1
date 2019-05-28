@@ -1,8 +1,4 @@
 import React from "react";
-// import PropTypes from 'prop-types';
-// import { withStyles } from '@material-ui/core/styles';
-// import Slider, { defaultValueReducer } from '@material-ui/lab/Slider';
-// import Typography from '@material-ui/core/Typography';
 import { Knob } from "react-rotary-knob";
 import * as skins from "react-rotary-knob-skin-pack";
 
@@ -26,17 +22,14 @@ class BpmSlider extends React.Component {
     this.props.changeBpm(value);
   };
 
+
   render() {
     return (
       <div>
         <Knob
           style={{
-            position: "absolute",
-            width: "60px",
-            marginTop: "-4.3rem",
-            marginLeft: "68.9rem",
-            height: "60px",
-            display: "inline-block"
+            width: "80px",
+            height: "80px",
           }}
           onChange={value => {
             this.handleChange(value);
@@ -45,12 +38,12 @@ class BpmSlider extends React.Component {
           defaultValue={120}
           max={200}
           value={this.state.value}
-          unlockDistance={30}
+          unlockDistance={0}
           preciseMode={false}
           skin={skins.s8}
           {...this.props.rest}
         />
-        <h5 style={{ marginLeft: "68.2rem", marginTop: "-0.48rem"}}>Tempo (BPM)</h5>
+        <h5 style={{marginTop: "0rem", marginLeft: "0.1rem", width: "90px"}}>Tempo (BPM)</h5>
       </div>
     );
   }

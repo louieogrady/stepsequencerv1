@@ -27,12 +27,8 @@ class KickTuningKnob extends React.Component {
       <div>
         <Knob
           style={{
-            position: "absolute",
-            width: "50px",
-            marginTop: "-3.48rem",
-            marginLeft: "95.4rem",
-            height: "50px",
-            display: "inline-block"
+            width: "80px",
+            height: "80px",
           }}
           onChange={value => {
             this.handleChange(value);
@@ -40,12 +36,12 @@ class KickTuningKnob extends React.Component {
           min={44}
           max={100}
           value={this.state.value}
-          unlockDistance={30}
+          unlockDistance={0}
           preciseMode={false}
           skin={skins.s7}
           {...this.props.rest}
         />{" "}
-        <h5 style={{ marginLeft: "94.8rem", marginTop: "-16.8rem" }}>Tuning (Hz)</h5>
+        <h5 style={{marginTop: "0rem", marginLeft: "0.269rem", width: "81px"}}>Tuning (Hz)</h5>
       </div>
     );
   }
