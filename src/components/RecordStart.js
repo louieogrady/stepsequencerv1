@@ -15,7 +15,7 @@ class RecordStart extends Component {
 
   render() {
 
-    const recordingButtonStyle = this.state.recording ? "circle icon" : "circle outline icon"
+    const recordingButtonStyle = this.state.recording ? "red circle icon" : "circle icon"
 
     return (
       <div
@@ -27,7 +27,7 @@ class RecordStart extends Component {
           style={{border: "2px solid black", background: "#F7F5E1", borderRadius: "13px"}}
         >
            <i className={recordingButtonStyle} />
-          {this.state.recording ? "Recording..." : "Start Recording"}
+          {this.state.recording ? "Recording..." : "Record"}
         </button>
       </div>
     );
