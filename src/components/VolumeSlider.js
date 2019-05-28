@@ -27,8 +27,8 @@ class VolumeSlider extends React.Component {
       <div className='volume-slider'>
         <Knob
           style={{
-            width: "80px",
-            height: "80px",
+            width: "28%",
+            height: "10%",
           }}
           onChange={value => {
             this.handleChange(value);

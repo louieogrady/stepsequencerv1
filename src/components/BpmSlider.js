@@ -28,8 +28,8 @@ class BpmSlider extends React.Component {
       <div>
         <Knob
           style={{
-            width: "80px",
-            height: "80px",
+            width: "28%",
+            height: "10%",
           }}
           onChange={value => {
             this.handleChange(value);
