@@ -12,6 +12,7 @@ class RecordStart extends Component {
         onClick={this.handleClick}
       >
         <button
+        className="record start button"
           style={{
             border: "2px solid black",
             background: "#F7F5E1",
@@ -19,7 +20,7 @@ class RecordStart extends Component {
 
           }}
         >
-          <i className="circle icon" />Record
+          <i className="circle icon" />Start Recording
         </button>
       </div>
     );

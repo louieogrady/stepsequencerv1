@@ -322,7 +322,7 @@ class App extends Component {
             let vel = Math.random() * 0.5 + 0.5;
             // Trigger the sound to be played here
 
-            this.kick.triggerAttackRelease(
+            return this.kick.triggerAttackRelease(
               this.state.kickDrumTuning,
               "16n",
               time,
@@ -346,7 +346,7 @@ class App extends Component {
             let vel = Math.random() * 0.45 + 0.45;
             this.snare.triggerAttackRelease("16n", time, vel);
           } else if (row === this.state.steps[4] && row[col]) {
-            let vel = Math.random() * 0.5 + 0.5;
+            // let vel = Math.random() * 0.5 + 0.5;
             this.closedHihat.triggerAttackRelease("16n", time, -12);
           } else if (row === this.state.steps[5] && row[col]) {
             let vel = Math.random() * 0.5 + 0.5;
@@ -427,31 +427,45 @@ class App extends Component {
       this.setState({
         mediaRecorderState: true
       })
-    }
-
-  }
-
-  stopRecord = () => {
-    if (this.state.mediaRecorderState === true) {
+    } else {
       this.recorder.stop()
 
-    this.recorder.onstop = evt => {
-      let blob = new Blob(this.chunks, { type: 'audio/ogg; codecs=opus' });
-      // this.audio.src = URL.createObjectURL(blob);
-      download(blob, "rhythmcomposer.ogg", 'audio/ogg')
-    };
+      this.recorder.onstop = evt => {
+        let blob = new Blob(this.chunks, { type: 'audio/ogg; codecs=opus' });
+    // this.audio.src = URL.createObjectURL(blob);
+        download(blob, "rhythmcomposer.ogg", 'audio/ogg')
+      };
 
-    this.setState({
-      mediaRecorderState: false
-    })
+      this.setState({
+        mediaRecorderState: false
+      })
 
-    this.chunks = [];
-
-    } else {
-      return null
+      this.chunks = [];
     }
 
   }
+
+  // stopRecord = () => {
+  //   if (this.state.mediaRecorderState === true) {
+  //     this.recorder.stop()
+  //
+  //   this.recorder.onstop = evt => {
+  //     let blob = new Blob(this.chunks, { type: 'audio/ogg; codecs=opus' });
+  //     // this.audio.src = URL.createObjectURL(blob);
+  //     download(blob, "rhythmcomposer.ogg", 'audio/ogg')
+  //   };
+  //
+  //   this.setState({
+  //     mediaRecorderState: false
+  //   })
+  //
+  //   this.chunks = [];
+  //
+  //   } else {
+  //     return null
+  //   }
+  //
+  // }
 
   render() {
     let cells = this.state.steps.map((row, xCoord) => {
