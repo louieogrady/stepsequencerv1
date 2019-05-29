@@ -485,52 +485,57 @@ class App extends Component {
 
           // <div className="App" style={{ background: this.backgroundDisco() }}>
 
-    return (
-      <div className="App">
-        <Title />
-
-        <div className="icons">
-        <img className="kick" src={kick} alt="kick"/>
-        <img className="clap" src={clap} alt="clap" />
-        <img className="snare" src={snare} alt="snare" />
-        <img className="hihat" src={hihat} alt="hihat" />
-        <img className="conga" src={conga} alt="conga" />
-        <img className="cymbal" src={cymbal} alt="cymbal" />
-        </div>
-
-        <div className="grid">{cells}</div>
-
-        <div className="buttons" >
-        <PlayPause play={this.play} pause={this.pause} playState={this.playState} />
-        <ClearPattern clearPattern={this.clearPattern} />
-        <RandomPattern randomPattern={this.randomPattern} />
-        </div>
-
-        <div className="recorder-buttons">
-        <RecordStart className="record-button" record={this.record}/>
-        </div>
-
-        <div className="bottom-knobs">
-        <div className="bpm-slider"><BpmSlider changeBpm={this.changeBpm} /></div>
-        <div className="volume-slider"><VolumeSlider changeVolume={this.changeVolume} /></div>
-        <div className="swing-slider"><SwingSlider changeSwing={this.changeSwing} /></div>
-        </div>
+          return (
+            <div>
+              <div className="App">
+                <div className="title-div"><Title /></div>
+                  <div className="content">
+                    <div className="icons">
+                      <div><img className="kick" src={kick} alt="kick"/></div>
+                      <div><img className="clap" src={clap} alt="clap" /></div>
+                      <div><img className="snare" src={snare} alt="snare" /></div>
+                      <div><img className="hihat" src={hihat} alt="hihat" /></div>
+                      <div><img className="conga" src={conga} alt="conga" /></div>
+                      <div><img className="cymbal" src={cymbal} alt="cymbal" /></div>
+                    </div>
 
 
-        <div className="clap-reverb-knob"><ClapReverbKnob changeClapReverbLevel={this.changeClapReverbLevel} /></div>
-        <div className="snare-delay-knob"><SnareDelayKnob changePingPongDelayLevel={this.changePingPongDelayLevel} /></div>
-        <div className="kick-tuning-knob"><KickTuningKnob changeKickDrumTuning={this.changeKickDrumTuning} /></div>
-        <div className="conga-tuning-knob"><CongaTuningKnob changeCongaTuning={this.changeCongaTuning} /></div>
-        <div className="hihat-decay-knob"><HihatDecayKnob changeCymbalDecayLevel={this.changeCymbalDecayLevel} /></div>
-        <div className="cymbal-release-knob"><CymbalReleaseKnob changeCymbalReleaseLevel={this.changeCymbalReleaseLevel} /></div>
+                    <div className="grid">{cells}
+                      <div className="buttons-knobs-container">
+                      <div className="buttons">
+                        <div><PlayPause play={this.play} pause={this.pause} playState={this.playState} /></div>
+                        <div><ClearPattern clearPattern={this.clearPattern} /></div>
+                        <div><RandomPattern randomPattern={this.randomPattern} /></div>
+                      </div>
 
-        <div>
+                      <div className="lower-record-buttons">
+                        <div><RecordStart className="record-button-start" record={this.record}/></div>
+                      </div>
 
-        </div>
+                      <div className="bottom-knobs">
+                        <div className="bpm-slider"><BpmSlider changeBpm={this.changeBpm} /></div>
+                        <div className="swing-slider"><SwingSlider changeSwing={this.changeSwing} /></div>
+                        <div className="volume-slider"><VolumeSlider changeVolume={this.changeVolume} /></div>
+                      </div>
 
-      </div>
-    );
-  }
-}
+                    </div>
+                  </div>
+                  <div className="side-knobs">
+                    <div className="kick-tuning-knob"><KickTuningKnob changeKickDrumTuning={this.changeKickDrumTuning} /></div>
+                    <div className="hihat-decay-knob"><HihatDecayKnob changeCymbalDecayLevel={this.changeCymbalDecayLevel} /></div>
+                    <div className="clap-reverb-knob"><ClapReverbKnob changeClapReverbLevel={this.changeClapReverbLevel} /></div>
+                    <div className="snare-delay-knob"><SnareDelayKnob changePingPongDelayLevel={this.changePingPongDelayLevel} /></div>
+                    <div className="cymbal-release-knob"><CymbalReleaseKnob changeCymbalReleaseLevel={this.changeCymbalReleaseLevel} /></div>
+                    <div className="conga-tuning-knob"><CongaTuningKnob changeCongaTuning={this.changeCongaTuning} /></div>
+                  </div>
+
+
+
+                </div>
+              </div>
+            </div>
+          );
+        }
+      }
 
 export default App;
