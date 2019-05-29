@@ -1,6 +1,5 @@
 import React from "react";
 import { Knob } from "react-rotary-knob";
-import Aux from './Aux'
 import * as skins from "react-rotary-knob-skin-pack";
 
 class CymbalReleaseKnob extends React.Component {
@@ -25,12 +24,13 @@ class CymbalReleaseKnob extends React.Component {
 
   render() {
     return (
-      <Aux>
+      <React.Fragment>
         <Knob
-        style={{
-          width: "30px",
-          height: "30px",
-        }}
+          className="whindUp"
+          style={{
+            width: "auto",
+            height: "auto",
+          }}
           onChange={value => {
             this.handleChange(value);
           }}
@@ -42,8 +42,10 @@ class CymbalReleaseKnob extends React.Component {
           skin={skins.s7}
           {...this.props.rest}
         />{" "}
-        <h5 style={{marginTop: "-0.3rem", marginLeft: "1.1rem"}}>Release</h5>
-      </Aux>
+        <h5 style={{marginTop: "-0.3rem",
+        textAlign: "center",
+        width: "87%"}}>Release</h5>
+      </React.Fragment>
     );
   }
 }

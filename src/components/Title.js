@@ -3,7 +3,7 @@ import React, { Component } from "react";
   let style = {
     fontSize: "100px",
     marginTop: "0.6rem",
-    marginLeft: "40.7rem",
+    marginLeft: "10rem",
     fontFamily: 'Lato',
     color: "#F7F5E1",
     border: "black",
