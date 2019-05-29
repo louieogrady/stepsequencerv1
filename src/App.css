@@ -88,7 +88,7 @@ body,
   position: relative;
 }
 
-.bpm-slider {
+/* .bpm-slider {
   margin: -5rem 98.5rem;
   position: absolute;
 }
@@ -136,11 +136,10 @@ body,
 .cymbal-release-knob {
   margin: -39.3rem 125.5rem;
   position: absolute;
-}
+} */
 
 .icons {
   width: 100%;
-  margin: 0 auto;
   height: 100%;
 }
 
@@ -193,20 +192,29 @@ body,
   top: 50rem;
 }
 
-#intrumentImages, #knobImages{
+#knobImages{
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   flex-grow: 1;
   justify-content: space-evenly;
-  height: 100%
+  height: 100%;
+  left: -20px;
+  align-items: left !important;
 }
 
+
 #intrumentImages{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  justify-content: space-evenly;
+  height: 104%;
+  left: 20px;
   align-items: center;
-}
-#knobImages{
-  align-items: left !important;
+  top: -10px
+
 }
 
 

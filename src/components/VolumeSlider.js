@@ -27,7 +27,7 @@ class VolumeSlider extends React.Component {
       <React.Fragment>
         <Knob
           style={{
-            width: "53%",
+            width: "50%",
             height: "auto",
           }}
           onChange={value => {
@@ -41,7 +41,7 @@ class VolumeSlider extends React.Component {
           skin={skins.s8}
           {...this.props.rest}
         />{" "}
-        <h5 style={{ margin: "0rem", marginLeft: "0rem", width: "53%"}}>Volume (dB)</h5>
+        <h5 style={{ margin: "0rem", marginLeft: "0rem", width: "50%"}}>Volume (dB)</h5>
       </React.Fragment>
     );
   }
