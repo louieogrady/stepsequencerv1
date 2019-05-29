@@ -1,5 +1,6 @@
 import React from "react";
 import { Knob } from "react-rotary-knob";
+import Aux from './Aux'
 import * as skins from "react-rotary-knob-skin-pack";
 
 class HihatDecayKnob extends React.Component {
@@ -24,12 +25,12 @@ class HihatDecayKnob extends React.Component {
 
   render() {
     return (
-      <div>
+      <Aux>
         <Knob
-          style={{
-            width: "80px",
-            height: "80px",
-          }}
+        style={{
+          width: "30px",
+          height: "30px",
+        }}
           onChange={value => {
             this.handleChange(value);
           }}
@@ -42,7 +43,7 @@ class HihatDecayKnob extends React.Component {
           {...this.props.rest}
         />{" "}
         <h5 style={{marginTop: "-0.3rem", marginLeft: "1.3rem"}}>Attack</h5>
-      </div>
+      </Aux>
     );
   }
 }

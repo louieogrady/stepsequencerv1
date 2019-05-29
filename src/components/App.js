@@ -491,12 +491,12 @@ class App extends Component {
                 <div className="title-div"><Title /></div>
                   <div className="content">
                     <div className="icons">
-                      <div><img className="kick" src={kick} alt="kick"/></div>
-                      <div><img className="clap" src={clap} alt="clap" /></div>
-                      <div><img className="snare" src={snare} alt="snare" /></div>
-                      <div><img className="hihat" src={hihat} alt="hihat" /></div>
-                      <div><img className="conga" src={conga} alt="conga" /></div>
-                      <div><img className="cymbal" src={cymbal} alt="cymbal" /></div>
+                      <div className="icon"><img className="kick" src={kick} alt="kick"/></div>
+                      <div className="icon"><img className="clap" src={clap} alt="clap" /></div>
+                      <div className="icon"><img className="snare" src={snare} alt="snare" /></div>
+                      <div className="icon"><img className="hihat" src={hihat} alt="hihat" /></div>
+                      <div className="icon"><img className="conga" src={conga} alt="conga" /></div>
+                      <div className="icon"><img className="cymbal" src={cymbal} alt="cymbal" /></div>
                     </div>
 
 
@@ -521,12 +521,12 @@ class App extends Component {
                     </div>
                   </div>
                   <div className="side-knobs">
-                    <div className="kick-tuning-knob"><KickTuningKnob changeKickDrumTuning={this.changeKickDrumTuning} /></div>
-                    <div className="hihat-decay-knob"><HihatDecayKnob changeCymbalDecayLevel={this.changeCymbalDecayLevel} /></div>
-                    <div className="clap-reverb-knob"><ClapReverbKnob changeClapReverbLevel={this.changeClapReverbLevel} /></div>
-                    <div className="snare-delay-knob"><SnareDelayKnob changePingPongDelayLevel={this.changePingPongDelayLevel} /></div>
-                    <div className="cymbal-release-knob"><CymbalReleaseKnob changeCymbalReleaseLevel={this.changeCymbalReleaseLevel} /></div>
-                    <div className="conga-tuning-knob"><CongaTuningKnob changeCongaTuning={this.changeCongaTuning} /></div>
+                    <div className="knob"><KickTuningKnob changeKickDrumTuning={this.changeKickDrumTuning} /></div>
+                    <div className="knob"><HihatDecayKnob changeCymbalDecayLevel={this.changeCymbalDecayLevel} /></div>
+                    <div className="knob"><ClapReverbKnob changeClapReverbLevel={this.changeClapReverbLevel} /></div>
+                    <div className="knob"><SnareDelayKnob changePingPongDelayLevel={this.changePingPongDelayLevel} /></div>
+                    <div className="knob"><CymbalReleaseKnob changeCymbalReleaseLevel={this.changeCymbalReleaseLevel} /></div>
+                    <div className="knob"><CongaTuningKnob changeCongaTuning={this.changeCongaTuning} /></div>
                   </div>
 
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { Knob } from "react-rotary-knob";
+import Aux from './Aux'
 import * as skins from "react-rotary-knob-skin-pack";
 
 class KickTuningKnob extends React.Component {
@@ -24,11 +25,11 @@ class KickTuningKnob extends React.Component {
 
   render() {
     return (
-      <div>
+      <Aux>
         <Knob
           style={{
-            width: "80px",
-            height: "80px",
+            width: "30px",
+            height: "30px",
           }}
           onChange={value => {
             this.handleChange(value);
@@ -42,7 +43,7 @@ class KickTuningKnob extends React.Component {
           {...this.props.rest}
         />{" "}
         <h5 style={{marginTop: "0rem", marginLeft: "0.269rem", width: "81px"}}>Tuning (Hz)</h5>
-      </div>
+      </Aux>
     );
   }
 }
