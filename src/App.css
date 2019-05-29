@@ -203,7 +203,6 @@ body,
   align-items: left !important;
 }
 
-
 #intrumentImages{
   display: flex;
   flex-direction: column;
@@ -214,9 +213,7 @@ body,
   left: 20px;
   align-items: center;
   top: -10px
-
 }
-
 
 .whindUp {
   width: 90% !important;

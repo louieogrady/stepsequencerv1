@@ -510,10 +510,10 @@ class App extends Component {
 
             <div id="knobImages" className="one wide column">
               <KickTuningKnob changeKickDrumTuning={this.changeKickDrumTuning} />
-              <HihatDecayKnob changeCymbalDecayLevel={this.changeCymbalDecayLevel} />
+              <CymbalReleaseKnob changeCymbalReleaseLevel={this.changeCymbalReleaseLevel} />
               <ClapReverbKnob changeClapReverbLevel={this.changeClapReverbLevel} />
               <SnareDelayKnob changePingPongDelayLevel={this.changePingPongDelayLevel} />
-              <CymbalReleaseKnob changeCymbalReleaseLevel={this.changeCymbalReleaseLevel} />
+              <HihatDecayKnob changeCymbalDecayLevel={this.changeCymbalDecayLevel} />
               <CongaTuningKnob changeCongaTuning={this.changeCongaTuning} />
             </div>
           </div>
