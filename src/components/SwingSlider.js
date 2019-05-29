@@ -24,7 +24,11 @@ class SwingSlider extends React.Component {
   };
 
   render() {
+
     return (
+
+
+
       <div className='swing-slider'>
         <Knob
           style={{
@@ -39,7 +43,7 @@ class SwingSlider extends React.Component {
           value={this.state.value}
           unlockDistance={0}
           preciseMode={false}
-          skin={skins.s8}
+          skin={skins.s6}
           {...this.props.rest}
         />
         <h5 style={{ margin: "0rem", marginLeft: "1.7rem"}}>Swing</h5>

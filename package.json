@@ -13,6 +13,7 @@
     "react-rotary-knob": "^1.1.5",
     "react-rotary-knob-skin-pack": "^1.0.2",
     "react-scripts": "3.0.1",
+    "reactjs-popup": "^1.4.1",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.87.1",
     "serve": "^11.0.1",

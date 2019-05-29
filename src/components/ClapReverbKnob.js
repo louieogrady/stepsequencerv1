@@ -38,7 +38,7 @@ class ClapReverbKnob extends React.Component {
           value={this.state.value}
           unlockDistance={0}
           preciseMode={false}
-          skin={skins.s7}
+          skin={skins.s6}
           {...this.props.rest}
         />
         <h5 style={{marginTop: "0rem", marginLeft: "1.2rem"}}>Reverb</h5>

@@ -24,7 +24,7 @@ class RecordStart extends Component {
       >
         <button
         className="record start button"
-          style={{border: "2px solid black", background: "#F7F5E1", borderRadius: "13px"}}
+          style={{width: "140%", border: "2px solid black", background: "#F7F5E1", borderRadius: "13px"}}
         >
            <i className={recordingButtonStyle} />
           {this.state.recording ? "Recording..." : "Record"}
