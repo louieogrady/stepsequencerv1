@@ -18,7 +18,6 @@ class Title extends Component {
     return (
       <h1 style={style}> Rhythm Composer </h1>
     );
-
   }
 }
 

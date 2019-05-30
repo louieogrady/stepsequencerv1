@@ -88,64 +88,27 @@ body,
   position: relative;
 }
 
-/* .bpm-slider {
-  margin: -5rem 98.5rem;
-  position: absolute;
-}
-
-.volume-slider {
-  margin: -2.5rem 59.6rem;
-  position: absolute;
-}
-
-.swing-slider {
-  margin: -2.5rem 54.5rem;
-  position: absolute;
-}
-
-.side-knobs {
-  margin: -10rem 120rem;
-  position: absolute;
-}
-
-.clap-reverb-knob {
-  margin: -32.8rem 125.5rem;
-  position: absolute;
-}
-
-.snare-delay-knob {
-  margin: -25.8rem 125.5rem;
-  position: absolute;
-}
-
-.kick-tuning-knob {
-  margin: -46.45rem 125.5rem;
-  position: absolute;
-}
-
-.conga-tuning-knob {
-  margin: -12.2rem 125.5rem;
-  position: absolute;
-}
-
-.hihat-decay-knob {
-  margin: -18.7rem 125.5rem;
-  position: absolute;
-}
-
-.cymbal-release-knob {
-  margin: -39.3rem 125.5rem;
-  position: absolute;
-} */
-
 .icons {
   width: 100%;
   height: 100%;
 }
 
-.kick, .cymbal, .clap, .snare, .hihat, .conga {
+.kick, .cymbal, .hihat, .conga {
   width: 100%;
 }
+
+.clap {
+  margin-top: 20px;
+  margin-left: 10px;
+  width: 100%;
+}
+
+.snare {
+  margin-top: 20px;
+  width: 100%
+}
+
+
 
 
 .recorder-buttons {
@@ -208,11 +171,11 @@ body,
   flex-direction: column;
   flex-wrap: wrap;
   flex-grow: 1;
-  justify-content: space-evenly;
-  height: 104%;
+  justify-content: space-between;
+  height: 97%;
   left: 20px;
   align-items: center;
-  top: -10px
+  top: 5px
 }
 
 .whindUp {
