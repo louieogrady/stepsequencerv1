@@ -3,7 +3,6 @@ import { Knob } from "react-rotary-knob";
 import * as skins from "react-rotary-knob-skin-pack";
 
 class SwingSlider extends React.Component {
-
   state = {
     value: 0
   };
@@ -24,12 +23,13 @@ class SwingSlider extends React.Component {
   };
 
   render() {
+
     return (
       <React.Fragment>
         <Knob
           style={{
             width: "50%",
-            height: "auto",
+            height: "auto"
           }}
           onChange={value => {
             this.handleChange(value);
@@ -42,7 +42,7 @@ class SwingSlider extends React.Component {
           skin={skins.s6}
           {...this.props.rest}
         />
-      <h5 style={{ margin: "0rem", width: "50%"}}>Swing</h5>
+        <h5 style={{ margin: "0rem", width: "50%" }}>Swing</h5>
       </React.Fragment>
     );
   }

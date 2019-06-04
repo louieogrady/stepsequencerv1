@@ -8,7 +8,6 @@ class KickTuningKnob extends React.Component {
   };
 
   handleChange = value => {
-
     const maxDistance = 40;
     let distance = Math.abs(value - this.state.value);
     if (distance > maxDistance) {
@@ -29,7 +28,7 @@ class KickTuningKnob extends React.Component {
           className="whindUp"
           style={{
             width: "auto",
-            height: "auto",
+            height: "auto"
           }}
           onChange={value => {
             this.handleChange(value);
@@ -42,9 +41,9 @@ class KickTuningKnob extends React.Component {
           skin={skins.s7}
           {...this.props.rest}
         />{" "}
-        <h5 style={{marginTop: "0rem",
-        textAlign: "center",
-        width: "87%"}}>Tuning</h5>
+        <h5 style={{ marginTop: "0rem", textAlign: "center", width: "87%" }}>
+          Tuning
+        </h5>
       </React.Fragment>
     );
   }

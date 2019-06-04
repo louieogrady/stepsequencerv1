@@ -13,9 +13,6 @@ import hihat from '../images/hihat.png'
 
 // import ch from "../samples/ch.wav",
 // import clap from "../samples/clap.wav",
-// // 		"E" : "../samples/claves.[mp3|ogg|wav]",
-// // 		"F#" : "../samples/kick.[mp3|ogg|wav]",
-
 
 import Title from "./Title.js";
 import Cell from "./Cell.js";
@@ -34,7 +31,6 @@ import CymbalReleaseKnob from "./CymbalReleaseKnob.js"
 import RecordStart from "./RecordStart.js"
 
 
-
 class App extends Component {
 
   state = {
@@ -47,8 +43,8 @@ class App extends Component {
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     ],
     bpm: 120,
-    notes: ["A", "C#", "E", "F#"],
-    column: 0,
+    // notes: ["A", "C#", "E", "F#"],
+    // column: 0,
     activeColumn: 0,
     time: 0,
     masterVolume: 0,
@@ -69,6 +65,13 @@ class App extends Component {
   // snareRandDecay = Math.random() * (0.22 - 0.1) + 0.1
   // snareRandSustain = Math.random() * (0.1 - 0) + 0
   //
+  //  randomKickSustain = () => new Tone.CtrlRandom({
+  //   min  : 0.01 ,
+  //   max  : 0.06,
+  //   integer  : false
+  // })
+  // randomNum = () => setInterval(this.randomKickSustain, 1000)
+  //
   //
   //      keys = new Tone.Players({
   // 		"A" : "../samples/ch.[mp3|ogg|wav]",
@@ -79,8 +82,6 @@ class App extends Component {
   // 		"volume" : -5,
   // 		"fadeOut" : "64n",
   // 	}).toMaster();
-
-
 
 
   /// INIT SYNTHS & FX ///
@@ -103,14 +104,6 @@ class App extends Component {
     roomSize  : 0.3,
     wet: 0
   })
-
-  // randomKickSustain = () => new Tone.CtrlRandom({
-  //   min  : 0.01 ,
-  //   max  : 0.06,
-  //   integer  : false
-  // })
-  //
-  // randomNum = () => setInterval(this.randomKickSustain, 1000)
 
   // kick
   kick = new Tone.MembraneSynth({
@@ -208,20 +201,22 @@ class App extends Component {
   }).chain(this.appVol, Tone.Master);
 
 
-  // RECORDING VARIABLES //
+  // DELCARE VARIABLES FOR RECORDING FUNCTIONALITY //
+
+  mime = ['audio/wav', 'audio/ogg', 'audio/mpeg', 'audio/webm', ].filter(MediaRecorder.isTypeSupported)[0]
 
   audioContext = Tone.context;
 
   dest = this.audioContext.createMediaStreamDestination();
 
-  recorder = new MediaRecorder(this.dest.stream);
+  recorder = new MediaRecorder(this.dest.stream, {mimeType: this.mime});
 
   output = Tone.Master;
 
   chunks = [];
 
 
-  // CHANGE FUNCTIONS //
+  // EVENT CALLBACKS //
 
   changeKickDrumTuning = (value) => {
     this.setState({
@@ -299,12 +294,6 @@ class App extends Component {
     console.log(`You Clicked ${x} and ${y}`);
   };
 
-  // backgroundDisco = () => this.state.steps.map((row, x) => {row.map((cell, y) => this.state.steps[x][y] === 1 ? "#E3C5BA" : "#F7F5E1")})
-
-    // backgroundDisco = () => this.state.steps[0] === 1 && this.state.column === 0 ? "#E3C5BA" : "#F7F5E1"
-
-    // backgroundDisco = () => this.state.steps.map((row, noteIndex) => row === this.state.steps[0] && row[this.state.activeColumn] ? "#E3C5BA" : "#F7F5E1")
-
 
   // ON INIT //
 
@@ -317,10 +306,9 @@ class App extends Component {
 
         this.state.steps.map((row, noteIndex) => {
           if (row === this.state.steps[0] && row[col]) {
-            // randomised velocities (volume of each triggered note)
+            // randomised velocities (volume of each triggered note):
             let vel = Math.random() * 0.5 + 0.5;
-            // Trigger the sound to be played here
-
+            // Trigger the sound to be played here:
             return this.kick.triggerAttackRelease(
               this.state.kickDrumTuning,
               "16n",
@@ -356,7 +344,7 @@ class App extends Component {
               vel
             );
           }
-        });
+        return null });
         this.setState({
           activeColumn: col
         });
@@ -364,12 +352,6 @@ class App extends Component {
         this.setState({
           time: time
         });
-
-        // Tone.Draw.schedule(() => {
-        //   this.backgroundDisco()
-        // }, "16n", time);
-
-
       },
       [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],   // or this.state.steps[0].map((_, i) => i) -
       "16n"
@@ -378,6 +360,7 @@ class App extends Component {
     this.setState({
       masterVolume: this.appVol.volume.value
     });
+
     return () => this.loop.dispose();
   }
 
@@ -416,7 +399,11 @@ class App extends Component {
     });
   };
 
+  // RECORD FUNCTIONS //
+
   record = () => {
+    debugger
+    console.log(this.recorder.mimeType)
     if (this.state.mediaRecorderState === false) {
       this.output.connect(this.dest);
       this.recorder.start()
@@ -431,7 +418,6 @@ class App extends Component {
 
       this.recorder.onstop = evt => {
         let blob = new Blob(this.chunks, { type: 'audio/wav; codecs=opus' });
-    // this.audio.src = URL.createObjectURL(blob);
         download(blob, "rhythmcomposer.wav", 'audio/wav')
       };
 
@@ -441,30 +427,7 @@ class App extends Component {
 
       this.chunks = [];
     }
-
   }
-
-  // stopRecord = () => {
-  //   if (this.state.mediaRecorderState === true) {
-  //     this.recorder.stop()
-  //
-  //   this.recorder.onstop = evt => {
-  //     let blob = new Blob(this.chunks, { type: 'audio/ogg; codecs=opus' });
-  //     // this.audio.src = URL.createObjectURL(blob);
-  //     download(blob, "rhythmcomposer.ogg", 'audio/ogg')
-  //   };
-  //
-  //   this.setState({
-  //     mediaRecorderState: false
-  //   })
-  //
-  //   this.chunks = [];
-  //
-  //   } else {
-  //     return null
-  //   }
-  //
-  // }
 
   render() {
     let cells = this.state.steps.map((row, xCoord) => {

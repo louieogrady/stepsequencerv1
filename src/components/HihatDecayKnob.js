@@ -8,7 +8,6 @@ class HihatDecayKnob extends React.Component {
   };
 
   handleChange = value => {
-
     const maxDistance = 1;
     let distance = Math.abs(value - this.state.value);
     if (distance > maxDistance) {
@@ -29,7 +28,7 @@ class HihatDecayKnob extends React.Component {
           className="whindUp"
           style={{
             width: "auto",
-            height: "auto",
+            height: "auto"
           }}
           onChange={value => {
             this.handleChange(value);
@@ -42,9 +41,9 @@ class HihatDecayKnob extends React.Component {
           skin={skins.s7}
           {...this.props.rest}
         />{" "}
-        <h5 style={{marginTop: "-0.3rem",
-        textAlign: "center",
-        width: "87%"}}>Attack</h5>
+        <h5 style={{ marginTop: "-0.3rem", textAlign: "center", width: "87%" }}>
+          Attack
+        </h5>
       </React.Fragment>
     );
   }
