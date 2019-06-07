@@ -1,8 +1,8 @@
 # Rhythm Composer
 
-The project is live at the following link: https://rhythm-composer.herokuapp.com/
-
 Rhythm Composer is a browser-based drum machine / 16 step sequencer. Users can play, create, edit and add effects to drum patterns in real-time. Created with React, each drum sound is synthesised with the Tone.js framework.
+
+The project is live at the following link: https://rhythm-composer.herokuapp.com/
 
 ## Details
 
