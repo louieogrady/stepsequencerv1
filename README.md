@@ -22,3 +22,5 @@ When the user presses play, the loop starts and the current position will be sho
 The randomise button will create a random pattern. 
 
 The record button will begin recording a .wav file of the sound output being produced by the sequencer which will be auto-downloaded to the users computer when the user stops the recording.
+
+![](ezgif-3-239ee6da36ea.gif)
