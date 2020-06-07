@@ -22,9 +22,9 @@ body,
     #e1bf9e
   );
   background-size: 3000% 3000%;
-  -webkit-animation: Gradient 100s ease infinite;
-  -moz-animation: Gradient 100s ease infinite;
-  animation: Gradient 100s ease infinite;
+  -webkit-animation: Gradient 150s ease infinite;
+  -moz-animation: Gradient 150s ease infinite; 
+  animation: Gradient 150s ease infinite;
 }
 
 @-webkit-keyframes Gradient {
@@ -64,13 +64,15 @@ body,
 }
 
 .buttons {
-  display: grid;
-  width: 92%;
-  grid-template-columns: 15% 15% 15%;
-  justify-content: flex-start;
-  margin: 43.5rem 0rem 0rem 15.7rem;
+  display: inline-flex;
+  width: 40%;
   position: relative;
-  grid-gap: 30px;
+  height: 1vh;
+  justify-content: space-evenly;
+  margin-left: 4.8%;
+  @media (min-width: 768px) { // 768px
+    height: 2vh;
+  }
 }
 
 .side-knobs {
@@ -169,6 +171,7 @@ body,
   color: black;
   flex: 1 0 auto;
   position: relative;
+  box-shadow: rgba(0, 0, 0, 0.12) 1px 1px, rgba(0, 0, 0, 0.24) 1px 1px;
 }
 .box:after {
   content: "";
@@ -228,6 +231,10 @@ body,
   margin-bottom: -1rem !important;
   margin-left: 2rem !important;
   margin-right: 2rem !important;
+}
+
+.unit {
+  background-image: linear-gradient(top, #aebcbf 0%,#6e7774 31%,#0a0e0a 100%,#0a0809 100%);
 }
 
 h5{

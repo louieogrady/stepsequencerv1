@@ -26,13 +26,13 @@ class VolumeSlider extends React.Component {
     return (
       <React.Fragment>
         <Knob
-          style={{
-            width: "50%",
-            height: "auto",
-          }}
+          // style={{
+          //   width: "50%",
+          // }}
           onChange={value => {
             this.handleChange(value);
           }}
+          className="bottom-slider"
           min={-12}
           max={0}
           value={this.state.value}

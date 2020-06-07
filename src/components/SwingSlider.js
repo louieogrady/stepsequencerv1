@@ -27,13 +27,13 @@ class SwingSlider extends React.Component {
     return (
       <React.Fragment>
         <Knob
-          style={{
-            width: "50%",
-            height: "auto",
-          }}
+          // style={{
+            
+          // }}
           onChange={value => {
             this.handleChange(value);
           }}
+          className="bottom-slider"
           min={0}
           max={0.25}
           value={this.state.value}

@@ -8,15 +8,15 @@ class RecordStop extends Component {
   render() {
     return (
       <div
-        className="huge ui vertical labeled icon buttons"
+        className=""
         onClick={this.handleClick}
       >
         <button
         className="record stop button"
           style={{
-            border: "2px solid black",
-            background: "#F7F5E1",
-            borderRadius: "13px",
+            // border: "2px solid black",
+            // background: "#F7F5E1",
+            // borderRadius: "13px",
           }}
         >
           <i className="stop icon" />Stop Recording

@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 
   let style = {
-    fontSize: "100px",
+    fontSize: "3.7vw",
     marginTop: "0.6rem",
-    marginLeft: "2.9rem",
+    marginLeft: "23%",
     fontFamily: 'Lato',
     color: "#F7F5E1",
     border: "black",
-    textShadow: "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black",
-    position: "relative"
+    // textShadow: "3px 0 black, 0 0px black, 5px 0 black, 0 2px black",
+    position: "relative",
+    width: "100%"
   }
 
 class Title extends Component {

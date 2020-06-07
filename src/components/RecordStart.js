@@ -19,12 +19,11 @@ class RecordStart extends Component {
 
     return (
       <div
-        className="huge ui vertical labeled icon buttons"
+        className=""
         onClick={this.handleClick}
       >
         <button
         className="record start button"
-          style={{border: "2px solid black", background: "#F7F5E1", borderRadius: "13px"}}
         >
            <i className={recordingButtonStyle} />
           {this.state.recording ? "Recording..." : "Record"}

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import * as Tone from "tone";
 import * as download from 'downloadjs';
 
-import "../App.css";
+import "../App.scss";
 
 import kick from '../images/kick.png'
 import clap from '../images/clap.png'
@@ -486,61 +486,54 @@ class App extends Component {
 
     return (
       <div className="App">
-        <div className="ui grid">
+        <div className="unit">
 
-          <div className="row">
-            <div className="sixteen wide column" style={{"text-align": "center"}}>
-              <Title />
+          <div className="ui grid">
+
+            <div className="row">
+              <div className="" style={{ "margin": "0 6.5em;" }}>
+                <Title />
+              </div>
+            </div>
+
+            <div className="row">
+              <div id="intrumentImages" className="one wide column">
+                <img className="kick" src={kick} alt="kick" />
+                <img className="hihat" src={hihat} alt="hihat" />
+                <img className="clap" src={clap} alt="clap" />
+                <img className="snare" src={snare} alt="snare" />
+                <img className="cymbal" src={cymbal} alt="cymbal" />
+                <img className="conga" src={conga} alt="conga" />
+              </div>
+
+              <div id="musicGrid" className="fourteen wide column">
+                {cells}
+              </div>
+
+              <div id="knobImages" className="one wide column">
+                <KickTuningKnob changeKickDrumTuning={this.changeKickDrumTuning} />
+                <CymbalReleaseKnob changeCymbalReleaseLevel={this.changeCymbalReleaseLevel} />
+                <ClapReverbKnob changeClapReverbLevel={this.changeClapReverbLevel} />
+                <SnareDelayKnob changePingPongDelayLevel={this.changePingPongDelayLevel} />
+                <HihatDecayKnob changeCymbalDecayLevel={this.changeCymbalDecayLevel} />
+                <CongaTuningKnob changeCongaTuning={this.changeCongaTuning} />
+              </div>
+            </div>
+
+            <div className="row" style={{ marginHorizontal: 50 }}>
+              {/* <div className="one wide column"></div> */}
+              <div className="buttons">
+                <PlayPause play={this.play} pause={this.pause} playState={this.playState} style={{ marginBottom: "1rem" }} />
+                <ClearPattern clearPattern={this.clearPattern} />
+                <RandomPattern randomPattern={this.randomPattern} />
+              </div>
+              <div className="bottom-sliders">
+                <BpmSlider changeBpm={this.changeBpm} />
+                <SwingSlider changeSwing={this.changeSwing} />
+                <VolumeSlider changeVolume={this.changeVolume} />
+              </div>
             </div>
           </div>
-
-          <div className="row">
-            <div id="intrumentImages" class="one wide column">
-              <img className="kick" src={kick} alt="kick"/>
-              <img className="hihat" src={hihat} alt="hihat" />
-              <img className="clap" src={clap} alt="clap" />
-              <img className="snare" src={snare} alt="snare" />
-              <img className="cymbal" src={cymbal} alt="cymbal" />
-              <img className="conga" src={conga} alt="conga" />
-            </div>
-
-            <div id="musicGrid" className="fourteen wide column">
-              {cells}
-            </div>
-
-            <div id="knobImages" className="one wide column">
-              <KickTuningKnob changeKickDrumTuning={this.changeKickDrumTuning} />
-              <CymbalReleaseKnob changeCymbalReleaseLevel={this.changeCymbalReleaseLevel} />
-              <ClapReverbKnob changeClapReverbLevel={this.changeClapReverbLevel} />
-              <SnareDelayKnob changePingPongDelayLevel={this.changePingPongDelayLevel} />
-              <HihatDecayKnob changeCymbalDecayLevel={this.changeCymbalDecayLevel} />
-              <CongaTuningKnob changeCongaTuning={this.changeCongaTuning} />
-            </div>
-          </div>
-
-          <div className="row" style={{marginHorizontal: 50}}>
-            <div className="one wide column"></div>
-            <div className="three wide column">
-              <PlayPause play={this.play} pause={this.pause} playState={this.playState} style={{marginBottom: "1rem"}} />
-              <RecordStart className="record-button" record={this.record}/>
-            </div>
-            <div className="three wide column">
-              <ClearPattern clearPattern={this.clearPattern} />
-            </div>
-            <div className="three wide column">
-              <RandomPattern randomPattern={this.randomPattern} />
-            </div>
-            <div className="two wide column center">
-              <BpmSlider changeBpm={this.changeBpm} />
-            </div>
-            <div className="two wide column center">
-              <SwingSlider changeSwing={this.changeSwing} />
-            </div>
-            <div className="two wide column center">
-              <VolumeSlider changeVolume={this.changeVolume} />
-            </div>
-          </div>
-
         </div>
       </div>
     );
