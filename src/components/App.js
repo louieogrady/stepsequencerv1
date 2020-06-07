@@ -96,7 +96,7 @@ class App extends Component {
   })
 
   // create compressor for kick
-  kickComp = new Tone.Compressor(-30, 2);
+  kickComp = new Tone.Compressor(-35, 2);
 
   // create reverb for clap
   clapReverb = new Tone.JCReverb({
@@ -114,14 +114,14 @@ class App extends Component {
 
   // kick
   kick = new Tone.MembraneSynth({
-    volume: 0,
+    volume: -2,
     pitchDecay : 0.032,
-    octaves : 6,
+    octaves : 5,
     oscillator : {
       type : "square4"
     },
     envelope : {
-      attack : 0.01,
+      attack : 0.02,
       decay: 0.2,
       sustain : 0.01,
       release: 0.75,

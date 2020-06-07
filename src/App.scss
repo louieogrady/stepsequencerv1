@@ -3,28 +3,28 @@ body,
 .App {
   width: 100wh;
   height: 100vh;
-  background: linear-gradient(
-    247deg,
-    #d29ace,
-    #e682de,
-    #82c2e6,
-    #84b9bf,
-    #b1a4d2,
-    #d480af,
-    #dbc4ea,
-    #bac8e3,
-    #9bd9dd,
-    #9addc6,
-    #a6e6ab,
-    #c0dd9f,
-    #cddf83,
-    #ceaa87,
-    #e1bf9e
-  );
-  background-size: 3000% 3000%;
-  -webkit-animation: Gradient 150s ease infinite;
-  -moz-animation: Gradient 150s ease infinite; 
-  animation: Gradient 150s ease infinite;
+  background-image: linear-gradient( 110.3deg,  rgba(72,85,99,1) 8.8%, rgba(127,146,166,1) 95.1% );  // background: linear-gradient(
+  //   247deg,
+  //   #d29ace,
+  //   #e682de,
+  //   #82c2e6,
+  //   #84b9bf,
+  //   #b1a4d2,
+  //   #d480af,
+  //   #dbc4ea,
+  //   #bac8e3,
+  //   #9bd9dd,
+  //   #9addc6,
+  //   #a6e6ab,
+  //   #c0dd9f,
+  //   #cddf83,
+  //   #ceaa87,
+  //   #e1bf9e
+  // );
+  // background-size: 3000% 3000%;
+  // -webkit-animation: Gradient 250s ease infinite;
+  // -moz-animation: Gradient 250s ease infinite; 
+  // animation: Gradient 250s ease infinite;
 }
 
 @-webkit-keyframes Gradient {

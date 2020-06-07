@@ -16,14 +16,14 @@ class Cell extends Component {
 
   renderDivColors = () =>
     this.props.steps[this.props.x][this.props.y] === 1
-      ? "#b0c4e8"
+      ? "#297DFD"
       : this.props.y % 4 === 0
-      ? "#E3C5BA"
+      ? "#FD9D29"
       : "#F7F5E1";
 
   renderBorderMovement = () =>
     this.props.activeColumn === this.props.y
-      ? "2px solid #ffff4d"
+      ? "2px solid #FDA329"
       : "2px solid black";
 
   render() {
