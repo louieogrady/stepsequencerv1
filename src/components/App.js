@@ -491,7 +491,7 @@ class App extends Component {
           <div className="ui grid">
 
             <div className="row">
-              <div className="" style={{ "margin": "0 6.5em;" }}>
+              <div className="">
                 <Title />
               </div>
             </div>
@@ -520,7 +520,7 @@ class App extends Component {
               </div>
             </div>
 
-            <div className="row" style={{ marginHorizontal: 50 }}>
+            <div className="row" style={{ marginHorizontal: 50, paddingTop: '0.6rem' }}>
               {/* <div className="one wide column"></div> */}
               <div className="buttons">
                 <PlayPause play={this.play} pause={this.pause} playState={this.playState} style={{ marginBottom: "1rem" }} />

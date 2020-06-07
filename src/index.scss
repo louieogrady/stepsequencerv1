@@ -15,22 +15,38 @@ code {
 
 
 .bottom-sliders {
+  justify-content: space-around;
   display: inline-flex;
-  width: 50%;
-  margin-left: 5%;
-  position: relative;
+  width: 50%; 
+  h5 {
+    top: 100%;
+    position: absolute;
+    padding: 0 4px;
+    margin: 0rem;
+    background-color: rgb(238, 226, 76);
+    border: 1px solid black;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  }
 }
 
 .bottom-slider {
   height: "80px";
-  width: "50px"
+  width: "80px";
+  overflow: hidden;
 }
 
+.bottom-knobs {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
 
 
 
 
 .trans-button {
+  outline: none;
   background-color: rgb(238, 226, 76);
   border-radius: 4px;
   height: 57.75px;

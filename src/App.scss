@@ -83,12 +83,7 @@ body,
   position: relative;
 }
 
-.bottom-knobs {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  position: relative;
-}
+
 
 /* .bpm-slider {
   margin: -5rem 98.5rem;
@@ -149,7 +144,11 @@ body,
   width: 100%;
 }
 
-
+.value {
+  font-family: 'Work Sans', sans-serif;
+  fill: #fc5a96;
+  font-size: 30px;
+}
 .recorder-buttons {
   display: grid;
   width: 92%;
