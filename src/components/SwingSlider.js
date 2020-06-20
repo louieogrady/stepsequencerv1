@@ -44,7 +44,7 @@ class SwingSlider extends React.Component {
           skin={skins.s4}
           {...this.props.rest}
         />
-      <h5 style={{left: '80%'}} >Swing</h5>
+      <h5 className="swing-slider" >Swing</h5>
       </React.Fragment>
     );
   }

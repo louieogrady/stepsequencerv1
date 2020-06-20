@@ -31,9 +31,12 @@ class VolumeSlider extends React.Component {
             height: "80px",
             position: 'relative'
           }}
-          onChange={value => {
+          onMouseUp={value => {
             this.handleChange(value);
           }}
+          // onChange={value => {
+          //   this.handleChange(value);
+          // }}
           className="bottom-slider"
           min={-12}
           max={0}
@@ -43,7 +46,7 @@ class VolumeSlider extends React.Component {
           skin={skins.s4}
           {...this.props.rest}
         />{" "}
-        <h5 style={{ margin: "0rem", marginLeft: "0.2rem"}}>Volume (dB)</h5>
+        <h5 className="volume-slider" style={{ margin: "0rem", marginLeft: "0.2rem"}}>Volume (dB)</h5>
       </React.Fragment>
     );
   }

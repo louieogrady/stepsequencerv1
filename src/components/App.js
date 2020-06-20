@@ -269,10 +269,9 @@ class App extends Component {
   };
 
   changeBpm = value => {
-    Tone.Transport.bpm.value = value;
-
+    Tone.Transport.bpm.rampTo(value, 1)
     this.setState({
-      bpm: value
+      bpm: value 
     });
   };
 
@@ -373,7 +372,7 @@ class App extends Component {
       },
       [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],   // or this.state.steps[0].map((_, i) => i) -
       "16n"
-    ).start(0);
+    ).start("+0.1");
 
     this.setState({
       masterVolume: this.appVol.volume.value

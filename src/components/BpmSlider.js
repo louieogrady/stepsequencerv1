@@ -18,9 +18,11 @@ class BpmSlider extends React.Component {
         value: value
       });
     }
-
-    this.props.changeBpm(value);
   };
+
+  onEnd = () => {
+    this.props.changeBpm(this.state.value);
+  }
 
 
   render() {
@@ -30,10 +32,13 @@ class BpmSlider extends React.Component {
           style={{
             width: '7vw',
             height: "80px",
-            position: 'relative'
+            position: 'relative',
           }}
           onChange={value => {
             this.handleChange(value);
+          }}
+          onEnd={() => {
+            this.onEnd();
           }}
           className="bottom-slider"
           min={10}
@@ -45,7 +50,7 @@ class BpmSlider extends React.Component {
           skin={skins.s4}
           {...this.props.rest}
         />
-      <h5 style={{marginTop: "0rem", left: '10%', marginLeft: "0.1rem"}}>Tempo (BPM)</h5>
+      <h5 className="bpm-slider" style={{marginTop: "0rem", marginLeft: "0.1rem"}}>Tempo (BPM)</h5>
       </React.Fragment>
     );
   }
