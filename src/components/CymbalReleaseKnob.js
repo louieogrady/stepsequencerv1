@@ -47,9 +47,9 @@ class CymbalReleaseKnob extends React.Component {
           skin={skins.s7}
           {...this.props.rest}
         />{" "}
-        <h5 style={{marginTop: "-0.3rem",
-        textAlign: "center",
-        width: "87%"}}>Release</h5>
+        <h5 style={{
+          // marginTop: "0rem",
+        }}>Release</h5>
       </React.Fragment>
     );
   }

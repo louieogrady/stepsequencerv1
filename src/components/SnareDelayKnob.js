@@ -41,9 +41,7 @@ class SnareDelayKnob extends React.Component {
         preciseMode={false} 
         skin={skins.s7} {...this.props.rest}/>{" "}
       <h5 style={{
-          marginTop: "-0.15rem",
-          textAlign: "center",
-          width: "87%"
+          // marginTop: "-0rem",
         }}>Delay</h5>
     </React.Fragment>);
   }

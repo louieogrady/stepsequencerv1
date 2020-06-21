@@ -22,7 +22,7 @@ class CongaTuningKnob extends React.Component {
 
   onEnd = () => {
     this.props.changeCongaTuning(this.state.value);
-  } 
+  }
 
   render() {
     return (
@@ -47,9 +47,9 @@ class CongaTuningKnob extends React.Component {
           skin={skins.s7}
           {...this.props.rest}
         />{" "}
-        <h5 style={{marginTop: "0rem",
-        textAlign: "center",
-        width: "87%"}}>Tuning</h5>
+        <h5 style={{
+          marginTop: "0rem",
+        }}>Tuning</h5>
       </React.Fragment>
     );
   }

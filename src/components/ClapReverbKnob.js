@@ -46,10 +46,8 @@ class ClapReverbKnob extends React.Component {
         />
         <h5
           style={{
-            marginTop: "0rem",
-            textAlign: "center",
-            width: "87%"
-          }}
+            // marginTop: "0rem;",
+          }}   
         >
           Reverb
         </h5>
