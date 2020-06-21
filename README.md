@@ -6,7 +6,7 @@ The project is live at the following link: https://rhythm-composer.herokuapp.com
 
 ## Details
 
-The grid represents a traditional 4/4 measure with each step representing 1/16 of that measure. Downbeats are represented by the red boxes. Each row of the grid has been assigned a drum sound which is shown by the icons on the left-hand side of the grid. Each of these drum sounds have an exclusive effect, pitch or envelope control, the parameters of which can the knobs on the right-hand side. From top to bottom, the drum sounds and effects (in parentheses) are:
+The grid represents a traditional 4/4 measure with each step representing 1/16 of that measure. Downbeats are represented by the red boxes. Each row of the grid has been assigned a drum sound which is shown by the icons on the left-hand side of the grid. Each of these drum sounds have an exclusive effect, pitch or envelope control, the parameters of which can be changed using the knobs on the right-hand side of each row. From top to bottom, the drum sounds and effects (in parentheses) are:
 
 - Kickdrum (Tuning [Hz])
 - Hihat (Release)
