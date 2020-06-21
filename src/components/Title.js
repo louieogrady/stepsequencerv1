@@ -14,10 +14,17 @@ import React, { Component } from "react";
 
 class Title extends Component {
 
+  handleClick = () => {
+    this.props.showInfoPopup();
+  }
+
   render() {
 
     return (
-      <h1 style={style}> Rhythm Composer </h1>
+      <React.Fragment>
+        <h1 style={style}> Rhythm Composer </h1>
+          <button className="info-button" onClick={this.handleClick}>Info</button>
+      </React.Fragment>
     );
 
   }

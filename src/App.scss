@@ -214,6 +214,15 @@ body,
   }
 }
 
+.show-info {
+  background: white;
+  margin: 0 auto;
+  position: fixed;
+  z-index: 1;
+  left: 30%;
+  top: 10%;
+}
+
 #intrumentImages{
   display: flex;
   flex-direction: column;
@@ -228,6 +237,18 @@ body,
 
 .whindUp {
   width: 85% !important;
+}
+
+.info-button {
+  position: absolute;
+  left: 7.5%;
+  top: 75%;
+  font-size: 0.8em;
+  margin-top: 0em;
+  text-align: center; 
+  background-color: #eee24c;
+  border: 1px solid black;
+  outline: none;
 }
 
 .center {
@@ -247,4 +268,8 @@ body,
 
 h5{
   margin-bottom: 0 !important;
+}
+
+.overlay {
+  filter: brightness(0.55);
 }

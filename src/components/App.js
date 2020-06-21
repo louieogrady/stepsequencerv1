@@ -32,8 +32,7 @@ import ClapReverbKnob from "./ClapReverbKnob.js"
 import HihatDecayKnob from "./HihatDecayKnob.js"
 import CymbalReleaseKnob from "./CymbalReleaseKnob.js"
 import RecordStart from "./RecordStart.js"
-
-
+import InfoPopUp from "./InfoPopup";
 
 class App extends Component {
 
@@ -56,7 +55,8 @@ class App extends Component {
     congaTuning: 107,
     clapReverbWetLevel: 0,
     closedHihatDecayLevel: 0,
-    mediaRecorderState: false
+    mediaRecorderState: false,
+    showInfo: false
   };
 
   // randomValue = () => { setInterval(() => {
@@ -430,7 +430,7 @@ class App extends Component {
 
       this.recorder.onstop = evt => {
         let blob = new Blob(this.chunks, { type: 'audio/wav; codecs=opus' });
-    // this.audio.src = URL.createObjectURL(blob);
+        // this.audio.src = URL.createObjectURL(blob);
         download(blob, "rhythmcomposer.wav", 'audio/wav')
       };
 
@@ -440,8 +440,19 @@ class App extends Component {
 
       this.chunks = [];
     }
-
   }
+
+  showInfoPopup = () => {
+    this.setState({
+      showInfo: !this.state.showInfo
+    })
+  }
+
+  // closeInfoPopup = () => {
+  //   this.setState({
+  //     showInfo: false
+  //   })
+  // }
 
   // stopRecord = () => {
   //   if (this.state.mediaRecorderState === true) {
@@ -466,7 +477,7 @@ class App extends Component {
   // }
 
   render() {
-    
+
     let cells = this.state.steps.map((row, xCoord) => {
       return (
         <div className="row" >
@@ -483,59 +494,67 @@ class App extends Component {
       );
     });
 
+    const conditionalOverlay = () => {
+      return this.state.showInfo ? "overlay" : "null";
+    }
 
     return (
-      <div className="App">
-        <div className="unit">
+      <React.Fragment >
+        <div className={conditionalOverlay()}>
+          <div className="App">
+            <div className="unit">
+              <div className="ui grid">
+                <div className="row">
 
-          <div className="ui grid">
+                  <div className="">
+                    <Title showInfoPopup={this.showInfoPopup} />
+                  </div>
+                </div>
 
-            <div className="row">
-              <div className="">
-                <Title />
-              </div>
-            </div>
+                <div className="row">
+                  <div id="intrumentImages" className="one wide column">
+                    <img className="kick" src={kick} alt="kick" />
+                    <img className="hihat" src={hihat} alt="hihat" />
+                    <img className="clap" src={clap} alt="clap" />
+                    <img className="snare" src={snare} alt="snare" />
+                    <img className="cymbal" src={cymbal} alt="cymbal" />
+                    <img className="conga" src={conga} alt="conga" />
+                  </div>
 
-            <div className="row">
-              <div id="intrumentImages" className="one wide column">
-                <img className="kick" src={kick} alt="kick" />
-                <img className="hihat" src={hihat} alt="hihat" />
-                <img className="clap" src={clap} alt="clap" />
-                <img className="snare" src={snare} alt="snare" />
-                <img className="cymbal" src={cymbal} alt="cymbal" />
-                <img className="conga" src={conga} alt="conga" />
-              </div>
+                  <div id="musicGrid" className="fourteen wide column">
+                    {cells}
+                  </div>
 
-              <div id="musicGrid" className="fourteen wide column">
-                {cells}
-              </div>
+                  <div id="knobImages" className="one wide column">
+                    <KickTuningKnob changeKickDrumTuning={this.changeKickDrumTuning} />
+                    <CymbalReleaseKnob changeCymbalReleaseLevel={this.changeCymbalReleaseLevel} />
+                    <ClapReverbKnob changeClapReverbLevel={this.changeClapReverbLevel} />
+                    <SnareDelayKnob changePingPongDelayLevel={this.changePingPongDelayLevel} />
+                    <HihatDecayKnob changeCymbalDecayLevel={this.changeCymbalDecayLevel} />
+                    <CongaTuningKnob changeCongaTuning={this.changeCongaTuning} />
+                  </div>
+                </div>
 
-              <div id="knobImages" className="one wide column">
-                <KickTuningKnob changeKickDrumTuning={this.changeKickDrumTuning} />
-                <CymbalReleaseKnob changeCymbalReleaseLevel={this.changeCymbalReleaseLevel} />
-                <ClapReverbKnob changeClapReverbLevel={this.changeClapReverbLevel} />
-                <SnareDelayKnob changePingPongDelayLevel={this.changePingPongDelayLevel} />
-                <HihatDecayKnob changeCymbalDecayLevel={this.changeCymbalDecayLevel} />
-                <CongaTuningKnob changeCongaTuning={this.changeCongaTuning} />
-              </div>
-            </div>
-
-            <div className="row" style={{ marginHorizontal: 50, paddingTop: '0.6rem' }}>
-              {/* <div className="one wide column"></div> */}
-              <div className="buttons">
-                <PlayPause play={this.play} pause={this.pause} playState={this.playState} style={{ marginBottom: "1rem" }} />
-                <ClearPattern clearPattern={this.clearPattern} />
-                <RandomPattern randomPattern={this.randomPattern} />
-              </div>
-              <div className="bottom-sliders">
-                <BpmSlider changeBpm={this.changeBpm} />
-                <SwingSlider changeSwing={this.changeSwing} />
-                <VolumeSlider changeVolume={this.changeVolume} />
+                <div className="row" style={{ marginHorizontal: 50, paddingTop: '0.6rem' }}>
+                  <div className="buttons">
+                    <PlayPause play={this.play} pause={this.pause} playState={this.playState} style={{ marginBottom: "1rem" }} />
+                    <ClearPattern clearPattern={this.clearPattern} />
+                    <RandomPattern randomPattern={this.randomPattern} />
+                  </div>
+                  <div className="bottom-sliders">
+                    <BpmSlider changeBpm={this.changeBpm} />
+                    <SwingSlider changeSwing={this.changeSwing} />
+                    <VolumeSlider changeVolume={this.changeVolume} />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+        <div className="show-info">
+            {this.state.showInfo ? <InfoPopUp /> : null}
+        </div>  
+      </React.Fragment>
     );
   }
 }
