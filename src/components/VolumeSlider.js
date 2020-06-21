@@ -18,9 +18,11 @@ class VolumeSlider extends React.Component {
         value: value
       });
     }
-
-    this.props.changeVolume(value);
   };
+
+  onEnd = () => {
+    this.props.changeVolume(this.state.value);
+  }
 
   render() {
     return (
@@ -28,19 +30,19 @@ class VolumeSlider extends React.Component {
         <Knob
           style={{
             width: '7vw',
-            height: "80px",
+            height: "70px",
             position: 'relative'
           }}
-          onMouseUp={value => {
+          onEnd={() => {
+            this.onEnd();
+          }}
+          onChange={value => {
             this.handleChange(value);
           }}
-          // onChange={value => {
-          //   this.handleChange(value);
-          // }}
           className="bottom-slider"
           min={-12}
           max={0}
-          value={this.state.value}
+          value={Math.floor(this.state.value) === -1 ? 0 : this.state.value}
           unlockDistance={0}
           preciseMode={false}
           skin={skins.s4}

@@ -466,9 +466,10 @@ class App extends Component {
   // }
 
   render() {
+    
     let cells = this.state.steps.map((row, xCoord) => {
       return (
-        <div className="row">
+        <div className="row" >
           {row.map((cell, yCoord) => (
             <Cell
               stepToggle={this.stepToggle}

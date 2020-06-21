@@ -19,11 +19,12 @@ code {
   display: inline-flex;
   width: 50%; 
   position: relative;
+  margin-top: -0.5%;
   h5 {
     top: 100%;
     position: absolute;
     padding: 0 4px;
-    margin: 0rem;
+    margin-top: 2px;
     background-color: rgb(238, 226, 76);
     border: 1px solid black;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
@@ -32,19 +33,20 @@ code {
     left: 9.5%;
   }
   .swing-slider {
-    left: 80%;
+    left: 46.5%;
   }
   .volume-slider {
-
+    left: 77%;
   }
 
 }
 
-.bottom-slider {
-  height: "80px";
-  width: "80px";
-  overflow: hidden;
-}
+// .bottom-slider {
+  
+//   height: "80px";
+//   width: "80px";
+//   overflow: hidden;
+// }
 
 .bottom-knobs {
   width: 100%;

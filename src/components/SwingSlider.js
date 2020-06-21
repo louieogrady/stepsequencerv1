@@ -19,9 +19,11 @@ class SwingSlider extends React.Component {
         value: value
       });
     }
-
-    this.props.changeSwing(value);
   };
+
+  onEnd = () => {
+    this.props.changeSwing(this.state.value);
+  }
 
   render() {
     return (
@@ -29,11 +31,14 @@ class SwingSlider extends React.Component {
         <Knob
           style={{
             width: '7vw',
-            height: "80px",
+            height: "70px",
             position: 'relative'
           }}
           onChange={value => {
             this.handleChange(value);
+          }}
+          onEnd={() => {
+            this.onEnd();
           }}
           className="bottom-slider"
           min={0}
