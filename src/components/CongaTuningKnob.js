@@ -18,9 +18,11 @@ class CongaTuningKnob extends React.Component {
         value: value
       });
     }
-
-    this.props.changeCongaTuning(value);
   };
+
+  onEnd = () => {
+    this.props.changeCongaTuning(this.state.value);
+  } 
 
   render() {
     return (
@@ -33,6 +35,9 @@ class CongaTuningKnob extends React.Component {
           }}
           onChange={value => {
             this.handleChange(value);
+          }}
+          onEnd={() => {
+            this.onEnd();
           }}
           min={80}
           max={400}

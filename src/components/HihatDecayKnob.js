@@ -8,7 +8,6 @@ class HihatDecayKnob extends React.Component {
   };
 
   handleChange = value => {
-
     const maxDistance = 1;
     let distance = Math.abs(value - this.state.value);
     if (distance > maxDistance) {
@@ -18,9 +17,11 @@ class HihatDecayKnob extends React.Component {
         value: value
       });
     }
-
-    this.props.changeCymbalDecayLevel(value);
   };
+
+  onEnd = () => {
+    this.props.changeCymbalDecayLevel(this.state.value);
+  }
 
   render() {
     return (
@@ -33,6 +34,9 @@ class HihatDecayKnob extends React.Component {
           }}
           onChange={value => {
             this.handleChange(value);
+          }}
+          onEnd={() => {
+            this.onEnd();
           }}
           min={0.25}
           max={1.5}
