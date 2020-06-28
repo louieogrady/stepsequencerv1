@@ -249,6 +249,9 @@ body,
   background-color: #eee24c;
   border: 1px solid black;
   outline: none;
+  &.ref {
+    left: 11.2%;
+  }
 }
 
 .center {
@@ -272,4 +275,17 @@ h5{
 
 .overlay {
   filter: brightness(0.55);
+}
+
+.freq-popup-table {
+  tbody {
+    tr {
+      font-size: 12px;
+    }
+    td {
+      border: solid 1px black;
+
+    }
+  }
+
 }

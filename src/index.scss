@@ -12,8 +12,6 @@ code {
     monospace;
 }
 
-
-
 .bottom-sliders {
   justify-content: space-around;
   display: inline-flex;
@@ -41,13 +39,6 @@ code {
 
 }
 
-// .bottom-slider {
-  
-//   height: "80px";
-//   width: "80px";
-//   overflow: hidden;
-// }
-
 .bottom-knobs {
   width: 100%;
   display: flex;
@@ -60,9 +51,10 @@ code {
   background-color: #eee24c;
   border-radius: 4px;
   height: 57.75px;
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  // box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   height: 4vh;
   width: 8vw;
+  border: solid black 1px;
   @media (min-width: 768px) { // 768px
     height: 6vh;
   }

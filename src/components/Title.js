@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ClickOutside from "./ClickOutside";
 
   let style = {
     fontSize: "3.7vw",
@@ -14,8 +15,12 @@ import React, { Component } from "react";
 
 class Title extends Component {
 
-  handleClick = () => {
-    this.props.showInfoPopup();
+  infoHandleClick = () => {
+      this.props.showInfoPopup();
+  }
+
+  refHandleClick = () => {
+    this.props.showFreqPopup();
   }
 
   render() {
@@ -23,10 +28,11 @@ class Title extends Component {
     return (
       <React.Fragment>
         <h1 style={style}> Rhythm Composer </h1>
-          <button className="info-button" onClick={this.handleClick}>Info</button>
-      </React.Fragment>
+            <button className="info-button" onClick={this.infoHandleClick}>About</button>
+          {/* <button className={['info-button', 'ref'].join(' ')} onClick={this.refHandleClick}>Freq. Ref</button> */}
+      </React.Fragment> 
     );
-
+    
   }
 }
 

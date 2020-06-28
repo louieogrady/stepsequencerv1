@@ -16,7 +16,6 @@ import hihat from '../images/hihat.png'
 // // 		"E" : "../samples/claves.[mp3|ogg|wav]",
 // // 		"F#" : "../samples/kick.[mp3|ogg|wav]",
 
-
 import Title from "./Title.js";
 import Cell from "./Cell.js";
 import PlayPause from "./PlayPause.js";
@@ -33,6 +32,7 @@ import HihatDecayKnob from "./HihatDecayKnob.js"
 import CymbalReleaseKnob from "./CymbalReleaseKnob.js"
 import RecordStart from "./RecordStart.js"
 import InfoPopUp from "./InfoPopup";
+import FreqPopUp from "./FreqPopup";
 
 class App extends Component {
 
@@ -56,7 +56,8 @@ class App extends Component {
     clapReverbWetLevel: 0,
     closedHihatDecayLevel: 0,
     mediaRecorderState: false,
-    showInfo: false
+    showInfo: false,
+    showFreq: false
   };
 
   // randomValue = () => { setInterval(() => {
@@ -447,6 +448,13 @@ class App extends Component {
       showInfo: !this.state.showInfo
     })
   }
+  
+
+  showFreqPopup = () => {
+    this.setState({
+      showFreq: !this.state.showFreq
+    })
+  }
 
   // closeInfoPopup = () => {
   //   this.setState({
@@ -495,11 +503,11 @@ class App extends Component {
     });
 
     const conditionalOverlay = () => {
-      return this.state.showInfo ? "overlay" : "null";
+      return this.state.showInfo || this.state.showFreq ? "overlay" : "null";
     }
 
     return (
-      <React.Fragment >
+      <React.Fragment>
         <div className={conditionalOverlay()}>
           <div className="App">
             <div className="unit">
@@ -507,7 +515,7 @@ class App extends Component {
                 <div className="row">
 
                   <div className="">
-                    <Title showInfoPopup={this.showInfoPopup} />
+                    <Title showInfoPopup={this.showInfoPopup} showFreqPopup={this.showFreqPopup} />
                   </div>
                 </div>
 
@@ -552,7 +560,10 @@ class App extends Component {
           </div>
         </div>
         <div className="show-info">
-            {this.state.showInfo ? <InfoPopUp /> : null}
+            {this.state.showInfo ? <InfoPopUp showInfoPopup={this.showInfoPopup}/> : null}
+        </div>  
+        <div className="show-info">
+            {this.state.showFreq ? <FreqPopUp /> : null}
         </div>  
       </React.Fragment>
     );
