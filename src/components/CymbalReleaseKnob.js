@@ -18,9 +18,11 @@ class CymbalReleaseKnob extends React.Component {
         value: value
       });
     }
-
-    this.props.changeCymbalReleaseLevel(value);
   };
+
+  onEnd = () => {
+    this.props.changeCymbalReleaseLevel(this.state.value);
+  }
 
   render() {
     return (
@@ -34,6 +36,9 @@ class CymbalReleaseKnob extends React.Component {
           onChange={value => {
             this.handleChange(value);
           }}
+          onEnd={() => {
+            this.onEnd();
+          }}
           min={0.25}
           max={2}
           value={this.state.value}
@@ -42,9 +47,9 @@ class CymbalReleaseKnob extends React.Component {
           skin={skins.s7}
           {...this.props.rest}
         />{" "}
-        <h5 style={{marginTop: "-0.3rem",
-        textAlign: "center",
-        width: "87%"}}>Release</h5>
+        <h5 style={{
+          // marginTop: "0rem",
+        }}>Release</h5>
       </React.Fragment>
     );
   }

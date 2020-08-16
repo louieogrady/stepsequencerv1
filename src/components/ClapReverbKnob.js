@@ -15,9 +15,11 @@ class ClapReverbKnob extends React.Component {
     } else {
       this.setState({ value: value });
     }
-
-    this.props.changeClapReverbLevel(value);
   };
+
+  onEnd = () => {
+    this.props.changeClapReverbLevel(this.state.value);
+  }
 
   render() {
     return (
@@ -31,6 +33,9 @@ class ClapReverbKnob extends React.Component {
           onChange={value => {
             this.handleChange(value);
           }}
+          onEnd={() => {
+            this.onEnd();
+          }}
           min={0}
           max={0.4}
           value={this.state.value}
@@ -41,10 +46,8 @@ class ClapReverbKnob extends React.Component {
         />
         <h5
           style={{
-            marginTop: "0rem",
-            textAlign: "center",
-            width: "87%"
-          }}
+            // marginTop: "0rem;",
+          }}   
         >
           Reverb
         </h5>

@@ -19,30 +19,37 @@ class SwingSlider extends React.Component {
         value: value
       });
     }
-
-    this.props.changeSwing(value);
   };
+
+  onEnd = () => {
+    this.props.changeSwing(this.state.value);
+  }
 
   render() {
     return (
       <React.Fragment>
         <Knob
           style={{
-            width: "50%",
-            height: "auto",
+            width: '7vw',
+            height: "70px",
+            position: 'relative'
           }}
           onChange={value => {
             this.handleChange(value);
           }}
+          onEnd={() => {
+            this.onEnd();
+          }}
+          className="bottom-slider"
           min={0}
           max={0.25}
           value={this.state.value}
           unlockDistance={0}
           preciseMode={false}
-          skin={skins.s6}
+          skin={skins.s4}
           {...this.props.rest}
         />
-      <h5 style={{ margin: "0rem", width: "50%"}}>Swing</h5>
+      <h5 className="swing-slider" >Swing</h5>
       </React.Fragment>
     );
   }

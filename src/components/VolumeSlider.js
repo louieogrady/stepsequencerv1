@@ -18,30 +18,37 @@ class VolumeSlider extends React.Component {
         value: value
       });
     }
-
-    this.props.changeVolume(value);
   };
+
+  onEnd = () => {
+    this.props.changeVolume(this.state.value);
+  }
 
   render() {
     return (
       <React.Fragment>
         <Knob
           style={{
-            width: "50%",
-            height: "auto",
+            width: '7vw',
+            height: "70px",
+            position: 'relative'
+          }}
+          onEnd={() => {
+            this.onEnd();
           }}
           onChange={value => {
             this.handleChange(value);
           }}
+          className="bottom-slider"
           min={-12}
           max={0}
-          value={this.state.value}
+          value={Math.floor(this.state.value) === -1 ? 0 : this.state.value}
           unlockDistance={0}
           preciseMode={false}
-          skin={skins.s8}
+          skin={skins.s4}
           {...this.props.rest}
         />{" "}
-        <h5 style={{ margin: "0rem", marginLeft: "0.2rem", width: "50%"}}>Volume (dB)</h5>
+        <h5 className="volume-slider" style={{ margin: "0rem", marginLeft: "0.2rem"}}>Volume (dB)</h5>
       </React.Fragment>
     );
   }

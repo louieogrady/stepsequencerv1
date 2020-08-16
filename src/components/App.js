@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import * as Tone from "tone";
 import * as download from 'downloadjs';
 
-import "../App.css";
+import "../App.scss";
 
 import kick from '../images/kick.png'
 import clap from '../images/clap.png'
@@ -15,7 +15,6 @@ import hihat from '../images/hihat.png'
 // import clap from "../samples/clap.wav",
 // // 		"E" : "../samples/claves.[mp3|ogg|wav]",
 // // 		"F#" : "../samples/kick.[mp3|ogg|wav]",
-
 
 import Title from "./Title.js";
 import Cell from "./Cell.js";
@@ -32,8 +31,8 @@ import ClapReverbKnob from "./ClapReverbKnob.js"
 import HihatDecayKnob from "./HihatDecayKnob.js"
 import CymbalReleaseKnob from "./CymbalReleaseKnob.js"
 import RecordStart from "./RecordStart.js"
-
-
+import InfoPopUp from "./InfoPopup";
+import FreqPopUp from "./FreqPopup";
 
 class App extends Component {
 
@@ -56,7 +55,9 @@ class App extends Component {
     congaTuning: 107,
     clapReverbWetLevel: 0,
     closedHihatDecayLevel: 0,
-    mediaRecorderState: false
+    mediaRecorderState: false,
+    showInfo: false,
+    showFreq: false
   };
 
   // randomValue = () => { setInterval(() => {
@@ -96,7 +97,7 @@ class App extends Component {
   })
 
   // create compressor for kick
-  kickComp = new Tone.Compressor(-30, 2);
+  kickComp = new Tone.Compressor(-35, 2);
 
   // create reverb for clap
   clapReverb = new Tone.JCReverb({
@@ -114,14 +115,14 @@ class App extends Component {
 
   // kick
   kick = new Tone.MembraneSynth({
-    volume: 0,
+    volume: -2,
     pitchDecay : 0.032,
-    octaves : 6,
+    octaves : 5,
     oscillator : {
       type : "square4"
     },
     envelope : {
-      attack : 0.01,
+      attack : 0.02,
       decay: 0.2,
       sustain : 0.01,
       release: 0.75,
@@ -269,10 +270,9 @@ class App extends Component {
   };
 
   changeBpm = value => {
-    Tone.Transport.bpm.value = value;
-
+    Tone.Transport.bpm.rampTo(value, 1)
     this.setState({
-      bpm: value
+      bpm: value 
     });
   };
 
@@ -373,7 +373,7 @@ class App extends Component {
       },
       [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],   // or this.state.steps[0].map((_, i) => i) -
       "16n"
-    ).start(0);
+    ).start("+0.1");
 
     this.setState({
       masterVolume: this.appVol.volume.value
@@ -431,7 +431,7 @@ class App extends Component {
 
       this.recorder.onstop = evt => {
         let blob = new Blob(this.chunks, { type: 'audio/wav; codecs=opus' });
-    // this.audio.src = URL.createObjectURL(blob);
+        // this.audio.src = URL.createObjectURL(blob);
         download(blob, "rhythmcomposer.wav", 'audio/wav')
       };
 
@@ -441,8 +441,26 @@ class App extends Component {
 
       this.chunks = [];
     }
-
   }
+
+  showInfoPopup = () => {
+    this.setState({
+      showInfo: !this.state.showInfo
+    })
+  }
+  
+
+  showFreqPopup = () => {
+    this.setState({
+      showFreq: !this.state.showFreq
+    })
+  }
+
+  // closeInfoPopup = () => {
+  //   this.setState({
+  //     showInfo: false
+  //   })
+  // }
 
   // stopRecord = () => {
   //   if (this.state.mediaRecorderState === true) {
@@ -467,9 +485,10 @@ class App extends Component {
   // }
 
   render() {
+
     let cells = this.state.steps.map((row, xCoord) => {
       return (
-        <div className="row">
+        <div className="row" >
           {row.map((cell, yCoord) => (
             <Cell
               stepToggle={this.stepToggle}
@@ -483,66 +502,70 @@ class App extends Component {
       );
     });
 
+    const conditionalOverlay = () => {
+      return this.state.showInfo || this.state.showFreq ? "overlay" : "null";
+    }
 
     return (
-      <div className="App">
-        <div className="ui grid">
+      <React.Fragment>
+        <div className={conditionalOverlay()}>
+          <div className="App">
+            <div className="unit">
+              <div className="ui grid">
+                <div className="row">
 
-          <div className="row">
-            <div className="sixteen wide column" style={{"text-align": "center"}}>
-              <Title />
+                  <div className="">
+                    <Title showInfoPopup={this.showInfoPopup} showFreqPopup={this.showFreqPopup} />
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div id="intrumentImages" className="one wide column">
+                    <img className="kick" src={kick} alt="kick" />
+                    <img className="hihat" src={hihat} alt="hihat" />
+                    <img className="clap" src={clap} alt="clap" />
+                    <img className="snare" src={snare} alt="snare" />
+                    <img className="cymbal" src={cymbal} alt="cymbal" />
+                    <img className="conga" src={conga} alt="conga" />
+                  </div>
+
+                  <div id="musicGrid" className="fourteen wide column">
+                    {cells}
+                  </div>
+
+                  <div id="knobImages" className="one wide column">
+                    <KickTuningKnob changeKickDrumTuning={this.changeKickDrumTuning} />
+                    <CymbalReleaseKnob changeCymbalReleaseLevel={this.changeCymbalReleaseLevel} />
+                    <ClapReverbKnob changeClapReverbLevel={this.changeClapReverbLevel} />
+                    <SnareDelayKnob changePingPongDelayLevel={this.changePingPongDelayLevel} />
+                    <HihatDecayKnob changeCymbalDecayLevel={this.changeCymbalDecayLevel} />
+                    <CongaTuningKnob changeCongaTuning={this.changeCongaTuning} />
+                  </div>
+                </div>
+
+                <div className="row" style={{ marginHorizontal: 50, paddingTop: '0.6rem' }}>
+                  <div className="buttons">
+                    <PlayPause play={this.play} pause={this.pause} playState={this.playState} style={{ marginBottom: "1rem" }} />
+                    <ClearPattern clearPattern={this.clearPattern} />
+                    <RandomPattern randomPattern={this.randomPattern} />
+                  </div>
+                  <div className="bottom-sliders">
+                    <BpmSlider changeBpm={this.changeBpm} />
+                    <SwingSlider changeSwing={this.changeSwing} />
+                    <VolumeSlider changeVolume={this.changeVolume} />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-
-          <div className="row">
-            <div id="intrumentImages" class="one wide column">
-              <img className="kick" src={kick} alt="kick"/>
-              <img className="hihat" src={hihat} alt="hihat" />
-              <img className="clap" src={clap} alt="clap" />
-              <img className="snare" src={snare} alt="snare" />
-              <img className="cymbal" src={cymbal} alt="cymbal" />
-              <img className="conga" src={conga} alt="conga" />
-            </div>
-
-            <div id="musicGrid" className="fourteen wide column">
-              {cells}
-            </div>
-
-            <div id="knobImages" className="one wide column">
-              <KickTuningKnob changeKickDrumTuning={this.changeKickDrumTuning} />
-              <CymbalReleaseKnob changeCymbalReleaseLevel={this.changeCymbalReleaseLevel} />
-              <ClapReverbKnob changeClapReverbLevel={this.changeClapReverbLevel} />
-              <SnareDelayKnob changePingPongDelayLevel={this.changePingPongDelayLevel} />
-              <HihatDecayKnob changeCymbalDecayLevel={this.changeCymbalDecayLevel} />
-              <CongaTuningKnob changeCongaTuning={this.changeCongaTuning} />
-            </div>
-          </div>
-
-          <div className="row" style={{marginHorizontal: 50}}>
-            <div className="one wide column"></div>
-            <div className="three wide column">
-              <PlayPause play={this.play} pause={this.pause} playState={this.playState} style={{marginBottom: "1rem"}} />
-              <RecordStart className="record-button" record={this.record}/>
-            </div>
-            <div className="three wide column">
-              <ClearPattern clearPattern={this.clearPattern} />
-            </div>
-            <div className="three wide column">
-              <RandomPattern randomPattern={this.randomPattern} />
-            </div>
-            <div className="two wide column center">
-              <BpmSlider changeBpm={this.changeBpm} />
-            </div>
-            <div className="two wide column center">
-              <SwingSlider changeSwing={this.changeSwing} />
-            </div>
-            <div className="two wide column center">
-              <VolumeSlider changeVolume={this.changeVolume} />
-            </div>
-          </div>
-
         </div>
-      </div>
+        <div className="show-info">
+            {this.state.showInfo ? <InfoPopUp showInfoPopup={this.showInfoPopup}/> : null}
+        </div>  
+        <div className="show-info">
+            {this.state.showFreq ? <FreqPopUp /> : null}
+        </div>  
+      </React.Fragment>
     );
   }
 }

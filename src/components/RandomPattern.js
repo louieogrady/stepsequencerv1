@@ -8,18 +8,19 @@ class RandomPattern extends Component {
   render() {
     return (
       <div
-        className="huge ui vertical labeled icon buttons"
+        className=""
         onClick={this.handleClick}
       >
         <button
-          className="random pattern button "
+          className="trans-button"
           style={{
-            border: "2px solid black",
-            background: "#F7F5E1",
-            borderRadius: "13px",
+            width: '13vw',
           }}
         >
-          <i className="random icon" />Randomize
+          <div className="button-inner">
+            <i className="random icon" />
+            <p className="icon-text">Randomize</p>   
+          </div>
         </button>
       </div>
     );

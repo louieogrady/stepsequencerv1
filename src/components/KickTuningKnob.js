@@ -19,8 +19,11 @@ class KickTuningKnob extends React.Component {
       });
     }
 
-    this.props.changeKickDrumTuning(value);
   };
+
+  onEnd = () => {
+    this.props.changeKickDrumTuning(this.state.value);
+  }
 
   render() {
     return (
@@ -34,6 +37,9 @@ class KickTuningKnob extends React.Component {
           onChange={value => {
             this.handleChange(value);
           }}
+          onEnd={() => {
+            this.onEnd();
+          }}
           min={44}
           max={100}
           value={this.state.value}
@@ -42,9 +48,9 @@ class KickTuningKnob extends React.Component {
           skin={skins.s7}
           {...this.props.rest}
         />{" "}
-        <h5 style={{marginTop: "0rem",
-        textAlign: "center",
-        width: "87%"}}>Tuning</h5>
+        <h5 style={{
+          // marginTop: "0rem",
+        }}>Tuning</h5>
       </React.Fragment>
     );
   }

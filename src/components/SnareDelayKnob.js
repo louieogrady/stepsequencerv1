@@ -16,22 +16,32 @@ class SnareDelayKnob extends React.Component {
     } else {
       this.setState({value: value});
     }
-
-    this.props.changePingPongDelayLevel(value);
   };
+
+  onEnd = () => {
+    this.props.changePingPongDelayLevel(this.state.value);
+  }
 
   render() {
     return (<React.Fragment>
       <Knob className="whindUp" style={{
           width: "auto",
           height: "auto"
-        }} onChange={value => {
+        }} 
+        onChange={value => {
           this.handleChange(value);
-        }} min={0} max={4} value={this.state.value} unlockDistance={0} preciseMode={false} skin={skins.s7} {...this.props.rest}/>{" "}
+        }} 
+        onEnd={() => {
+          this.onEnd()
+        }}
+        min={0} 
+        max={4} 
+        value={this.state.value} 
+        unlockDistance={0} 
+        preciseMode={false} 
+        skin={skins.s7} {...this.props.rest}/>{" "}
       <h5 style={{
-          marginTop: "-0.15rem",
-          textAlign: "center",
-          width: "87%"
+          // marginTop: "-0rem",
         }}>Delay</h5>
     </React.Fragment>);
   }

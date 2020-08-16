@@ -8,19 +8,16 @@ class ClearPattern extends Component {
   render() {
     return (
       <div
-        className="huge ui vertical labeled icon buttons"
+        className=""
         onClick={this.handleClick}
       >
         <button
-          className="clear pattern button"
-          style={{
-            border: "2px solid black",
-            background: "#F7F5E1",
-            borderRadius: "13px",
-
-          }}
+          className="trans-button"
         >
-          <i className="trash icon" />Clear 
+          <div className="button-inner">
+            <i className="trash icon" />
+            <p className="icon-text">Clear</p> 
+          </div>
         </button>
       </div>
     );
