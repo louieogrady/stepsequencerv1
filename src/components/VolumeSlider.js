@@ -30,7 +30,6 @@ class VolumeSlider extends React.Component {
         <Knob
           style={{
             width: '7vw',
-            height: "70px",
             position: 'relative'
           }}
           onEnd={() => {
