@@ -3,15 +3,14 @@ import ClickOutside from "./ClickOutside";
 
 let style = {
     fontSize: "14px",
-    width: '600px',
     margin: '0 auto',
     fontFamily: 'Lato',
     border: "solid black 1px",
-    padding: '30px 70px 50px'
+    padding: '30px 5% 50px',   
+    textAlign: 'center'
 }
 
 let titleStyle = {
-    fontSize: "20px",
     textAlign: 'center',
     fontFamily: 'Lato',
     color: "black",

@@ -199,18 +199,28 @@ body,
   flex-direction: column;
   flex-wrap: wrap;
   flex-grow: 1;
-  justify-content: space-evenly;
+  justify-content: space-around;
   height: 100%;
   left: -20px;
   top: -2px;
+  @media (min-width: 1024px) { 
+    justify-content: space-evenly; 
+  }
   h5 {
-    font-size: 0.8em;
-    margin-top: 0em;
-    text-align: center; 
-    width: 85%;
-    background-color: #eee24c;
-    border: 1px solid black;
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    display: none;
+    @media (min-width: 1024px) { 
+      display: block;
+      font-size: 0.8em;
+      margin-top: 0em;
+      text-align: center; 
+      width: auto;
+      background-color: #eee24c;
+      border: 1px solid black;
+      box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    }
+    @media (min-width: 1440px) { 
+      font-size: 0.7vw;
+    }
   }
 }
 
@@ -221,29 +231,58 @@ body,
   z-index: 1;
   left: 30%;
   top: 10%;
+  width: 40vw;
+  h1 { 
+    font-size: 2vw;
+  }
+  p {
+    font-size: 1vw;
+  }
 }
 
 #intrumentImages{
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  flex-grow: 1;
-  justify-content: space-evenly;
-  height: 108%;
-  left: 23px;
-  align-items: center;
-  top: -14px;
+  display: none;
+  @media (min-width: 768px) { // 768px
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    justify-content: space-evenly;
+    height: 108%;
+    left: 23px;
+    align-items: center;
+    top: -14px;
+  }
+  @media (min-width: 1440px) {
+    height: 100%;
+    justify-content: space-between;
+    top: 0;
+  }
 }
 
 .whindUp {
-  width: 85% !important;
+  @media (min-width: 768px) {
+    width: 120% !important;
+    padding: 7px 0 0 0 !important;
+  }
+  @media (min-width: 1024px) { 
+    width: 110% !important;
+    padding: 0 6px 0 !important;
+    max-width: 112% !important;
+  }
+  @media (min-width: 1440px) { 
+    width: 110% !important;
+    padding: 0 6px 0 !important;
+    max-width: 4.5vw !important;
+  }
+
 }
 
 .info-button {
   position: absolute;
   left: 7.5%;
   top: 75%;
-  font-size: 0.8em;
+  font-size: 0.85vw;
   margin-top: 0em;
   text-align: center; 
   background-color: #eee24c;
