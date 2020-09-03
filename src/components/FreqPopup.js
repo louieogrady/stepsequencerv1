@@ -1,25 +1,25 @@
 import React, { Component } from "react";
 
-let style = {
-    fontSize: "14px",
-    width: '600px',
-    margin: '0 auto',
-    fontFamily: 'Lato',
-    border: "solid black 1px",
-    padding: '30px 70px 50px'
-}
+// let style = {
+//     fontSize: "14px",
+//     width: '600px',
+//     margin: '0 auto',
+//     fontFamily: 'Lato',
+//     border: "solid black 1px",
+//     padding: '30px 70px 50px'
+// }
 
-let tableStyle = {
-    fontSize: '11px',
-    border: "solid black 1px",
-}
+// let tableStyle = {
+//     fontSize: '11px',
+//     border: "solid black 1px",
+// }
 
-let titleStyle = {
-    fontSize: "20px",
-    textAlign: 'center',
-    fontFamily: 'Lato',
-    color: "black",
-}
+// let titleStyle = {
+//     fontSize: "20px",
+//     textAlign: 'center',
+//     fontFamily: 'Lato',
+//     color: "black",
+// }
 
 class FreqPopUp extends Component {
     rowTitles = ['Note', 'Frequency (Hz)'];

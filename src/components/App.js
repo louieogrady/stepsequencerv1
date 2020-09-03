@@ -10,12 +10,6 @@ import snare from '../images/snare.png'
 import conga from '../images/conga.png'
 import cymbal from '../images/cymbal.png'
 import hihat from '../images/hihat.png'
-
-// import ch from "../samples/ch.wav",
-// import clap from "../samples/clap.wav",
-// // 		"E" : "../samples/claves.[mp3|ogg|wav]",
-// // 		"F#" : "../samples/kick.[mp3|ogg|wav]",
-
 import Title from "./Title.js";
 import Cell from "./Cell.js";
 import PlayPause from "./PlayPause.js";
@@ -30,7 +24,6 @@ import CongaTuningKnob from "./CongaTuningKnob.js";
 import ClapReverbKnob from "./ClapReverbKnob.js"
 import HihatDecayKnob from "./HihatDecayKnob.js"
 import CymbalReleaseKnob from "./CymbalReleaseKnob.js"
-import RecordStart from "./RecordStart.js"
 import InfoPopUp from "./InfoPopup";
 import FreqPopUp from "./FreqPopup";
 
