@@ -65,11 +65,14 @@ body,
 
 .buttons {
   display: inline-flex;
-  width: 40%;
+  margin-top: 5px;
+  width: 45%;
   position: relative;
   height: 1vh;
   justify-content: space-around;
   @media (min-width: 768px) {
+    margin-top: 0;
+    width: 40%;
     height: 2vh;
     margin-left: 4.6%;
     justify-content: space-evenly;
@@ -161,6 +164,13 @@ body,
 }
 
 .row {
+  &.main {
+    @media (max-width: 767px) { 
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+    }
+  }
+
   display: flex;
   #musicGrid {
     @media (max-width: 767px) { 
@@ -251,18 +261,33 @@ body,
 }
 
 .show-info {
+  width: 60vw;
+  left: 20%;
   background: white;
   margin: 0 auto;
   position: fixed;
   z-index: 1;
-  left: 30%;
+
   top: 5%;
-  width: 40vw;
+  @media (min-width: 768px) { 
+    left: 30%;
+    width: 40vw;
+  }
+
   h1 { 
-    font-size: 2vw;
+    font-size: 5vw;
+    @media (min-width: 768px) { 
+      font-size: 2vw;
+    }
   }
   p {
-    font-size: 1vw;
+    @media (min-width: 600px) { 
+      font-size: 1.5vw;
+    }
+    @media (min-width: 768px) { 
+      font-size: 1vw;
+    }
+    font-size: 2vw;
   }
 }
 

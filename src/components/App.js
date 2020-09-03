@@ -519,7 +519,7 @@ class App extends Component {
                   </div>
                 </div>
 
-                <div className="row">
+                <div className="row main">
                   <div id="intrumentImages" className="one wide column">
                     <img className="kick" src={kick} alt="kick" />
                     <img className="hihat" src={hihat} alt="hihat" />
