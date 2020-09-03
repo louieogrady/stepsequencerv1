@@ -14,7 +14,7 @@ class RecordStop extends Component {
         <button
         className="record stop button"
         >
-          <i className="stop icon" />Stop Recording
+          <i style={{fontSize: '1.2vw'}} lassName="stop icon" />Stop Recording
         </button>
       </div>
     );

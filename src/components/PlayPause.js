@@ -27,7 +27,7 @@ class PlayPause extends Component {
           onClick={this.handleClick}
         >
           <div className="button-inner">
-            <i className={playButtonClass} />
+            <i style={{fontSize: '1vw'}} className={playButtonClass} />
             <p className="icon-text">{this.state.playing ? "Pause" : "Play"}</p>
           </div>
         </button>

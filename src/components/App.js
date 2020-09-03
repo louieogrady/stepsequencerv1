@@ -514,7 +514,7 @@ class App extends Component {
               <div className="ui grid">
                 <div className="row">
 
-                  <div className="">
+                  <div className="title">
                     <Title showInfoPopup={this.showInfoPopup} showFreqPopup={this.showFreqPopup} />
                   </div>
                 </div>

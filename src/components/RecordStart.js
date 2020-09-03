@@ -25,7 +25,7 @@ class RecordStart extends Component {
         <button
         className="record start button"
         >
-           <i className={recordingButtonStyle} />
+           <i style={{fontSize: '1.2vw'}} className={recordingButtonStyle} />
           {this.state.recording ? "Recording..." : "Record"}
         </button>
       </div>

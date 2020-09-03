@@ -28,7 +28,7 @@ code {
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
     font-size: 0.8em;
     @media (min-width: 1024px) { 
-      font-size: 0.7vw;
+      font-size: 0.8vw;
     }
   }
   .bottom-slider {
@@ -39,7 +39,7 @@ code {
     display: none;
     @media (min-width: 1024px) { 
       display: block;
-      left: 11.5%;
+      left: 11%;
     }
 
   }
@@ -47,14 +47,14 @@ code {
     display: none;
     @media (min-width: 1024px) { 
       display: block;
-      left: 47.7%;
+      left: 47.2%;
     }
   }
   .volume-slider {
     display: none;
     @media (min-width: 1024px) { 
       display: block;
-      left: 78.8%;
+      left: 78.3%;
     }
   }
 
@@ -68,19 +68,23 @@ code {
 }
 
 .trans-button {
+  height: 3vh;
+  width: 3vh; 
   outline: none;
   background-color: #eee24c;
   border-radius: 4px;
-  height: 57.75px;
-  // box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-  height: 4vh;
-  width: 8vw;
   border: solid black 1px;
-  @media (min-width: 768px) { // 768px
-    height: 6vh;
+  @media (min-width: 768px) {
+    width: 8vw;
   }
-  .randomise-button {
-    width: 10vw;
+  @media (min-width: 1024px) {
+    height: 4.5vh;
+  }
+  &.random {
+    width: 3vh; 
+    @media (min-width: 768px) {
+      width: 13vw;
+    }
   }
 }
 
@@ -89,6 +93,9 @@ code {
   width: 100%;
   line-height: 0;
   > i {
+    @media (max-width: 768px) { 
+      margin-left: -1.65px !important
+    }
     position: absolute;
     left: 10%;
     line-height: 0;
@@ -96,11 +103,14 @@ code {
   }
 
   .icon-text {
-    font-size: 1.2vw;
-    position: absolute;
-    left: 37%;
-    line-height: 0;
-
+    display: none;
+    @media (min-width: 768px) { 
+      display: block;
+      font-size: 1.2vw;
+      position: absolute;
+      left: 37%;
+      line-height: 0;
+    }
     @media (min-width: 1024px) { // 768px
       left: 40%;
     }

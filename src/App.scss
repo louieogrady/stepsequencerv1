@@ -68,10 +68,11 @@ body,
   width: 40%;
   position: relative;
   height: 1vh;
-  justify-content: space-evenly;
-  margin-left: 4.8%;
-  @media (min-width: 768px) { // 768px
+  justify-content: space-around;
+  @media (min-width: 768px) {
     height: 2vh;
+    margin-left: 4.6%;
+    justify-content: space-evenly;
   }
 }
 
@@ -161,6 +162,28 @@ body,
 
 .row {
   display: flex;
+  #musicGrid {
+    @media (max-width: 767px) { 
+      width:100% !important 
+    }
+  }
+  .title {
+    h1 {
+      font-size: 9.2vw;
+      margin-top: 0.6rem; 
+      margin-left: 4vw;
+      font-family: Lato;
+      color: #F7F5E1;
+      border: black;
+      position: relative;
+      width: 100%;
+      @media (min-width: 768px) { 
+        margin-left: 7vw;
+        font-size: 3.7vw;
+      }
+
+    }
+  }
 }
 
 .box {
@@ -195,14 +218,17 @@ body,
 }
 
 #knobImages{
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  flex-grow: 1;
-  justify-content: space-around;
-  height: 100%;
-  left: -20px;
-  top: -2px;
+  display: none;
+  @media (min-width: 768px) { 
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    justify-content: space-around;
+    height: 100%;
+    left: -20px;
+    top: -2px;
+  }
   @media (min-width: 1024px) { 
     justify-content: space-evenly; 
   }
@@ -280,9 +306,9 @@ body,
 
 .info-button {
   position: absolute;
-  left: 7.5%;
-  top: 75%;
-  font-size: 0.85vw;
+  left: 4.5%;
+  top: 70%;
+  font-size: 2.5vw;
   margin-top: 0em;
   text-align: center; 
   background-color: #eee24c;
@@ -290,6 +316,11 @@ body,
   outline: none;
   &.ref {
     left: 11.2%;
+  }
+  @media (min-width: 768px) {
+    left: 7.5%;
+    font-size: 0.85vw;
+    top: 75%;
   }
 }
 

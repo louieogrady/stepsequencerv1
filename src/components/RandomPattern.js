@@ -12,13 +12,10 @@ class RandomPattern extends Component {
         onClick={this.handleClick}
       >
         <button
-          className="trans-button"
-          style={{
-            width: '13vw',
-          }}
+          className="trans-button random"
         >
           <div className="button-inner">
-            <i className="random icon" />
+            <i style={{fontSize: '1.2vw'}} className="random icon"/>
             <p className="icon-text">Randomize</p>   
           </div>
         </button>

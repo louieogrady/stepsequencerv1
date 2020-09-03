@@ -15,7 +15,7 @@ class ClearPattern extends Component {
           className="trans-button"
         >
           <div className="button-inner">
-            <i className="trash icon" />
+            <i style={{fontSize: '1vw'}} className="trash icon" />
             <p className="icon-text">Clear</p> 
           </div>
         </button>
