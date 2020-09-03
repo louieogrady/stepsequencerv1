@@ -13,7 +13,7 @@
     "react-dom": "^16.13.1",
     "react-rotary-knob": "^1.1.8",
     "react-rotary-knob-skin-pack": "^1.0.2",
-    "react-scripts": "^3.4.1",
+    "react-scripts": "^3.4.3",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.87.3",
     "serve": "^11.3.2",
