@@ -75,8 +75,6 @@ class App extends Component {
   // 	}).toMaster();
 
 
-
-
   /// INIT SYNTHS & FX ///
 
   // create master volume for App
@@ -217,13 +215,26 @@ class App extends Component {
 
   // CHANGE FUNCTIONS //
 
+
+  updateParams(paramName, value) {
+    let pathname = this.props.location.pathname; 
+    let searchParams = new URLSearchParams(this.props.location.search); 
+    searchParams.set(paramName, value.toFixed(2));
+    this.props.history.push({
+      pathname: pathname,
+      search: searchParams.toString()
+    });
+  }
+
   changeKickDrumTuning = (value) => {
+    this.updateParams('kick', value)
     this.setState({
       kickDrumTuning: value
     })
   }
 
   changeClapReverbLevel = (value) => {
+    this.updateParams('clapReverb', value)
     this.clapReverb.wet.value = value
 
     this.setState({
