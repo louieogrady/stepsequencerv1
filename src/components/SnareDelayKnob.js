@@ -19,7 +19,7 @@ class SnareDelayKnob extends React.Component {
   };
 
   onEnd = () => {
-    this.props.changePingPongDelayLevel(this.state.value);
+    this.props.changePingPongDelayLevel(this.state.value, true);
   }
 
   render() {

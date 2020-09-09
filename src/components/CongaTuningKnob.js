@@ -6,6 +6,7 @@ class CongaTuningKnob extends React.Component {
   state = {
     value: 107
   };
+  
 
   handleChange = value => {
 
@@ -21,7 +22,7 @@ class CongaTuningKnob extends React.Component {
   };
 
   onEnd = () => {
-    this.props.changeCongaTuning(this.state.value);
+    this.props.changeCongaTuning(this.state.value, true);
   }
 
   render() {

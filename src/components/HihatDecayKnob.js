@@ -20,7 +20,7 @@
     };
 
     onEnd = () => {
-      this.props.changeCymbalDecayLevel(this.state.value);
+      this.props.changeCymbalDecayLevel(this.state.value, true);
     }
 
     render() {

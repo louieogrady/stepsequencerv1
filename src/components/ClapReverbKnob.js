@@ -18,7 +18,7 @@ class ClapReverbKnob extends React.Component {
   };
 
   onEnd = () => {
-    this.props.changeClapReverbLevel(this.state.value);
+    this.props.changeClapReverbLevel(this.state.value, true);
   }
 
   render() {

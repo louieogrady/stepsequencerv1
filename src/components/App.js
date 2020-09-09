@@ -201,21 +201,14 @@ class App extends Component {
 
 
   // RECORDING VARIABLES //
-
   audioContext = Tone.context;
-
   dest = this.audioContext.createMediaStreamDestination();
-
   recorder = new MediaRecorder(this.dest.stream);
-
   output = Tone.Master;
-
   chunks = [];
 
 
   // CHANGE FUNCTIONS //
-
-
   updateParams(paramName, value) {
     let pathname = this.props.location.pathname; 
     let searchParams = new URLSearchParams(this.props.location.search); 
@@ -226,36 +219,67 @@ class App extends Component {
     });
   }
 
-  changeKickDrumTuning = (value) => {
-    this.updateParams('kick', value)
+  initParams() {
+    let searchParams = new URLSearchParams(this.props.location.search);
+    for (let p of searchParams) {
+      this.applyParamValues(p)
+    }
+  }
+
+  applyParamValues(params) {
+    switch (params[0]) {
+      case 'k': 
+      let value = Number(params[1])
+      this.changeKickDrumTuning(value, false)
+      break;
+    }
+  }
+
+  changeKickDrumTuning = (value, updateParams) => {
+    if(updateParams) {
+      this.updateParams('k', value)
+    }
     this.setState({
       kickDrumTuning: value
     })
   }
 
-  changeClapReverbLevel = (value) => {
-    this.updateParams('clapReverb', value)
+  changeClapReverbLevel = (value, updateParams?) => {
+    if(updateParams) {
+      this.updateParams('rev', value)
+    }
     this.clapReverb.wet.value = value
-
     this.setState({
       clapReverbWetLevel: value
     })
   }
 
-  changePingPongDelayLevel = (value) => {
+  changePingPongDelayLevel = (value, updateParams?) => {
+    if(updateParams) {
+      this.updateParams('ping', value)
+    }
     this.pingPong.wet.value = value;
   }
 
-  changeCymbalDecayLevel = (value) => {
+  changeCymbalDecayLevel = (value, updateParams?) => {
+    if(updateParams) { 
+      this.updateParams('hh', value)
+    }
     this.closedHihat.envelope.decay = value
   }
 
-  changeCymbalReleaseLevel = (value) => {
+  changeCymbalReleaseLevel = (value, updateParams?) => {
+    if(updateParams) {
+      this.updateParams('cym', value)
+    }
     this.cymbal.envelope.release = value
     this.cymbal.envelope.decay = value / 2
   }
 
-  changeCongaTuning = (value) => {
+  changeCongaTuning = (value, updateParams?) => {
+    if(updateParams) {
+      this.updateParams('con', value)
+    }
     this.setState({
       congaTuning: value
     })
@@ -304,11 +328,8 @@ class App extends Component {
   };
 
   // backgroundDisco = () => this.state.steps.map((row, x) => {row.map((cell, y) => this.state.steps[x][y] === 1 ? "#E3C5BA" : "#F7F5E1")})
-
-    // backgroundDisco = () => this.state.steps[0] === 1 && this.state.column === 0 ? "#E3C5BA" : "#F7F5E1"
-
-    // backgroundDisco = () => this.state.steps.map((row, noteIndex) => row === this.state.steps[0] && row[this.state.activeColumn] ? "#E3C5BA" : "#F7F5E1")
-
+  // backgroundDisco = () => this.state.steps[0] === 1 && this.state.column === 0 ? "#E3C5BA" : "#F7F5E1"
+  // backgroundDisco = () => this.state.steps.map((row, noteIndex) => row === this.state.steps[0] && row[this.state.activeColumn] ? "#E3C5BA" : "#F7F5E1")
 
   // ON INIT //
 
@@ -378,11 +399,13 @@ class App extends Component {
       [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],   // or this.state.steps[0].map((_, i) => i) -
       "16n"
     ).start("+0.1");
+    this.initParams();
 
     this.setState({
       masterVolume: this.appVol.volume.value
     });
     return () => this.loop.dispose();
+    
   }
 
 

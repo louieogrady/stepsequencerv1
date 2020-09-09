@@ -21,7 +21,7 @@ class CymbalReleaseKnob extends React.Component {
   };
 
   onEnd = () => {
-    this.props.changeCymbalReleaseLevel(this.state.value);
+    this.props.changeCymbalReleaseLevel(this.state.value, true);
   }
 
   render() {

@@ -4,7 +4,7 @@ import * as skins from "react-rotary-knob-skin-pack";
 
 class KickTuningKnob extends React.Component {
   state = {
-    value: 44
+    value: this.props.value | 44
   };
 
   handleChange = value => {
@@ -22,7 +22,7 @@ class KickTuningKnob extends React.Component {
   };
 
   onEnd = () => {
-    this.props.changeKickDrumTuning(this.state.value);
+    this.props.changeKickDrumTuning(this.state.value, true);
   }
 
   render() {
