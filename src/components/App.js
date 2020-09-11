@@ -212,7 +212,7 @@ class App extends Component {
   updateParams(paramName, value) {
     let pathname = this.props.location.pathname; 
     let searchParams = new URLSearchParams(this.props.location.search); 
-    searchParams.set(paramName, value.toFixed(2));
+    paramName !== 'steps' ? searchParams.set(paramName, value.toFixed(2)) : searchParams.set(paramName, value);
     this.props.history.push({
       pathname: pathname,
       search: searchParams.toString()
@@ -225,7 +225,8 @@ class App extends Component {
     }
   }
   applyParamValues(params) {
-    let value = Number(params[1])
+    let value;
+    params[0] !== 'steps' ? value = Number(params[1]) : value = params[1]
     switch (params[0]) {
       case 'k':
         this.changeKickDrumTuning(value, false);
@@ -247,6 +248,9 @@ class App extends Component {
         break;
       case 'bpm':
         this.changeBpm(value, false);
+        break;
+      case 'steps':
+        this.updateStepParams(value, false);
         break;
       default:
         return null;
@@ -325,6 +329,30 @@ class App extends Component {
     });
   }
 
+  updateStepParams = (value, updateParams) => {
+    if (updateParams) {
+      this.updateParams('steps', value)
+    } else {
+      let newSteps = value.split(",") // split the string based on the spaces
+        .reduce((current, item) => {
+          if (current[current.length - 1].length === 16) {
+            // in case the result array has already 16 items in it
+            // push in a new empty array
+            current.push([]);
+          }
+          item = Number(item);
+          // add the item to the last array
+          current[current.length - 1].push(item);
+          // return the array, so it can either be returned or used for the next iteration
+          return current;
+        }, [[]])
+      if (newSteps.length === 6 && newSteps[newSteps.length - 1].length === 16) {
+        this.setState({
+          steps: newSteps
+        });
+      }
+    }
+  }
   play = () => {
     Tone.Transport.bpm.value = this.state.bpm;
     Tone.Transport.toggle()
@@ -345,6 +373,7 @@ class App extends Component {
       this.setState({ steps: newSteps });
     }
     console.log(`You Clicked ${x} and ${y}`);
+    this.updateStepParams(this.state.steps, true)
   };
 
   // backgroundDisco = () => this.state.steps.map((row, x) => {row.map((cell, y) => this.state.steps[x][y] === 1 ? "#E3C5BA" : "#F7F5E1")})
@@ -352,14 +381,12 @@ class App extends Component {
   // backgroundDisco = () => this.state.steps.map((row, noteIndex) => row === this.state.steps[0] && row[this.state.activeColumn] ? "#E3C5BA" : "#F7F5E1")
 
   // ON INIT //
-
   componentDidMount() {
     this.loop = new Tone.Sequence(
       (time, col) => {
         this.setState({
           column: col
         });
-
         this.state.steps.map((row, noteIndex) => {
           if (row === this.state.steps[0] && row[col]) {
             // randomised velocities (volume of each triggered note)
@@ -420,12 +447,16 @@ class App extends Component {
       "16n"
     ).start("+0.1");
     this.initParams();
-
     this.setState({
       masterVolume: this.appVol.volume.value
     });
     return () => this.loop.dispose();
-    
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.steps !== prevState.steps) {
+      this.updateParams('steps', this.state.steps)
+    }
   }
 
 
@@ -448,6 +479,7 @@ class App extends Component {
     this.setState({
       steps: randomSteps
     })
+    this.updateStepParams(randomSteps, true)
   }
 
   clearPattern = () => {
@@ -461,6 +493,7 @@ class App extends Component {
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       ]
     });
+    this.updateStepParams(this.state.steps, true)
   };
 
   record = () => {

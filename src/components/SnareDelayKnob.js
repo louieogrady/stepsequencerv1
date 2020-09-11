@@ -41,7 +41,7 @@ class SnareDelayKnob extends React.Component {
           this.onEnd()
         }}
         min={0} 
-        max={4} 
+        max={1} 
         value={this.state.value} 
         unlockDistance={0} 
         preciseMode={false} 
