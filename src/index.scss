@@ -79,6 +79,7 @@ code {
   background-color: #eee24c;
   border-radius: 50px;
   border: solid black 1px;
+  cursor: pointer;
   @media (min-width: 768px) {
     width: 8vw;
     border-radius: 4px;
@@ -100,7 +101,7 @@ code {
   > i {
     font-size: 1em;
     @media (max-width: 768px) { 
-      margin-left: -2.77px !important;
+      margin-left: -1.8px !important;
       font-size: 8px !important;
     }
     position: absolute;
@@ -111,7 +112,7 @@ code {
 
   .random.icon {
     @media (max-width: 768px) { 
-      margin-left: -2.4px !important;
+      margin-left: -2.5px !important;
     }
   }
   .play-icon {

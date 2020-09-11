@@ -6,18 +6,14 @@ let style = {
     margin: '0 auto',
     fontFamily: 'Lato',
     border: "solid black 1px",
-    padding: '30px 5% 50px',   
+    padding: '30px 5% 50px',
     textAlign: 'center'
 }
-
 let titleStyle = {
     textAlign: 'center',
     fontFamily: 'Lato',
     color: "black",
 }
-
-
-
 class InfoPopUp extends Component {
     infoHandleClick = (e) => {
         if (e.target.classList.contains("info-button")) {
@@ -27,7 +23,6 @@ class InfoPopUp extends Component {
         }
     }
     render() {
-
         return (
             <React.Fragment >
                 <ClickOutside onClick={e => this.infoHandleClick(e)}>
@@ -44,13 +39,14 @@ class InfoPopUp extends Component {
                     <br></br><br></br>
                     When the user presses play, the loop starts and the current position will be shown by the orange outline which will be moving across the grid. The randomize button will create a random pattern. Users can edit parameters and patterns in real-time.
                     <br></br><br></br>
-                    Rhythm Composer was made by <a href='https://github.com/louieogrady'>Louie O'Grady.</a>
-                    </p>
+                    I recommend using Rhythm Composer on a desktop computer, many features have been removed when accessing the site on a mobile phone.
+                    <br></br><br></br>
+                    By <a href='https://github.com/louieogrady'>Louie O'Grady.</a>
+                        </p>
                     </div>
                 </ClickOutside>
             </React.Fragment>
         );
-
     }
 }
 

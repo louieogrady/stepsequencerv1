@@ -4,9 +4,15 @@ import * as skins from "react-rotary-knob-skin-pack";
 
 class SnareDelayKnob extends React.Component {
   state = {
-    value: 0
+    value: this.props.value
   };
-
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.value !== prevProps.value) {
+      this.setState({
+        value: this.props.value
+      });
+    }
+  }
   handleChange = value => {
 
     const maxDistance = 2;
@@ -19,7 +25,7 @@ class SnareDelayKnob extends React.Component {
   };
 
   onEnd = () => {
-    this.props.changePingPongDelayLevel(this.state.value);
+    this.props.changePingPongDelayLevel(this.state.value, true);
   }
 
   render() {
@@ -35,7 +41,7 @@ class SnareDelayKnob extends React.Component {
           this.onEnd()
         }}
         min={0} 
-        max={4} 
+        max={1} 
         value={this.state.value} 
         unlockDistance={0} 
         preciseMode={false} 

@@ -47,7 +47,7 @@ class VolumeSlider extends React.Component {
           skin={skins.s4}
           {...this.props.rest}
         />{" "}
-        <h5 className="volume-slider" style={{ margin: "0rem", marginLeft: "0.2rem"}}>Volume (dB)</h5>
+        <h5 className="volume-slider">Volume (dB)</h5>
       </React.Fragment>
     );
   }

@@ -4,8 +4,15 @@ import * as skins from "react-rotary-knob-skin-pack";
 
 class CymbalReleaseKnob extends React.Component {
   state = {
-    value: 0.25
+    value: this.props.value
   };
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.value !== prevProps.value) {
+      this.setState({
+        value: this.props.value
+      });
+    }
+  }
 
   handleChange = value => {
 
@@ -21,7 +28,7 @@ class CymbalReleaseKnob extends React.Component {
   };
 
   onEnd = () => {
-    this.props.changeCymbalReleaseLevel(this.state.value);
+    this.props.changeCymbalReleaseLevel(this.state.value, true);
   }
 
   render() {
