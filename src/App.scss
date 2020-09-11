@@ -369,6 +369,30 @@ body,
   }
 }
 
+.copy-url-button {
+  position: absolute;
+  left: 14.5%;
+  top: 70%;
+  font-size: 2.2vw;
+  text-align: center;
+  background-color: #eee24c;
+  border: 1px solid black;
+  outline: none;
+  cursor: pointer;
+  @media (min-width: 768px) {
+    left: 12.5%;
+    font-size: 0.85vw;
+    top: 75%;
+  }
+  @media (min-width: 1024px) {
+    left: 11.5%;
+  }
+}
+
+.blue {
+  background-color: #297DFD;
+}
+
 .center {
   text-align: center !important;
 }

@@ -52,7 +52,7 @@ class App extends Component {
     pingPong: 0,
     mediaRecorderState: false,
     showInfo: false,
-    showFreq: false
+    showFreq: false,
   };
 
   // randomValue = () => { setInterval(() => {
