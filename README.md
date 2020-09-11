@@ -21,6 +21,8 @@ When the user presses play, the loop starts and the current position will be sho
 
 The randomise button will create a random pattern. 
 
-The record button will begin recording a .wav file of the sound output being produced by the sequencer which will be auto-downloaded to the users computer when the user stops the recording.
+## Sharing Drum Patterns
+
+When using rhythm composer, changes are added to the url parameters which means that users can share their exact drum pattern with others by copying the url and sending it to the recipient.
 
 ![](ezgif-7-9c541481d44c.gif)
