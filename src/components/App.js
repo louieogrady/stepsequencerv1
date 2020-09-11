@@ -47,7 +47,9 @@ class App extends Component {
     kickDrumTuning: 43.65,
     congaTuning: 107,
     clapReverbWetLevel: 0,
-    closedHihatDecayLevel: 0,
+    closedHihatDecayLevel: 0.25,
+    cymbalLevel: 0.25,
+    pingPong: 0,
     mediaRecorderState: false,
     showInfo: false,
     showFreq: false
@@ -199,16 +201,14 @@ class App extends Component {
     octaves: 2
   }).chain(this.appVol, Tone.Master);
 
-
   // RECORDING VARIABLES //
-  audioContext = Tone.context;
-  dest = this.audioContext.createMediaStreamDestination();
-  recorder = new MediaRecorder(this.dest.stream);
-  output = Tone.Master;
-  chunks = [];
+  // audioContext = Tone.context;
+  // dest = this.audioContext.createMediaStreamDestination();
+  // recorder = new MediaRecorder(this.dest.stream);
+  // output = Tone.Master;
+  // chunks = [];
 
-
-  // CHANGE FUNCTIONS //
+  // PARAM FUNCTIONS //
   updateParams(paramName, value) {
     let pathname = this.props.location.pathname; 
     let searchParams = new URLSearchParams(this.props.location.search); 
@@ -218,23 +218,41 @@ class App extends Component {
       search: searchParams.toString()
     });
   }
-
   initParams() {
     let searchParams = new URLSearchParams(this.props.location.search);
     for (let p of searchParams) {
       this.applyParamValues(p)
     }
   }
-
   applyParamValues(params) {
+    let value = Number(params[1])
     switch (params[0]) {
-      case 'k': 
-      let value = Number(params[1])
-      this.changeKickDrumTuning(value, false)
-      break;
+      case 'k':
+        this.changeKickDrumTuning(value, false);
+        break;
+      case 'rev':
+        this.changeClapReverbLevel(value, false);
+        break;
+      case 'ping':
+        this.changePingPongDelayLevel(value, false);
+        break;
+      case 'hh':
+        this.changeCymbalDecayLevel(value, false);
+        break;
+      case 'cym':
+        this.changeCymbalReleaseLevel(value, false);
+        break;
+      case 'con':
+        this.changeCongaTuning(value, false);
+        break;
+      case 'bpm':
+        this.changeBpm(value, false);
+        break;
+      default:
+        return null;
     }
   }
-
+  // CHANGE FUNCTIONS //
   changeKickDrumTuning = (value, updateParams) => {
     if(updateParams) {
       this.updateParams('k', value)
@@ -243,8 +261,7 @@ class App extends Component {
       kickDrumTuning: value
     })
   }
-
-  changeClapReverbLevel = (value, updateParams?) => {
+  changeClapReverbLevel = (value, updateParams) => {
     if(updateParams) {
       this.updateParams('rev', value)
     }
@@ -253,30 +270,35 @@ class App extends Component {
       clapReverbWetLevel: value
     })
   }
-
-  changePingPongDelayLevel = (value, updateParams?) => {
+  changePingPongDelayLevel = (value, updateParams) => {
     if(updateParams) {
       this.updateParams('ping', value)
     }
     this.pingPong.wet.value = value;
+    this.setState({
+      pingPong: value
+    })
   }
-
-  changeCymbalDecayLevel = (value, updateParams?) => {
+  changeCymbalDecayLevel = (value, updateParams) => {
     if(updateParams) { 
       this.updateParams('hh', value)
     }
     this.closedHihat.envelope.decay = value
+    this.setState({
+      closedHihatDecayLevel: value
+    })
   }
-
-  changeCymbalReleaseLevel = (value, updateParams?) => {
+  changeCymbalReleaseLevel = (value, updateParams) => {
     if(updateParams) {
       this.updateParams('cym', value)
     }
     this.cymbal.envelope.release = value
     this.cymbal.envelope.decay = value / 2
+    this.setState({
+      cymbalLevel: value
+    })
   }
-
-  changeCongaTuning = (value, updateParams?) => {
+  changeCongaTuning = (value, updateParams) => {
     if(updateParams) {
       this.updateParams('con', value)
     }
@@ -284,31 +306,29 @@ class App extends Component {
       congaTuning: value
     })
   }
-
   changeVolume = value => {
     this.appVol.volume.value = value;
-
     this.setState({
       masterVolume: value
     });
-  };
-
+  }
   changeSwing = value => {
     Tone.Transport.swing = value;
-  };
-
-  changeBpm = value => {
+  }
+  changeBpm = (value, updateParams) => {
+    if (updateParams) {
+      this.updateParams('bpm', value)
+    }
     Tone.Transport.bpm.rampTo(value, 1)
     this.setState({
-      bpm: value 
+      bpm: value
     });
-  };
+  }
 
   play = () => {
     Tone.Transport.bpm.value = this.state.bpm;
     Tone.Transport.toggle()
   };
-
   pause = () => {
     Tone.Transport.stop();
     console.log("paused");
@@ -561,12 +581,12 @@ class App extends Component {
                   </div>
 
                   <div id="knobImages" className="one wide column">
-                    <KickTuningKnob changeKickDrumTuning={this.changeKickDrumTuning} />
-                    <CymbalReleaseKnob changeCymbalReleaseLevel={this.changeCymbalReleaseLevel} />
-                    <ClapReverbKnob changeClapReverbLevel={this.changeClapReverbLevel} />
-                    <SnareDelayKnob changePingPongDelayLevel={this.changePingPongDelayLevel} />
-                    <HihatDecayKnob changeCymbalDecayLevel={this.changeCymbalDecayLevel} />
-                    <CongaTuningKnob changeCongaTuning={this.changeCongaTuning} />
+                    <KickTuningKnob value={this.state.kickDrumTuning} changeKickDrumTuning={this.changeKickDrumTuning} />
+                    <CymbalReleaseKnob value={this.state.cymbalLevel} changeCymbalReleaseLevel={this.changeCymbalReleaseLevel} />
+                    <ClapReverbKnob value={this.state.clapReverbWetLevel} changeClapReverbLevel={this.changeClapReverbLevel} />
+                    <SnareDelayKnob value={this.state.pingPong} changePingPongDelayLevel={this.changePingPongDelayLevel} />
+                    <HihatDecayKnob value={this.state.closedHihatDecayLevel } changeCymbalDecayLevel={this.changeCymbalDecayLevel} />
+                    <CongaTuningKnob value={this.state.congaTuning} changeCongaTuning={this.changeCongaTuning} />
                   </div>
                 </div>
 
@@ -577,7 +597,7 @@ class App extends Component {
                     <RandomPattern randomPattern={this.randomPattern} />
                   </div>
                   <div className="bottom-sliders">
-                    <BpmSlider changeBpm={this.changeBpm} />
+                    <BpmSlider value={this.state.bpm} changeBpm={this.changeBpm} />
                     <SwingSlider changeSwing={this.changeSwing} />
                     <VolumeSlider changeVolume={this.changeVolume} />
                   </div>

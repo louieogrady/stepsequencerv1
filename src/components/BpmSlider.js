@@ -4,9 +4,15 @@ import * as skins from "react-rotary-knob-skin-pack";
 
 class BpmSlider extends React.Component {
   state = {
-    value: 120
+    value: this.props.value
   };
-
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.value !== prevProps.value) {
+      this.setState({
+        value: this.props.value
+      });
+    }
+  }
   handleChange = value => {
     const maxDistance = 100;
     let distance = Math.abs(value - this.state.value);
@@ -21,7 +27,7 @@ class BpmSlider extends React.Component {
   };
 
   onEnd = () => {
-    this.props.changeBpm(this.state.value);
+    this.props.changeBpm(this.state.value, true);
   }
 
 

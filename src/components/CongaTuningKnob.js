@@ -4,10 +4,15 @@ import * as skins from "react-rotary-knob-skin-pack";
 
 class CongaTuningKnob extends React.Component {
   state = {
-    value: 107
+    value: this.props.value
   };
-  
-
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.value !== prevProps.value) {
+      this.setState({
+        value: this.props.value
+      });
+    }
+  }
   handleChange = value => {
 
     const maxDistance = 200;

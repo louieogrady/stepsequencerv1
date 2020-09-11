@@ -20,7 +20,8 @@
     "serve": "^11.3.2",
     "styled-components": "^4.4.1",
     "styled-system": "^4.2.4",
-    "tone": "^13.8.34"
+    "tone": "^13.8.34",
+    "typescript": "^4.0.2"
   },
   "scripts": {
     "dev": "react-scripts start",
